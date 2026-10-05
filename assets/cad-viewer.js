@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three-r180/three.module.min.js';
 import {OrbitControls} from '../vendor/three-r180/OrbitControls.js';
-import {createAssembly} from './cad-model.js';
+import {createAssembly} from './cad-model.js?v=3.2';
 
 export async function initCad() {
   const q=id=>document.getElementById(id),view=q('cadView'),canvas=q('cadCanvas'),root=q('cad');
@@ -13,7 +13,7 @@ export async function initCad() {
   if(!renderer) {
     software=true;
     const {SVGRenderer}=await import('../vendor/three-r180/SVGRenderer.js');
-    renderer=new SVGRenderer();renderer.setQuality('high');renderer.setPrecision(2);renderer.overdraw=.15;
+    renderer=new SVGRenderer();renderer.setQuality('high');renderer.setPrecision(2);renderer.overdraw=0;
     renderer.domElement.id='cadSoftwareCanvas';renderer.domElement.setAttribute('role','img');
     renderer.domElement.setAttribute('aria-label','같은 3D 형상과 좌표를 사용하는 소프트웨어 CAD 보기. 드래그로 회전, 휠이나 핀치로 확대.');
     canvas.style.display='none';view.prepend(renderer.domElement);

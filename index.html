@@ -94,6 +94,21 @@
 .dimension-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.dimension-grid article{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px}.dimension-grid p{font-size:14px;color:var(--muted);margin-top:8px}
 .arch-card p,.note-card p,.step>p,.checkpoint,.fact-row,.details-grid p,.part-explanation p,.diagram-caption,.warning-box,.helper,.safety{font-size:14px}
 @media(max-width:760px){.cad-view{position:relative;height:500px}.cad-axis-hint{left:10px;top:61px;font-size:12px}.cad-status{left:10px;bottom:10px;padding:7px 9px;max-width:calc(100% - 95px);font-size:12px}.cad-gesture{display:none}#cadRenderInfo{right:10px;bottom:13px;font-size:11px}.cad-part-label{font-size:11px;padding:2px 4px}.cad-operation-steps{left:10px;top:91px;font-size:12px}.cad-head p{font-size:15px}.cad-note{font-size:13px}.dimension-grid{grid-template-columns:1fr 1fr}.cad-mode strong{font-size:14px}.topnav{gap:18px}.cad-grid{display:block}}
+
+@media(max-width:760px){
+ .topnav{min-width:0;max-width:100%;overflow-x:auto;justify-content:flex-start;gap:18px;scrollbar-width:thin}
+ .cad-grid{display:grid;grid-template-columns:minmax(0,1fr)}
+ .cad-panel{display:contents}
+ .cad-panel>h3,.cad-panel>.helper{display:none}
+ .cad-panel>.cad-modes{grid-row:1;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:12px 10px}
+ .cad-mode{min-height:44px;padding:8px 2px;text-align:center}
+ .cad-mode span{display:none}
+ .cad-view{grid-row:2}
+ .cad-panel>.control-field{margin:16px 18px 0}
+ .cad-panel>.cad-readout,.cad-panel>.cad-legend,.cad-panel>.cad-stack{margin:16px 18px}
+ .cad-readout{grid-template-columns:1fr 1fr}
+ .motor-choice strong{white-space:normal}
+}
 </style>
 </head>
 <body>
@@ -258,7 +273,7 @@
 <div class="source-item" id="source7"><a href="https://kr.spirol.com/product/disc-springs/" target="_blank" rel="noopener noreferrer">[3] SPIROL — Disc Springs</a><small>디스크 스프링의 축방향 하중과 예압 설계 참고.</small></div>
 <div class="source-item" id="source8"><a href="https://cdn.skfmediahub.skf.com/api/public/0901d196802809de/pdf_preview_medium/0901d196802809de_pdf_preview_medium.pdf" target="_blank" rel="noopener noreferrer">[4] SKF — Deep groove ball bearings</a><small>볼 베어링의 하중 조건과 규격 선정 참고.</small></div>
 </div><p>페이지의 속도비·부품 크기·간격은 모두 개념 시각화입니다. 실제 rpm, 토크, 공차, 수명을 뜻하지 않습니다.</p></details>
-<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.06 / V3.1</p></footer>
+<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.06 / V3.2</p></footer>
 
 </main><div class="toast" role="status" id="toast"></div>
 <script>
@@ -489,7 +504,7 @@ window.addEventListener('pagehide',()=>cancelAnimationFrame(rafId));
   window.addEventListener('cadFailure',e=>failure(e.detail));
   const timer=setTimeout(()=>failure('3D 파일을 불러오는 시간이 초과되었습니다. 연결을 확인하고 다시 시도해 주세요.'),15000);
   try{
-    const {initCad}=await import('./assets/cad-viewer.js?v=3.1');
+    const {initCad}=await import('./assets/cad-viewer.js?v=3.2');
     await initCad();
     clearTimeout(timer);loading.classList.add('ready');fallback.style.display='none';
     controls.forEach(el=>el.disabled=false);

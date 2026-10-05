@@ -138,7 +138,7 @@ export function createAssembly(THREE, {software = false} = {}) {
   }
   function setMode(selected,mode,explode) {
     const close=mode==='section'||mode==='exploded';
-    drive.visible=mode==='internal'||mode==='operation';baseGroup.visible=!close;floor.visible=!close;
+    drive.visible=mode==='internal'||mode==='operation';baseGroup.visible=!close;floor.visible=!close&&!software;
     stack.visible=mode!=='exterior';shaft.visible=!close;localShaft.visible=close;plane.visible=mode==='exploded';axisLine.visible=close;
     for(const m of [base,lid]){m.material.transparent=mode!=='exterior';m.material.opacity=mode==='exterior'?1:.09;m.material.depthWrite=mode==='exterior';}
     layerObjs.forEach((l,i)=>{
