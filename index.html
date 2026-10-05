@@ -189,19 +189,17 @@
 <div class="part-panel"><p>번호를 눌러 역할을 확인하세요.</p><div class="part-list" role="group">
 <button class="part-button" data-part="shaft" aria-pressed="false"><span class="part-number">01</span><span><strong>공통 구동축</strong><small>BLDC 하나가 회전</small></span></button>
 <button class="part-button" data-part="bearing" aria-pressed="true"><span class="part-number">02</span><span><strong>베어링</strong><small>층이 독립적으로 회전</small></span></button>
-<button class="part-button" data-part="coupling" aria-pressed="false"><span class="part-number">03</span><span><strong>Passive coupling</strong><small>마찰·자기 결합 후보</small></span></button>
+<button class="part-button" data-part="coupling" aria-pressed="false"><span class="part-number">03</span><span><strong>마찰 coupling</strong><small>층별 slip 조절</small></span></button>
 <button class="part-button" data-part="ring" aria-pressed="false"><span class="part-number">04</span><span><strong>레이어 허브</strong><small>8자 레이어와 연결</small></span></button>
 </div><div class="part-explanation" id="partExplanation"></div><button class="btn compact ghost" id="showAllParts">전체 함께 보기</button></div>
 </div>
 
-<div class="architecture-grid">
-<article class="arch-card"><h4>피하고 싶은 직렬 전달</h4><p>아래층이 다음 층을 차례로 돌리는 구조. 한 층의 마찰이나 문제가 위층으로 연쇄될 수 있습니다.</p><div class="arch-mini">모터
-  ↓
-1층 → 2층 → 3층 → 4층</div></article>
-<article class="arch-card recommended"><h4>현재 안: 병렬 전달</h4><p>모든 층이 같은 구동축에서 각자 직접 힘을 받습니다. 층 높이와 속도 순서가 연결되지 않습니다.</p><div class="arch-mini">        공통 축
-   ↙    ↓    ↘
- 1층   2층   3층   4층
-   각각 별도 coupling</div></article>
+<div class="architecture-grid" style="grid-template-columns:1fr">
+<article class="arch-card recommended"><h4>현재 구조: 공통 Z축에서 각 층으로 병렬 전달</h4><p>모든 레이어 허브가 같은 공통 Z축을 중심으로 베어링에 지지되고, 각 높이의 마찰 coupling이 공통축의 토크를 해당 레이어에 직접 전달합니다. 층마다 예압을 다르게 하므로 높이와 무관한 속도 차이를 만들 수 있습니다.</p><div class="arch-mini">          공통 Z축
+     ↙      ↓      ↘
+  1층     2층     3층 ...
+ 마찰     마찰     마찰
+coupling coupling coupling</div></article>
 </div>
 
 <div class="warning-box"><strong>중요:</strong> 단순 마찰 클러치는 “압력을 정확히 30% 주면 속도가 정확히 30%”가 되는 장치가 아닙니다. 실제로는 붙어서 거의 같은 속도로 돌거나, 미끄러지면서 하중·온도·마모에 따라 속도가 변할 수 있습니다. 이 방식은 <strong>정확한 rpm이 아니라 시각적으로 서로 다른 속도</strong>가 목표일 때 먼저 시험할 가치가 있는 안입니다.</div>
@@ -368,8 +366,8 @@ $('resetAll').addEventListener('click',()=>{Object.assign(state,{shaftSpeed:.78,
 // Structure diagrams
 const partText={
  shaft:{state:'계속 같은 속도로 도는 부분',body:'베이스 안의 정숙성 우선 BLDC가 공통 구동축 하나를 돌립니다. 저속이 필요하면 FOC와 벨트 감속을 함께 검토하고, 각 레이어는 이 축에서 직접 토크를 받습니다.'},
- bearing:{state:'레이어를 자유롭게 하는 부분',body:'레이어 허브가 공통 축과 완전히 고정되지 않고 독립적으로 회전할 수 있도록 베어링 또는 부싱으로 지지합니다.'},
- coupling:{state:'속도 차이를 만드는 핵심',body:'회전축과 레이어 허브 사이에 조절 가능한 마찰 또는 자기 결합을 둡니다. 각 층의 결합 조건을 다르게 하여 시각적인 속도 차이를 만드는 개념입니다.'},
+ bearing:{state:'레이어를 자유롭게 하는 부분',body:'레이어 허브가 공통 Z축과 다른 속도로 회전할 수 있도록 볼 베어링으로 지지합니다.'},
+ coupling:{state:'속도 차이를 만드는 핵심',body:'공통 Z축과 레이어 허브 사이에 조절 가능한 마찰 coupling을 둡니다. 디스크 스프링 예압을 층마다 다르게 하여 slip 차이를 만드는 현재 구조입니다.'},
  ring:{state:'실제로 보이는 회전부',body:'8자형 레이어는 자기 허브와 함께 회전합니다. 같은 축을 중심으로 돌지만, 다른 층과 기계적으로 직렬 연결되지는 않습니다.'},
  all:{state:'전체 개념',body:'공통 축 하나가 계속 돌고, 각 레이어는 자신의 베어링과 passive coupling을 통해 그 축에서 직접 힘을 받습니다.'}
 };
