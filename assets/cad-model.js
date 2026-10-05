@@ -18,7 +18,7 @@ export function createAssembly(THREE, {software = false} = {}) {
   const root = new THREE.Group(); root.name='assembly-Z'; scene.add(root);
   const baseGroup=new THREE.Group(), drive=new THREE.Group(), layersGroup=new THREE.Group(), stack=new THREE.Group();
   root.add(baseGroup,drive,layersGroup,stack);
-  stack.name='selected-layer-stack';
+  stack.name='selected-layer-stack'; stack.scale.setScalar(.6);
   // Native CylinderGeometry is Y aligned. Bake Y -> +Z once, never tilt an object.
   function cylinder(r,h,segments=36) {
     const g=new THREE.CylinderGeometry(r,r,h,segments);
@@ -54,7 +54,7 @@ export function createAssembly(THREE, {software = false} = {}) {
   }
   const base=new THREE.Mesh(cylinder(.91,.34,64),mats.cover.clone()); base.position.z=.17; baseGroup.add(base);
   const lid=new THREE.Mesh(cylinder(.86,.035,64),mats.cover.clone()); lid.position.z=.358; baseGroup.add(lid);
-  const shaft=new THREE.Mesh(cylinder(.055,4.35),mats.shaft); shaft.name='common-shaft'; shaft.position.z=2.48; root.add(shaft);
+  const shaft=new THREE.Mesh(cylinder(.033,4.35),mats.shaft); shaft.name='common-shaft'; shaft.position.z=2.48; root.add(shaft);
   const localShaft=new THREE.Mesh(cylinder(.055,.62),mats.shaft); localShaft.name='common-shaft-local'; stack.add(localShaft);
   localShaft.userData={coaxial:true,fullGeometry:localShaft.geometry,sectionGeometry:ringGeometry(0,.055,.62,0,true)};
   const motor=new THREE.Group(); motor.position.set(.5,0,.18); motor.name='BLDC'; drive.add(motor);
@@ -93,13 +93,13 @@ export function createAssembly(THREE, {software = false} = {}) {
     for(const start of [0,Math.PI]) {
       const pts=[];const N=software?40:72;
       let lo=0,hi=Math.PI/2;
-      for(let j=0;j<32;j++){const t=(lo+hi)/2;if(Math.hypot(size*Math.sin(t),size*.54*Math.sin(2*t))<.201)lo=t;else hi=t;}
+      for(let j=0;j<32;j++){const t=(lo+hi)/2;if(Math.hypot(size*Math.sin(t),size*.54*Math.sin(2*t))<.1206)lo=t;else hi=t;}
       const entry=(lo+hi)/2;
       for(let j=0;j<=N;j++){const t=start+entry+j/N*(Math.PI-2*entry);pts.push(new THREE.Vector3(size*Math.sin(t),size*.54*Math.sin(2*t),0));}
       const line=new THREE.CatmullRomCurve3(pts,false,'centripetal');
       const tube=new THREE.Mesh(new THREE.TubeGeometry(line,N,.014,software?4:6,false),mats.layer.clone());tube.userData.layerIndex=i;group.add(tube);segments.push(tube);
     }
-    const hub=new THREE.Mesh(ringGeometry(.056,.205,.032),mats.layer.clone());hub.name='exterior-layer-hub';hub.userData.layerIndex=i;group.add(hub);
+    const hub=new THREE.Mesh(ringGeometry(.0336,.123,.0192),mats.layer.clone());hub.name='exterior-layer-hub';hub.userData.layerIndex=i;group.add(hub);
     const factor=firstFactors[i]??(.36+seeded(i)*.58);
     layerObjs.push({group,tubes:segments,hub,z,size,baseFactor:factor,factor});
   }
@@ -111,9 +111,9 @@ export function createAssembly(THREE, {software = false} = {}) {
   const outer=ring('bearing-outer-race',.119,.150,.036,mats.race,0,0,bearing);
   const balls=new THREE.Group();balls.name='bearing-balls';bearing.add(balls);
   for(let j=0;j<12;j++) {const a=j/12*2*Math.PI;const ball=new THREE.Mesh(new THREE.SphereGeometry(.014,software?8:16,software?6:10),mats.ball);ball.position.set(.1045*Math.cos(a),.1045*Math.sin(a),0);balls.add(ball);}
-  const hub=new THREE.Group();hub.name='rotating-hub';hub.position.z=.014;stack.add(hub);
+  const hub=new THREE.Group();hub.name='rotating-hub';hub.position.z=.026;stack.add(hub);
   const sleeve=ring('hub-bearing-seat',.150,.205,.066,mats.hub,0,0,hub);
-  const face=ring('hub-friction-face',.070,.205,.014,mats.hub,-.021,0,hub);
+  const face=ring('hub-friction-face',.070,.205,.014,mats.hub,-.033,0,hub);
   const retainer=ring('retainer',.056,.107,.025,mats.retainer,.064);
   const stubs=new THREE.Group();stubs.name='layer-attachments';stack.add(stubs);
   for(const [sx,sy] of [[1,1],[1,-1],[-1,1],[-1,-1]]) {
@@ -127,13 +127,13 @@ export function createAssembly(THREE, {software = false} = {}) {
   }
   const plane=new THREE.Mesh(new THREE.RingGeometry(.21,.34,40),new THREE.MeshBasicMaterial({color:0x9ca99b,transparent:true,opacity:.13,side:THREE.DoubleSide,depthWrite:false}));plane.position.z=0;stack.add(plane);
   const axisLine=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,-.36),new THREE.Vector3(0,0,.36)]),new THREE.LineDashedMaterial({color:0x67827a,dashSize:.02,gapSize:.02}));axisLine.computeLineDistances();stack.add(axisLine);
-  const floor=new THREE.Mesh(new THREE.CircleGeometry(3.6,48),material(0xe4e7df,{metalness:0,roughness:1}));floor.position.z=-.008;scene.add(floor);
+  const floor=new THREE.Mesh(new THREE.CircleGeometry(3.6,48),new THREE.MeshBasicMaterial({color:0xe7eae3}));floor.position.z=-.008;scene.add(floor);
   function updateStack(selected,mode,explode) {
     stack.position.set(0,0,layerObjs[selected].z);
-    const g=mode==='exploded'?.028*explode:0;
+    const g=mode==='exploded'?.033*explode:0;
     collar.position.z=-.064-2*g;spring.position.z=-.048-g;friction.position.z=-.022-.2*g;
-    bearing.position.z=.025+g;hub.position.z=.014+3.9*g;retainer.position.z=.064+5.6*g;
-    layerObjs.forEach((l,i)=>l.group.position.z=l.z+(i===selected?3.9*g:0));
+    bearing.position.z=.025+g;hub.position.z=.026+3.9*g;retainer.position.z=.064+5.6*g;
+    layerObjs.forEach((l,i)=>l.group.position.z=l.z+(i===selected?3.9*g*.6:0));
     stubs.position.z=3.9*g;stubs.rotation.z=layerObjs[selected].group.rotation.z;
   }
   function setMode(selected,mode,explode) {
@@ -169,7 +169,7 @@ export function createAssembly(THREE, {software = false} = {}) {
   function torquePoints(selected) {
     root.updateMatrixWorld(true);
     const l=layerObjs[selected],tip=new THREE.Vector3(l.size*Math.sin(Math.PI/4),l.size*.54,0);l.group.localToWorld(tip);
-    return [new THREE.Vector3(.5,0,.18),new THREE.Vector3(.5,.12,.39),new THREE.Vector3(0,.25,.39),new THREE.Vector3(0,0,.43),new THREE.Vector3(0,0,l.z-.022),new THREE.Vector3(.14,0,l.z-.022),new THREE.Vector3(.205,0,l.z),tip];
+    return [new THREE.Vector3(.5,0,.18),new THREE.Vector3(.5,.12,.39),new THREE.Vector3(0,.25,.39),new THREE.Vector3(0,0,.43),new THREE.Vector3(0,0,l.z-.0132),new THREE.Vector3(.084,0,l.z-.0132),new THREE.Vector3(.123,0,l.z),tip];
   }
   return {scene,root,baseGroup,drive,stack,shaft,localShaft,layerObjs,parts,collar,spring,friction,bearing,inner,outer,balls,hub,retainer,motor,motorPulley,shaftPulley,belt,driver,updateStack,setMode,step,torquePoints};
 }

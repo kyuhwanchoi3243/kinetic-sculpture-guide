@@ -155,7 +155,7 @@
 </div>
 </section>
 <section class="hero" id="movement" aria-labelledby="hero-title">
-<div class="hero-head"><div><div class="eyebrow">정숙성 우선 구동안</div><h2 id="hero-title">조용한 모터 하나, 층은 제각각.</h2></div><p class="hero-sub">사진처럼 <strong>중앙 Z축만 보이게</strong> 유지하면서,<br>베이스 안의 <strong>BLDC(브러시 없는 모터) 1개를 정숙성 우선</strong>로 두고 공통 축을 돌립니다.<br class="desktop-br"> 각 레이어는 그 축에서 <strong>병렬로</strong> 힘을 받아 서로 다른 속도로 움직입니다.</p></div>
+<div class="hero-head"><div><div class="eyebrow">정숙성 우선 구동안</div><h2 id="hero-title">조용한 모터 하나, 층은 제각각.</h2></div><p class="hero-sub">사진처럼 <strong>중앙 Z축만 보이게</strong> 유지하면서,<br>베이스 안의 정숙한 <strong>BLDC(브러시 없는 모터) 1개</strong>로 공통축을 돌립니다.<br class="desktop-br"> 각 레이어는 그 축에서 <strong>병렬로</strong> 힘을 받아 서로 다른 속도로 움직입니다.</p></div>
 
 <div class="workbench">
 <figure class="stage" aria-label="공통 중앙축에서 병렬 passive coupling으로 힘을 받아 같은 방향, 서로 다른 속도로 회전하는 8자형 레이어 모형">
@@ -258,7 +258,7 @@
 <div class="source-item" id="source7"><a href="https://kr.spirol.com/product/disc-springs/" target="_blank" rel="noopener noreferrer">[3] SPIROL — Disc Springs</a><small>디스크 스프링의 축방향 하중과 예압 설계 참고.</small></div>
 <div class="source-item" id="source8"><a href="https://cdn.skfmediahub.skf.com/api/public/0901d196802809de/pdf_preview_medium/0901d196802809de_pdf_preview_medium.pdf" target="_blank" rel="noopener noreferrer">[4] SKF — Deep groove ball bearings</a><small>볼 베어링의 하중 조건과 규격 선정 참고.</small></div>
 </div><p>페이지의 속도비·부품 크기·간격은 모두 개념 시각화입니다. 실제 rpm, 토크, 공차, 수명을 뜻하지 않습니다.</p></details>
-<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.06 / V3.0</p></footer>
+<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.06 / V3.1</p></footer>
 
 </main><div class="toast" role="status" id="toast"></div>
 <script>
@@ -280,8 +280,9 @@ function rebuild(preserveAngle=true){
   const prev=layers,rng=rngFactory(state.seed);
   layers=Array.from({length:state.count},(_,i)=>{
     // Deliberately non-monotonic with height. This is a visualization, not a friction model.
-    const raw=state.seed===20261005&&i<5?[.55,.90,.63,.81,.47][i]:.34+rng()*.62;
-    const centered=.65+(raw-.65)*(state.variation/.48);
+    const x=Math.sin((i+1)*12.9898+78.233)*43758.5453;
+    const raw=state.seed===20261005?(i<5?[.55,.90,.63,.81,.47][i]:.36+(x-Math.floor(x))*.58):.34+rng()*.62;
+    const centered=.66+(raw-.66)*(state.variation/.48);
     const factor=Math.max(.18,Math.min(.98,centered));
     return {
       angle:preserveAngle&&prev[i]?prev[i].angle:(i*.28)%TAU,
@@ -488,7 +489,7 @@ window.addEventListener('pagehide',()=>cancelAnimationFrame(rafId));
   window.addEventListener('cadFailure',e=>failure(e.detail));
   const timer=setTimeout(()=>failure('3D 파일을 불러오는 시간이 초과되었습니다. 연결을 확인하고 다시 시도해 주세요.'),15000);
   try{
-    const {initCad}=await import('./assets/cad-viewer.js?v=3.0');
+    const {initCad}=await import('./assets/cad-viewer.js?v=3.1');
     await initCad();
     clearTimeout(timer);loading.classList.add('ready');fallback.style.display='none';
     controls.forEach(el=>el.disabled=false);

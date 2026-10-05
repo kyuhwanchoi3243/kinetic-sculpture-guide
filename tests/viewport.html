@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Responsive viewport verification</title>
+<style>body{margin:0;background:#dce2dc;font-family:system-ui;text-align:center}header{padding:10px;font-size:14px}select{font:inherit;padding:5px}iframe{display:block;margin:auto;border:1px solid #9ca99d;background:#fff;width:390px;height:844px;max-width:100%}</style>
+<header><label for="width">검증 화면 폭</label> <select id="width"><option value="390">390px · 모바일</option><option value="360">360px · 작은 모바일</option><option value="1280">1280px · 데스크톱</option></select></header>
+<iframe title="실제 GitHub Pages 반응형 화면" src="../index.html"></iframe>
+<script>document.getElementById('width').addEventListener('change',e=>{document.querySelector('iframe').style.width=e.target.value+'px';});</script>
+</html>

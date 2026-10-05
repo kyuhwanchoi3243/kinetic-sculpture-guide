@@ -13,7 +13,7 @@ export async function initCad() {
   if(!renderer) {
     software=true;
     const {SVGRenderer}=await import('../vendor/three-r180/SVGRenderer.js');
-    renderer=new SVGRenderer();renderer.setQuality('high');renderer.setPrecision(2);
+    renderer=new SVGRenderer();renderer.setQuality('high');renderer.setPrecision(2);renderer.overdraw=.15;
     renderer.domElement.id='cadSoftwareCanvas';renderer.domElement.setAttribute('role','img');
     renderer.domElement.setAttribute('aria-label','같은 3D 형상과 좌표를 사용하는 소프트웨어 CAD 보기. 드래그로 회전, 휠이나 핀치로 확대.');
     canvas.style.display='none';view.prepend(renderer.domElement);
@@ -38,7 +38,7 @@ export async function initCad() {
   function fitCamera() {
     const z=model.layerObjs[state.selected].z,aspect=width/height;
     if(state.mode==='section'||state.mode==='exploded') {
-      const distance=aspect<.85?1.48:1.15;
+      const distance=(aspect<.85?1.60:1.28)*.6;
       controls.target.set(0,0,z+(state.mode==='exploded'?.04:0));
       camera.position.copy(controls.target).add(new THREE.Vector3(.30,-1,.38).normalize().multiplyScalar(distance));
     } else if(state.mode==='operation') {
@@ -47,7 +47,18 @@ export async function initCad() {
       controls.target.set(.13,0,mid);camera.position.copy(controls.target).add(new THREE.Vector3(1.5,-4,1.4).normalize().multiplyScalar(distance));
     } else {
       const distance=Math.max(8.4,6.0/aspect);
-      controls.target.set(0,0,2.22);camera.position.copy(controls.target).add(new THREE.Vector3(4,-7,3).normalize().multiplyScalar(distance));
+      controls.target.set(0,0,2.32);camera.position.copy(controls.target).add(new THREE.Vector3(4,-7,3).normalize().multiplyScalar(distance));
+      const envelope=[new THREE.Vector3(0,0,4.655),new THREE.Vector3(0,0,0)];
+      for(const l of model.layerObjs) for(const [x,y] of [[l.size,0],[-l.size,0],[0,l.size*.54],[0,-l.size*.54]])envelope.push(new THREE.Vector3(x,y,l.z));
+      for(const [x,y] of [[.91,0],[-.91,0],[0,.91],[0,-.91]])envelope.push(new THREE.Vector3(x,y,.17));
+      // Fit real geometry inside the space left by the viewer toolbar and caption.
+      for(let i=0;i<5;i++) {
+        camera.lookAt(controls.target);camera.updateMatrixWorld();
+        let ratio=1;
+        for(const v of envelope){const p=project(v);ratio=Math.max(ratio,(width/2-p.x)/(width*.42),(p.x-width/2)/(width*.42),(height/2-p.y)/(height/2-100),(p.y-height/2)/(height/2-95));}
+        if(ratio<=1.01)break;
+        camera.position.sub(controls.target).multiplyScalar(ratio*1.025).add(controls.target);
+      }
     }
     controls.update();dirty=true;
   }
@@ -113,7 +124,7 @@ export async function initCad() {
       overlay.append(makeSvg('circle',{cx:e.p.x,cy:e.p.y,r:2.5,fill:'#61766b'}));
     }
     if(close) {
-      const p=project(new THREE.Vector3(0,0,model.stack.position.z+.30));
+      const p=project(new THREE.Vector3(0,0,model.stack.position.z+.18));
       const t=makeSvg('text',{x:p.x+9,y:p.y,fill:'#477989','font-size':13,'font-weight':700});t.textContent='공통 Z축';overlay.append(t);
     }
     if(!operation) {model.friction.material.emissive.setHex(0);model.hub.children.forEach(m=>{if(m.material.emissive)m.material.emissive.setHex(0);});return;}
