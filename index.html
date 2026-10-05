@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light">
-<meta name="description" content="공통 중앙축을 가진 8자형 레이어들을 BLDC 그룹으로 묶어 같은 방향, 서로 다른 속도로 회전시키는 조각 제작 가이드.">
-<title>레이어마다, 다른 리듬 — 움직이는 조각 제작 가이드</title>
+<meta name="description" content="BLDC 하나와 공통 중앙축, 층별 병렬 passive coupling으로 같은 방향·서로 다른 속도의 8자형 레이어를 만드는 키네틱 조각 제작 가이드.">
+<title>모터 하나, 층은 제각각 — 키네틱 조각 제작 가이드</title>
 <style>
 :root{--paper:#f5f3ed;--white:#fffefa;--ink:#262823;--muted:#676b62;--line:#d9dcd2;--accent:#c34a2a;--tint:#f9e8df;--fixed:#58737c;--fixed-light:#e3eceb;--soft:#eaece4;--radius:18px;--font:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;letter-spacing:-.025em;word-break:keep-all}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer;touch-action:manipulation}button:disabled{cursor:not-allowed;opacity:.45}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}button{color:var(--ink)}svg{display:block}button svg{pointer-events:none}h1,h2,h3,h4,p,figure{margin:0}h1,h2,h3{line-height:1.28}h1{font-size:clamp(34px,4vw,56px);letter-spacing:-.06em;font-weight:760}h2{font-size:clamp(27px,3vw,38px);letter-spacing:-.05em;font-weight:740}h3{font-size:23px;letter-spacing:-.04em}small,.small{font-size:13px;line-height:1.65}strong{font-weight:700}a,button,input{touch-action:manipulation}.wrap{width:min(1216px,calc(100% - 64px));margin:0 auto}.sr-only{position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);overflow:hidden;white-space:nowrap}.skip{position:fixed;top:-80px;left:20px;background:var(--ink);color:white;padding:12px 22px;z-index:100}.skip:focus{top:10px}.mono{font-family:"SFMono-Regular",Consolas,monospace;font-size:12px;letter-spacing:.08em}.eyebrow{font-size:11px;letter-spacing:.14em;font-weight:750;text-transform:uppercase}.muted{color:var(--muted)}.accent{color:var(--accent)}.fixed{color:var(--fixed)}.topbar{position:sticky;top:0;z-index:30;background:rgba(245,243,237,.95);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}.topbar-inner{height:67px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:15px;font-weight:750;white-space:nowrap}.brand-mark{width:29px;height:29px;flex:none}.topnav{display:flex;gap:25px;align-items:center;font-size:13px;font-weight:650}.topnav a{text-decoration:none;color:var(--muted);padding:8px 0;white-space:nowrap;border-bottom:2px solid transparent}.topnav a.active{color:var(--ink);border-bottom-color:var(--accent)}.badge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:30px;padding:5px 10px;font-size:11px;line-height:1.5;letter-spacing:.01em;white-space:nowrap;background:var(--white)}.badge.dot:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}.hero{padding:49px 0 0}.hero-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:27px}.hero-head .eyebrow{margin-bottom:12px;color:var(--accent)}.hero-sub{max-width:405px;color:var(--muted);font-size:15px;line-height:1.75;padding-bottom:4px}.lead{font-size:16px;color:var(--muted);margin-top:12px;max-width:670px}.section{padding-top:77px}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:27px}.section-index{font-size:12px;color:var(--accent);font-weight:750;letter-spacing:.08em;margin-bottom:10px}.section-head .aside-note{font-size:13px;color:var(--muted);max-width:260px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--white);padding:10px 16px;min-height:44px;border-radius:9px;font-size:13px;font-weight:650;text-decoration:none;transition:background .15s,border-color .15s}.btn:hover{background:var(--soft);border-color:#a9ada1}.btn.primary{background:var(--ink);color:var(--white);border-color:var(--ink)}.btn.primary:hover{background:#41463d}.btn.accent-btn{background:var(--accent);color:white;border-color:var(--accent)}.btn.ghost{background:transparent}.btn.compact{padding:7px 11px;min-height:36px;font-size:12px}.btn .icon{width:16px;height:16px}.btn-row{display:flex;gap:8px;flex-wrap:wrap}.pillset{display:flex;padding:4px;gap:3px;background:var(--soft);border-radius:10px;align-items:center}.pillset button{flex:1;border:0;border-radius:7px;background:transparent;min-height:35px;font-size:12px;font-weight:650;padding:6px 10px;white-space:nowrap}.pillset button[aria-pressed=true]{background:var(--white);box-shadow:0 1px 4px #272d2212;color:var(--accent)}.pillset button:hover{background:#ffffff77}.workbench{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(325px,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--white)}.stage{position:relative;min-width:0;min-height:600px;overflow:hidden;background:radial-gradient(ellipse at 45% 35%,#fffefa 0%,#f1f0e8 65%,#eceee5 100%)}.stage:before{position:absolute;inset:0;content:"";background-image:radial-gradient(#8b90801f .8px,transparent .8px);background-size:22px 22px;pointer-events:none}.stage-toolbar{position:absolute;top:19px;left:20px;right:20px;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:10px}.stage canvas{width:100%;height:600px;display:block;position:relative;touch-action:pan-y;cursor:grab}.stage canvas:active{cursor:grabbing}.stage-floor{position:absolute;bottom:17px;left:22px;right:22px;display:flex;justify-content:space-between;align-items:end;gap:20px;font-size:11px;color:var(--muted);pointer-events:none}.stage-floor span:last-child{text-align:right}.stage-mood{font-size:10px;letter-spacing:.13em;color:var(--muted)}.stage-state{position:absolute;top:71px;left:22px;z-index:2;font-size:11px;color:var(--muted)}.control-panel{padding:25px;border-left:1px solid var(--line)}.control-title{display:flex;align-items:center;gap:8px;margin-bottom:15px;font-size:15px;font-weight:700}.control-title .num{display:inline-flex;background:var(--ink);color:white;width:22px;height:22px;border-radius:50%;align-items:center;justify-content:center;font-size:11px}.mode-group{display:grid;gap:8px}.mode-btn{width:100%;text-align:left;display:grid;grid-template-columns:29px 1fr 17px;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);padding:12px 13px;border-radius:11px;min-height:72px;transition:.15s}.mode-btn[aria-pressed=true]{background:var(--tint);border-color:var(--accent)}.mode-btn:hover{border-color:var(--accent)}.mode-icon{font-size:24px;font-weight:400;line-height:1}.mode-name{display:block;font-size:14px;font-weight:700}.mode-detail{display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px}.checkmark{width:16px;height:16px;border:1px solid #a9ada1;border-radius:50%;position:relative}.mode-btn[aria-pressed=true] .checkmark{background:var(--accent);border-color:var(--accent)}.mode-btn[aria-pressed=true] .checkmark:after{content:"";position:absolute;width:6px;height:3px;top:4px;left:4px;border:solid white;border-width:0 0 2px 2px;transform:rotate(-45deg)}.field-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px;font-size:13px;font-weight:650}.field-head output{color:var(--accent);font-weight:650}.control-field{margin-top:22px}input[type=range]{appearance:none;-webkit-appearance:none;width:100%;height:5px;border-radius:10px;background:var(--line);cursor:pointer;accent-color:var(--accent);display:block;margin:14px 0}input[type=range]::-webkit-slider-thumb{appearance:none;width:18px;height:18px;background:var(--accent);border:3px solid var(--white);box-shadow:0 0 0 1px var(--accent);border-radius:50%}input[type=range]::-moz-range-thumb{width:14px;height:14px;background:var(--accent);border:3px solid var(--white);border-radius:50%}.range-ends{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}details{border-top:1px solid var(--line)}summary{cursor:pointer;list-style:none;padding:16px 0;font-size:13px;font-weight:650;display:flex;align-items:center;justify-content:space-between;gap:12px;user-select:none}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:20px;color:var(--muted);line-height:1}details[open]>summary:after{content:"−"}details p{font-size:13px;color:var(--muted);margin:0 0 13px}details p:last-child{margin-bottom:16px}.advanced{margin-top:19px}.advanced .control-field{margin-top:10px;margin-bottom:17px}.advanced label{font-size:12px}.select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);min-height:44px;font-size:13px;max-width:100%}.checkbox{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--muted);line-height:1.6;cursor:pointer}.checkbox input{accent-color:var(--accent);width:17px;height:17px;flex:none;margin:2px 0 0}.helper{font-size:12px;line-height:1.7;color:var(--muted)}.mode-feedback{border-left:2px solid var(--accent);padding-left:11px;margin-top:13px;font-size:12px;line-height:1.75}.scene-meta{display:grid;grid-template-columns:1fr auto;gap:16px;padding:17px 21px;border:1px solid var(--line);border-top:none;border-radius:0 0 13px 13px;margin:0 13px;background:var(--white)}.scene-meta p{font-size:12px;color:var(--muted)}.layer-controls{display:flex;align-items:center;gap:10px;font-size:12px;white-space:nowrap}.layer-controls .select{width:90px;min-height:35px;padding:5px 8px;font-size:12px}.live-layer{font-size:11px;display:inline-flex;padding:3px 8px;border-radius:6px;background:var(--tint);color:var(--accent);min-width:65px;justify-content:center}.insight{display:flex;gap:17px;align-items:flex-start;margin-top:22px;padding:19px 22px;border-radius:13px;background:var(--soft);font-size:13px}.insight b{color:var(--accent)}.insight-icon{font-family:Georgia,serif;font-style:italic;flex:none;border:1px solid var(--ink);border-radius:50%;height:24px;width:24px;text-align:center;line-height:23px;font-size:16px}.reference{margin-top:19px}.reference-wrap{display:grid;grid-template-columns:110px 1fr;gap:21px;padding-bottom:20px}.reference img{width:110px;border-radius:9px;display:block}.reference p{max-width:750px;margin-top:0}.reference small{display:block;margin-top:8px;color:var(--muted);font-size:11px}.structure-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr)}.diagram-side{min-width:0;background:#f8f8f2;display:flex;flex-direction:column}.diagram-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px 21px}.diagram-toolbar .eyebrow{font-size:10px;color:var(--muted)}.diagram-wrap{min-height:345px;display:flex;align-items:center;justify-content:center;padding:0 12px}.diagram-wrap svg{width:100%;height:auto;max-height:410px}.legend{display:flex;gap:15px;padding:6px 23px 10px;font-size:11px;flex-wrap:wrap}.legend span{display:flex;align-items:center;gap:6px}.swatch{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block}.swatch.fixed{background:var(--fixed)}.swatch.contact{background:#91a8a4}.diagram-caption{font-size:11px;color:var(--muted);padding:0 23px 18px;min-height:54px;line-height:1.7}.part-panel{padding:23px;border-left:1px solid var(--line)}.part-panel>p{font-size:13px;color:var(--muted);margin-bottom:16px}.part-list{display:grid;gap:7px}.part-button{display:flex;gap:12px;align-items:center;border:1px solid var(--line);background:var(--white);border-radius:9px;padding:11px 12px;text-align:left;min-height:56px}.part-button[aria-pressed=true]{border-color:var(--accent);background:var(--tint)}.part-number{font-size:12px;color:var(--accent);font-weight:700;flex:none}.part-button strong{font-size:13px;display:block}.part-button small{font-size:11px;color:var(--muted);display:block;font-weight:400}.part-explanation{margin-top:16px;border-top:1px solid var(--line);padding-top:15px;min-height:106px}.part-explanation p{font-size:13px;line-height:1.8}.part-explanation .part-state{font-size:11px;font-weight:700;margin-bottom:6px;color:var(--fixed)}.two-notes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.note-card{padding:21px 22px;border:1px solid var(--line);border-radius:12px;background:#fffefa80}.note-card h4{font-size:14px;margin:0 0 7px}.note-card p{font-size:13px;color:var(--muted)}.motor-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:17px}.motor-choice{padding:20px 22px;background:var(--white);border:1px solid var(--line);border-radius:12px;text-align:left;position:relative}.motor-choice[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--white)}.motor-choice:hover{border-color:var(--ink)}.motor-choice .eyebrow{font-size:10px;display:block;color:var(--muted);margin-bottom:9px}.motor-choice[aria-pressed=true] .eyebrow{color:#d3d8c9}.motor-choice strong{font-size:20px;display:block}.motor-choice small{display:block;font-size:12px;margin-top:5px;color:var(--muted)}.motor-choice[aria-pressed=true] small{color:#d3d8c9}.motor-choice .choice-arrow{position:absolute;right:18px;top:15px;opacity:.45;font-size:20px}.motor-detail{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--radius);background:var(--white);overflow:hidden}.placement{background:#eeeee5;min-width:0;display:flex;flex-direction:column}.placement .diagram-wrap{padding:0 14px;min-height:295px}.placement svg{width:100%;height:auto;max-height:335px}.placement .diagram-caption{padding-top:12px}.motor-text{padding:30px;border-left:1px solid var(--line)}.motor-text .eyebrow{color:var(--accent);margin-bottom:9px}.motor-text .short-desc{font-size:14px;color:var(--muted);margin-top:10px;margin-bottom:21px}.fact-row{display:grid;grid-template-columns:78px 1fr;border-top:1px solid var(--line);padding:12px 0;gap:14px;font-size:13px;line-height:1.7}.fact-row dt{color:var(--muted);font-size:12px}.fact-row dd{margin:0}.fact-list{margin:0}.source-ref{font-size:10px;color:var(--accent);text-decoration:none;vertical-align:super;letter-spacing:0;padding:0 2px}.source-ref:hover{text-decoration:underline}.wide-details{margin-top:17px;border-bottom:1px solid var(--line)}.wide-details summary{font-size:14px}.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;padding:0 0 20px}.details-grid h4{font-size:14px;margin:0 0 8px}.details-grid p{margin:0;font-size:13px}.decision-band{display:grid;grid-template-columns:45px 1fr;gap:17px;margin-top:23px;background:var(--tint);border-radius:13px;padding:24px}.decision-band .big-arrow{font-size:31px;line-height:1.2;color:var(--accent)}.decision-band strong{font-size:16px;display:block;margin-bottom:5px}.decision-band p{font-size:13px;color:#715448}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step{padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--white)}.step-num{font-family:Georgia,serif;font-size:42px;line-height:1.1;color:#a0a58f;margin-bottom:20px}.step .eyebrow{font-size:10px;color:var(--accent);margin-bottom:7px}.step h3{font-size:21px}.step>p{font-size:13px;color:var(--muted);margin-top:12px;min-height:65px}.step .checkpoint{border-top:1px solid var(--line);margin-top:18px;padding-top:14px;font-size:12px;line-height:1.8}.step .checkpoint b{color:var(--accent)}.safety{display:grid;grid-template-columns:160px 1fr;gap:24px;margin-top:18px;padding:22px;border:1px solid var(--line);border-radius:12px;font-size:12px}.safety h4{font-size:13px;margin:0}.safety p{color:var(--muted)}.brief{margin-top:30px;background:var(--ink);color:var(--white);border-radius:var(--radius);padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:35px}.brief .eyebrow{color:#e1a18b;margin-bottom:11px}.brief h3{font-size:25px}.brief .brief-lead{font-size:13px;color:#c5ccbe;margin-top:10px;margin-bottom:20px}.brief-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.brief-field label{display:block;font-size:12px;margin-bottom:6px;color:#d3d8cb}.brief input,.brief select,.brief textarea{width:100%;min-width:0;min-height:44px;padding:10px 11px;border:1px solid #68715e;border-radius:8px;background:#353c31;color:var(--white);font-size:13px}.brief input::placeholder,.brief textarea::placeholder{color:#b1b8a9}.brief input:focus-visible,.brief select:focus-visible,.brief textarea:focus-visible{outline-color:#efc0aa}.brief .full{grid-column:1/-1}.brief textarea{resize:vertical;min-height:75px;line-height:1.6}.brief .privacy{font-size:11px;color:#b8c1ae;margin-top:13px}.brief-preview{border:1px solid #65715a;border-radius:12px;overflow:hidden;background:#2e3429;display:flex;flex-direction:column}.brief-preview-head{display:flex;align-items:center;justify-content:space-between;padding:13px 17px;border-bottom:1px solid #515e45;font-size:12px;font-weight:650}.brief-preview pre{font-family:var(--font);font-size:12px;line-height:1.85;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;margin:0;padding:17px;flex:1;color:#edf0e6}.brief-preview .btn-row{padding:0 16px 16px}.brief-preview .btn{background:#e9ede1;border-color:#e9ede1;color:#252c20;font-size:12px}.brief-preview .btn.ghost{background:transparent;color:#edf0e6;border-color:#65715a}.brief .save-help{font-size:11px;color:#b8c1ae;padding:0 17px 13px}.copy-fallback{margin:0 16px 16px}.copy-fallback label{font-size:11px}.copy-fallback textarea{margin-top:5px}.sources{margin:40px 0 0;border-bottom:1px solid var(--line)}.sources summary{font-size:13px}.source-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 30px;padding-bottom:20px}.source-item{font-size:12px;line-height:1.8;padding:8px 0;overflow-wrap:anywhere}.source-item a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}.source-item small{font-size:11px;color:var(--muted);display:block}.footer{display:flex;justify-content:space-between;gap:30px;padding:27px 0 35px;font-size:11px;color:var(--muted)}.footer .mono{font-size:10px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:var(--white);border:1px solid #65715a;padding:12px 20px;border-radius:10px;font-size:13px;z-index:50;transition:opacity .2s,transform .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.noscript{padding:18px;background:var(--tint);margin-top:16px;font-size:14px}.fadeable{transition:opacity .2s}.part-dim{opacity:.38}.hotspot{cursor:pointer}.hotspot circle{transition:fill .2s}.hotspot:hover circle{fill:var(--ink)}.print-summary{display:none}
@@ -23,6 +23,19 @@
 .constraint-card{margin-top:18px;border:1px solid var(--accent);background:var(--tint);border-radius:12px;padding:16px 18px;font-size:13px;line-height:1.75}
 .constraint-card strong{color:var(--accent)}
 @media(max-width:760px){.group-summary{grid-template-columns:1fr 1fr}.group-chip{padding:8px}.constraint-card{font-size:12px}}
+
+.speed-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:13px}
+.speed-chip{border:1px solid var(--line);border-radius:8px;background:var(--white);padding:8px 6px;text-align:center;font-size:10px;line-height:1.45}
+.speed-chip b{display:block;font-size:12px;color:var(--ink)}
+.speed-chip span{color:var(--muted)}
+.architecture-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.arch-card{border:1px solid var(--line);border-radius:12px;background:var(--white);padding:18px}
+.arch-card.recommended{border-color:var(--accent);background:var(--tint)}
+.arch-card h4{font-size:14px;margin:0 0 8px}.arch-card p{font-size:12px;color:var(--muted)}
+.arch-mini{font-family:"SFMono-Regular",Consolas,monospace;font-size:11px;line-height:1.8;white-space:pre;margin-top:12px;color:var(--ink)}
+.warning-box{margin-top:18px;padding:17px 19px;border:1px solid #c9a47f;border-radius:12px;background:#faf1e7;font-size:13px;line-height:1.75}
+.warning-box strong{color:#8b4e27}
+@media(max-width:760px){.speed-strip{grid-template-columns:repeat(3,1fr)}.architecture-grid{grid-template-columns:1fr}.warning-box{font-size:12px}}
 </style>
 </head>
 <body>
@@ -35,111 +48,119 @@
 <main class="wrap" id="top">
 <noscript><div class="noscript">움직이는 모형과 선택 기능은 JavaScript를 사용하는 브라우저에서 작동합니다. 아래의 제작 순서와 참고 설명은 그대로 읽을 수 있습니다.</div></noscript>
 
+
 <section class="hero" id="movement" aria-labelledby="hero-title">
-<div class="hero-head"><div><div class="eyebrow">현재 결정된 움직임</div><h1 id="hero-title">같은 방향, 그룹마다 다른 속도.</h1></div><p class="hero-sub">사진처럼 <strong>중앙축 하나만 보이게</strong> 유지하고,<br>8자형 레이어 여러 개를 몇 그룹으로 묶어<br class="desktop-br"> 그룹별 BLDC 속도만 다르게 돌리는 안입니다.</p></div>
+<div class="hero-head"><div><div class="eyebrow">현재 가장 단순한 능동 구동안</div><h1 id="hero-title">모터는 하나, 층은 제각각.</h1></div><p class="hero-sub">사진처럼 <strong>중앙축만 보이게</strong> 유지하면서,<br>BLDC 하나가 공통 축을 돌리고 각 레이어는<br class="desktop-br"> 그 축에서 <strong>병렬로</strong> 힘을 받아 서로 다른 속도로 움직이는 안입니다.</p></div>
 
 <div class="workbench">
-<figure class="stage" aria-label="같은 중앙축을 중심으로 같은 방향으로 회전하되 그룹마다 속도가 다른 8자형 레이어 모형">
-<div class="stage-toolbar"><span class="badge dot">GROUPED BLDC MOTION</span><div class="btn-row"><button class="btn compact" id="playButton">일시정지</button><button class="btn compact" id="resetView">시점 초기화</button></div></div>
-<div class="stage-state" id="stageState">모든 그룹 ↻ 같은 방향 · 속도만 다름</div>
-<canvas id="sculpture" tabindex="0" aria-label="20개 8자형 레이어를 여러 그룹으로 묶어 같은 방향, 서로 다른 속도로 회전시키는 개념 모형입니다.">그룹별 BLDC 회전 모형입니다.</canvas>
-<figcaption class="stage-floor"><span><span class="stage-mood">STUDY 01 / GROUPED MOTION</span><br>좌우로 드래그하면 시점이 바뀝니다.</span><span>같은 그룹 = 같은 속도<br>장착 각도는 서로 다르게 가능</span></figcaption>
+<figure class="stage" aria-label="공통 중앙축에서 병렬 passive coupling으로 힘을 받아 같은 방향, 서로 다른 속도로 회전하는 8자형 레이어 모형">
+<div class="stage-toolbar"><span class="badge dot">ONE BLDC / PARALLEL COUPLING</span><div class="btn-row"><button class="btn compact" id="playButton">일시정지</button><button class="btn compact" id="resetView">시점 초기화</button></div></div>
+<div class="stage-state" id="stageState">전부 ↻ 같은 방향 · 높이와 무관하게 속도 차이</div>
+<canvas id="sculpture" tabindex="0" aria-label="한 BLDC가 공통 중앙축을 돌리고 각 레이어가 병렬 passive coupling을 통해 서로 다른 속도로 회전하는 개념 모형입니다.">층별 속도 차이를 보여주는 개념 모형입니다.</canvas>
+<figcaption class="stage-floor"><span><span class="stage-mood">STUDY 01 / PASSIVE SPEED DIFFERENCE</span><br>좌우로 드래그하면 시점이 바뀝니다.</span><span>위로 갈수록 느려지는 구조 아님<br>속도값은 개념 예시</span></figcaption>
 </figure>
 
 <div class="control-panel">
-<div class="control-title"><span class="num">1</span>몇 개 그룹으로 나눌까요?</div>
+<div class="control-title"><span class="num">1</span>속도 차이가 어떻게 보일까요?</div>
 
-<div class="control-field"><div class="field-head"><label for="groupCount">BLDC 구동 그룹 수</label><output id="groupCountLabel">4그룹</output></div>
-<select class="select" id="groupCount"><option value="2">2그룹 · 가장 단순</option><option value="3">3그룹</option><option value="4" selected>4그룹 · 기본안</option><option value="5">5그룹</option><option value="6">6그룹</option></select></div>
+<div class="control-field"><div class="field-head"><label for="shaftSpeed">공통 축의 회전 빠르기</label><output id="shaftSpeedLabel">보통</output></div><input type="range" id="shaftSpeed" min="25" max="150" value="78" step="5"><div class="range-ends"><span>느리게</span><span>빠르게</span></div></div>
 
-<div class="control-field"><div class="field-head"><label for="baseSpeed">전체 회전 빠르기</label><output id="speedLabel">보통</output></div><input type="range" id="baseSpeed" min="25" max="150" value="75" step="5"><div class="range-ends"><span>느리게</span><span>빠르게</span></div></div>
+<div class="control-field"><div class="field-head"><label for="variation">층별 속도 차이의 크기</label><output id="variationLabel">중간</output></div><input type="range" id="variation" min="15" max="80" value="48" step="5"><div class="range-ends"><span>비슷하게</span><span>차이 크게</span></div></div>
 
-<div class="control-field"><div class="field-head"><label for="speedSpread">그룹 사이 속도 차이</label><output id="spreadLabel">중간</output></div><input type="range" id="speedSpread" min="10" max="80" value="45" step="5"><div class="range-ends"><span>비슷하게</span><span>차이 크게</span></div></div>
+<div class="mode-feedback" id="modeFeedback">각 층은 아래층을 거쳐 힘을 받는 게 아니라 <strong>같은 공통 축에서 직접</strong> 힘을 받습니다. 따라서 빠름→느림→빠름처럼 높이와 무관한 순서가 가능합니다.</div>
+<div class="speed-strip" id="speedStrip"></div>
+<div class="btn-row" style="margin-top:12px"><button class="btn compact" id="reseed">다른 속도 분포 예시</button></div>
 
-<div class="mode-feedback" id="modeFeedback">모든 BLDC는 같은 방향으로 돕니다. 기본 4그룹에서는 A가 가장 느리고 D가 가장 빠르게 설정됩니다.</div>
-<div class="group-summary" id="groupSummary"></div>
-
-<details class="advanced"><summary>모양·층수·그룹 묶기 조절</summary>
+<details class="advanced"><summary>모양·층수·시점 조절</summary>
 <div class="control-field"><div class="field-head"><label for="shape">레이어 모양</label></div><select class="select" id="shape"><option value="figure8" selected>참고 이미지처럼 8자(∞)</option><option value="ellipse">타원</option><option value="circle">완전한 원</option></select></div>
-<div class="control-field"><div class="field-head"><label for="count">레이어 수</label></div><select class="select" id="count"><option value="8">8개</option><option value="12">12개</option><option value="16">16개</option><option value="20" selected>20개 · 기본안</option><option value="24">24개</option></select></div>
-<div class="control-field"><div class="field-head"><label for="grouping">그룹을 묶는 방법</label></div><select class="select" id="grouping"><option value="blocks" selected>위에서부터 연속 구간으로 묶기 · 제작 단순</option><option value="interleaved">A-B-C-D 순서로 엇갈리게 · 구조 어려움</option></select></div>
+<div class="control-field"><div class="field-head"><label for="count">레이어 수</label></div><select class="select" id="count"><option value="3">3개 · 첫 실험</option><option value="5">5개 · 권장 시제품</option><option value="10">10개</option><option value="20" selected>20개 · 최종 형태 예시</option></select></div>
 <div class="control-field"><div class="field-head"><label for="spacing">층 간격</label><output id="spacingLabel">보통</output></div><input type="range" id="spacing" min="70" max="140" value="100" step="5"><div class="range-ends"><span>촘촘하게</span><span>넓게</span></div></div>
-<div class="control-field"><label class="checkbox"><input type="checkbox" id="markers"><span>각 레이어의 장착 방향을 점으로 표시</span></label></div>
+<div class="control-field"><label class="checkbox"><input type="checkbox" id="markers"><span>각 레이어의 방향을 점으로 표시</span></label></div>
 <button class="btn compact" id="resetAll">모형 설정 초기화</button>
 </details>
-<p class="helper" style="margin-top:13px">같은 그룹의 레이어는 같은 회전 슬리브에 연결된다고 가정합니다. <strong>속도는 같지만 레이어를 서로 다른 고정 각도로 장착할 수 있어</strong> 모두 같은 방향을 보지는 않습니다.</p>
+<p class="helper" style="margin-top:13px">애니메이션의 속도비는 실제 마찰클러치 성능을 예측하는 값이 아닙니다. “높이 순서와 무관하게 속도가 섞일 수 있다”는 개념만 보여줍니다.</p>
 </div></div>
 
-<div class="scene-meta"><p id="shapeHint">8자형 레이어 모두가 같은 중앙축을 회전 중심으로 공유합니다. 가운데 레이어가 가장 크고 위·아래로 갈수록 작아집니다.</p><div class="layer-controls"><label for="selectedLayer">확인할 레이어</label><select class="select" id="selectedLayer"></select><span class="live-layer" id="layerLive">그룹 B · ↻</span></div></div>
-<div class="insight"><span class="insight-icon" aria-hidden="true">i</span><p><b>같은 그룹이라고 겹쳐 보일 필요는 없습니다.</b> 한 그룹의 레이어들은 같은 각속도로 돌지만, 조립할 때 각각 다른 고정 각도(offset)로 연결하면 서로 다른 방향을 유지한 채 함께 회전합니다. 따라서 20개 모터 없이도 사진처럼 복잡한 실루엣을 만들 수 있습니다.</p></div>
+<div class="scene-meta"><p id="shapeHint">8자형 레이어 모두가 같은 중앙축을 회전 중심으로 공유하고, 가운데가 가장 크며 위·아래로 갈수록 작아집니다.</p><div class="layer-controls"><label for="selectedLayer">확인할 레이어</label><select class="select" id="selectedLayer"></select><span class="live-layer" id="layerLive">↻ · 0.7× 예시</span></div></div>
 
-<details class="reference"><summary>출발점이 된 참고 이미지 보기</summary><div class="reference-wrap"><img src="data:image/webp;base64,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" alt="공통 중앙축 주변에 8자형 레이어가 겹쳐 있고 위아래로 갈수록 크기가 작아지는 조각 참고 사진" loading="lazy"><div><p>여기서 유지하려는 외형 조건은 <strong>중앙축 하나만 노출</strong>되고, 그 축을 중심으로 크기가 다른 8자형 레이어들이 겹쳐 있는 모습입니다.</p><p>이번 모형에서는 모든 그룹이 같은 방향으로 회전하고, <strong>그룹별 속도만 다르게</strong> 설정합니다.</p><small>사용자가 제공한 참고 이미지. 실제 내부 구동 구조와 치수는 미확인.</small></div></div></details>
+<div class="insight"><span class="insight-icon" aria-hidden="true">i</span><p><b>핵심은 직렬이 아니라 병렬입니다.</b> 1층이 2층을 돌리고 2층이 3층을 돌리는 구조라면 손실이 누적될 수 있지만, 여기서는 모든 층이 같은 회전축에서 각각 직접 토크를 받습니다. 그래서 높이가 속도 순서를 결정하지 않습니다.</p></div>
+
+<details class="reference"><summary>출발점이 된 참고 이미지 보기</summary><div class="reference-wrap"><img src="data:image/webp;base64,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" alt="공통 중앙축 주변에 8자형 레이어가 겹쳐 있고 위아래로 갈수록 크기가 작아지는 조각 참고 사진" loading="lazy"><div><p>유지하려는 외형 조건은 <strong>중앙축 하나만 노출</strong>되고, 같은 회전 중심을 가진 8자형 레이어들이 위아래로 겹치는 모습입니다.</p><p>현재 안은 외부에 보조축·옆모터를 추가하지 않고, 베이스에 숨긴 BLDC 하나와 중앙부의 층별 passive coupling을 검토합니다.</p><small>사용자가 제공한 참고 이미지. 실제 원작 내부 구동 방식과 치수는 미확인.</small></div></div></details>
 </section>
 
 <section class="section" id="structure" aria-labelledby="structure-title">
-<div class="section-head"><div><div class="section-index">02 / 중앙축 내부 구조</div><h2 id="structure-title">겉은 중앙축 하나, 안에는 그룹별 회전축.</h2><p class="lead">모터·벨트·보조 세로축은 밖에 보이지 않게 하고,<br>베이스 안의 BLDC가 중앙축 내부의 그룹별 회전 슬리브를 돌리는 개념입니다.</p></div><p class="aside-note">기본 4그룹이면 회전 계통도 4개.<br>레이어 20개를 20개 모터로 돌리지 않습니다.</p></div>
+<div class="section-head"><div><div class="section-index">02 / 한 층의 구조</div><h2 id="structure-title">공통 축은 돌고, 레이어는 따로 미끄러집니다.</h2><p class="lead">각 레이어는 베어링으로 자유롭게 회전할 수 있고,<br>공통 구동축과의 사이에 passive coupling을 두어 필요한 만큼만 힘을 전달받는 개념입니다.</p></div><p class="aside-note">BLDC 1개 → 공통 축 1개.<br>각 층은 공통 축에 병렬 연결.</p></div>
 
 <div class="structure-card">
-<div class="diagram-side"><div class="diagram-toolbar"><span class="eyebrow">COAXIAL GROUP DRIVE / CONCEPT</span><div class="pillset" role="group" aria-label="중앙축 구조 보기"><button data-assembly="top" aria-pressed="true">위에서</button><button data-assembly="side" aria-pressed="false">옆에서</button><button data-assembly="exploded" aria-pressed="false">분해 보기</button></div></div>
+<div class="diagram-side"><div class="diagram-toolbar"><span class="eyebrow">ONE LAYER / PARALLEL COUPLING</span><div class="pillset" role="group" aria-label="한 층 구조 보기"><button data-assembly="top" aria-pressed="true">위에서</button><button data-assembly="side" aria-pressed="false">옆에서</button><button data-assembly="exploded" aria-pressed="false">분해 보기</button></div></div>
 <div class="diagram-wrap" id="assemblyDrawing"></div>
-<div class="legend"><span><i class="swatch fixed"></i>고정 코어·베이스</span><span><i class="swatch"></i>회전 슬리브·레이어</span><span><i class="swatch contact"></i>베어링</span></div>
+<div class="legend"><span><i class="swatch fixed"></i>공통 구동축</span><span><i class="swatch"></i>레이어·허브</span><span><i class="swatch contact"></i>베어링·결합부</span></div>
 <p class="diagram-caption" id="assemblyCaption"></p></div>
 
 <div class="part-panel"><p>번호를 눌러 역할을 확인하세요.</p><div class="part-list" role="group">
-<button class="part-button" data-part="shaft" aria-pressed="false"><span class="part-number">01</span><span><strong>고정 코어</strong><small>전체를 지지</small></span></button>
-<button class="part-button" data-part="bearing" aria-pressed="true"><span class="part-number">02</span><span><strong>베어링</strong><small>그룹끼리 상대 회전</small></span></button>
-<button class="part-button" data-part="ring" aria-pressed="false"><span class="part-number">03</span><span><strong>그룹별 슬리브</strong><small>A/B/C/D</small></span></button>
-<button class="part-button" data-part="drive" aria-pressed="false"><span class="part-number">04</span><span><strong>BLDC 구동부</strong><small>베이스 내부</small></span></button>
+<button class="part-button" data-part="shaft" aria-pressed="false"><span class="part-number">01</span><span><strong>공통 구동축</strong><small>BLDC 하나가 회전</small></span></button>
+<button class="part-button" data-part="bearing" aria-pressed="true"><span class="part-number">02</span><span><strong>베어링</strong><small>층이 독립적으로 회전</small></span></button>
+<button class="part-button" data-part="coupling" aria-pressed="false"><span class="part-number">03</span><span><strong>Passive coupling</strong><small>마찰·자기 결합 후보</small></span></button>
+<button class="part-button" data-part="ring" aria-pressed="false"><span class="part-number">04</span><span><strong>레이어 허브</strong><small>8자 레이어와 연결</small></span></button>
 </div><div class="part-explanation" id="partExplanation"></div><button class="btn compact ghost" id="showAllParts">전체 함께 보기</button></div>
 </div>
 
-<div class="two-notes"><article class="note-card"><h4>연속 구간으로 묶는 게 구조상 더 단순합니다.</h4><p>예를 들어 20층·4그룹이면 위에서부터 5층씩 A/B/C/D로 묶습니다. 각 회전 슬리브가 필요한 높이까지만 올라가도록 설계할 여지가 있어, A-B-C-D를 층마다 반복하는 방식보다 구현이 단순할 가능성이 큽니다.</p></article><article class="note-card"><h4>시각적으로 단조로워질 필요는 없습니다.</h4><p>같은 그룹의 5개 레이어를 서로 다른 각도로 고정해서 장착하면, 다섯 레이어는 같은 속도로 돌더라도 항상 서로 다른 방향을 유지합니다.</p></article></div>
-<div class="constraint-card"><strong>아직 개념 설계 단계입니다.</strong> 여러 동심 슬리브를 실제 중앙축 안에 넣을 수 있는지, 필요한 축 지름·베어링·강성·마찰·배선은 레이어 크기와 무게를 알아야 결정할 수 있습니다.</div>
+<div class="architecture-grid">
+<article class="arch-card"><h4>피하고 싶은 직렬 전달</h4><p>아래층이 다음 층을 차례로 돌리는 구조. 한 층의 마찰이나 문제가 위층으로 연쇄될 수 있습니다.</p><div class="arch-mini">BLDC
+  ↓
+1층 → 2층 → 3층 → 4층</div></article>
+<article class="arch-card recommended"><h4>현재 안: 병렬 전달</h4><p>모든 층이 같은 구동축에서 각자 직접 힘을 받습니다. 층 높이와 속도 순서가 연결되지 않습니다.</p><div class="arch-mini">        공통 축
+   ↙    ↓    ↘
+ 1층   2층   3층   4층
+   각각 별도 coupling</div></article>
+</div>
+
+<div class="warning-box"><strong>중요:</strong> 단순 마찰 클러치는 “압력을 정확히 30% 주면 속도가 정확히 30%”가 되는 장치가 아닙니다. 실제로는 붙어서 거의 같은 속도로 돌거나, 미끄러지면서 하중·온도·마모에 따라 속도가 변할 수 있습니다. 이 방식은 <strong>정확한 rpm이 아니라 시각적으로 서로 다른 속도</strong>가 목표일 때 먼저 시험할 가치가 있는 안입니다.</div>
 </section>
 
 <section class="section" id="methods" aria-labelledby="methods-title">
-<div class="section-head"><div><div class="section-index">03 / 선택한 제작안</div><h2 id="methods-title">BLDC 그룹 구동으로 고정.</h2><p class="lead">DC 기어모터·스테퍼·옆 벨트 방식은 최종 외관 조건에서 제외하고,<br><strong>BLDC 몇 개 + 중앙축 내부 전달</strong>만 검토합니다.</p></div><p class="aside-note">현재 기본값:<br>20 레이어 / 4 그룹 / BLDC 4계통.</p></div>
+<div class="section-head"><div><div class="section-index">03 / 선택한 제작안</div><h2 id="methods-title">BLDC 1개 + 층별 passive coupling.</h2><p class="lead">전자제어 채널을 늘리지 않고,<br>중앙의 작은 기계 결합부에서 층별 움직임 차이를 만드는 방향입니다.</p></div><p class="aside-note">정확한 속도비가 필요해지면<br>이 방식의 장점이 줄어듭니다.</p></div>
 
 <div class="motor-selector">
-<article class="motor-choice" style="cursor:default"><span class="eyebrow">APPEARANCE</span><strong>중앙축만 보이기</strong><small>옆 모터·옆 축 없음</small></article>
-<article class="motor-choice" style="cursor:default"><span class="eyebrow">DRIVE</span><strong>BLDC × 그룹 수</strong><small>베이스 내부에 숨김</small></article>
-<article class="motor-choice" style="cursor:default"><span class="eyebrow">MOTION</span><strong>전부 같은 방향</strong><small>그룹별 속도만 다르게</small></article>
+<article class="motor-choice" style="cursor:default"><span class="eyebrow">MOTOR</span><strong>BLDC × 1</strong><small>베이스 내부에 숨김</small></article>
+<article class="motor-choice" style="cursor:default"><span class="eyebrow">TRANSMISSION</span><strong>공통 축 × 1</strong><small>모든 층에 직접 전달</small></article>
+<article class="motor-choice" style="cursor:default"><span class="eyebrow">LAYER</span><strong>Coupling × 층수</strong><small>속도차는 수동 기계 요소</small></article>
 </div>
 
-<div class="motor-detail"><div class="placement"><div class="diagram-toolbar"><span class="eyebrow">겉모습 / 내부</span><div class="pillset" role="group"><button data-cover="outside" aria-pressed="false">겉에서 보기</button><button data-cover="inside" aria-pressed="true">내부 보기</button></div></div><div class="diagram-wrap" id="placementDrawing"></div><div class="legend"><span><i class="swatch fixed"></i>고정</span><span><i class="swatch"></i>그룹별 회전</span></div><p class="diagram-caption" id="placementCaption"></p></div><div class="motor-text" id="motorText"></div></div>
+<div class="motor-detail"><div class="placement"><div class="diagram-toolbar"><span class="eyebrow">겉모습 / 내부</span><div class="pillset" role="group"><button data-cover="outside" aria-pressed="false">겉에서 보기</button><button data-cover="inside" aria-pressed="true">내부 보기</button></div></div><div class="diagram-wrap" id="placementDrawing"></div><div class="legend"><span><i class="swatch fixed"></i>공통 축·고정부</span><span><i class="swatch"></i>독립 레이어</span><span><i class="swatch contact"></i>층별 coupling</span></div><p class="diagram-caption" id="placementCaption"></p></div><div class="motor-text" id="motorText"></div></div>
 
-<details class="wide-details"><summary>왜 BLDC를 레이어마다 하나씩 넣지 않나요?</summary><div class="details-grid"><div><h4>모터 수와 제어 채널을 줄이기 위해서입니다.</h4><p>4그룹이면 BLDC도 4계통만 필요합니다. 각 BLDC가 한 그룹의 회전 슬리브를 돌리고, 그 슬리브에 여러 레이어를 연결합니다.</p></div><div><h4>이번 작품은 레이어별 독립 속도가 필요하지 않습니다.</h4><p>요구사항이 “모두 같은 방향, 속도만 서로 달라 보이면 됨”이므로 그룹 단위 구동으로 충분합니다. 같은 그룹 안에서는 속도가 동일합니다.</p></div></div></details>
+<details class="wide-details"><summary>가장 단순한 coupling은 무엇인가요?</summary><div class="details-grid"><div><h4>첫 시제품: 마찰식</h4><p>축에 고정된 얇은 디스크/칼라와 레이어 허브 사이에 마찰재를 두고, 스프링 와셔나 조임 정도로 접촉력을 바꾸는 식의 <strong>조절 가능한 마찰 결합</strong>을 먼저 시험할 수 있습니다. 부품 구성이 직관적인 편입니다.</p></div><div><h4>후속 후보: 비접촉 자기 결합</h4><p>마찰재 마모·소음·발열이 문제라면 자석을 이용한 비접촉 결합도 검토할 수 있습니다. 다만 자석 배치와 간격 설계가 추가되어 첫 시제품보다는 어렵습니다.</p></div></div></details>
 
-<details class="wide-details"><summary>그룹 수는 몇 개가 적당할까요?</summary><div class="details-grid"><div><h4>3~4그룹부터 검토하는 게 합리적입니다.</h4><p>2그룹은 구조가 가장 단순하지만 움직임 차이가 단순해 보일 수 있고, 그룹 수를 늘릴수록 외형은 풍부해지는 대신 동심 슬리브와 베어링 구조가 복잡해집니다.</p></div><div><h4>기본안은 4그룹입니다.</h4><p>20개 레이어를 5개씩 4그룹으로 묶으면, 그룹별 속도 네 단계와 레이어별 고정 장착 각도를 조합할 수 있습니다. 최종 그룹 수는 축 내부 공간을 확인한 뒤 결정합니다.</p></div></div></details>
+<details class="wide-details"><summary>왜 위로 갈수록 단조롭게 느려지지 않나요?</summary><div class="details-grid"><div><h4>각 층의 결합 조건을 따로 만들 수 있기 때문입니다.</h4><p>예를 들어 1층은 약하게, 2층은 강하게, 3층은 중간, 4층은 다시 강하게 설정하는 식으로 높이 순서와 무관하게 배치할 수 있습니다.</p></div><div><h4>하지만 속도는 정확히 예측할 수 없습니다.</h4><p>마찰식 passive coupling에서는 결합력·베어링 저항·레이어 무게가 함께 영향을 줍니다. 따라서 “0.6×, 0.9×” 같은 화면 표시는 동작 개념을 위한 예시일 뿐입니다.</p></div></div></details>
 
-<details class="wide-details"><summary>BLDC 저속 회전은 그냥 연결하면 되나요?</summary><div class="details-grid"><div><h4>드라이버와 제어 구성이 필요합니다.</h4><p>BLDC는 모터 자체만으로 속도가 정해지는 것이 아닙니다. 목표 저속에서 안정적으로 출발하고 유지할 수 있도록 드라이버와 제어 방식을 함께 고릅니다. <a class="source-ref" href="#source4">[1]</a></p></div><div><h4>프레임리스는 공간이 부족할 때 후속 검토합니다.</h4><p>얇게 넣을 수 있는 장점이 있지만 모터의 기계 지지와 베어링 구조를 작품 쪽에서 설계해야 할 수 있습니다. <a class="source-ref" href="#source6">[2]</a></p></div></div></details>
+<details class="wide-details"><summary>조각학과 학생이 직접 할 수 있는 범위는?</summary><div class="details-grid"><div><h4>3층 시제품은 접근 가능한 편입니다.</h4><p>레이어 제작, 베어링·허브 조립, 마찰재와 스프링 와셔를 바꿔보는 실험은 메이커스페이스 수준의 도움을 받으면 시도할 수 있습니다.</p></div><div><h4>20층 최종작은 정렬 도움을 받는 편이 좋습니다.</h4><p>긴 축의 흔들림, 베어링 정렬, 층 간 간섭, 축 강성, 장시간 마모는 기계 제작 경험이 있는 사람과 함께 확인하는 것이 안전합니다.</p></div></div></details>
 
-<div class="decision-band"><span class="big-arrow">↳</span><div><strong>먼저 2그룹으로 실제 중앙축을 만들어 보는 게 핵심.</strong><p>BLDC 2개와 4~6개 레이어로 중앙축 하나만 보이는 상태에서 서로 다른 두 속도가 안정적으로 나오는지 확인한 다음 4그룹으로 늘립니다.</p></div></div>
+<div class="decision-band"><span class="big-arrow">↳</span><div><strong>3층에서 “느림·빠름·중간”이 안정적으로 보이는지 먼저 확인.</strong><p>여기서 원하는 느낌이 나오면 5층으로 늘리고, 장시간 돌려도 속도차가 사라지거나 붙어버리지 않는지 확인한 뒤 20층으로 가는 순서가 적절합니다.</p></div></div>
 </section>
 
 <section class="section" id="making" aria-labelledby="making-title">
-<div class="section-head"><div><div class="section-index">04 / 제작 순서</div><h2 id="making-title">한 그룹 → 두 그룹 → 네 그룹.</h2><p class="lead">외형은 처음부터 사진처럼 제한하고,<br>중앙축 내부 전달 구조만 단계적으로 늘립니다.</p></div><p class="aside-note">목표는 “정밀한 개별 제어”가 아니라<br>여러 속도가 겹쳐 보이는 키네틱 효과입니다.</p></div>
+<div class="section-head"><div><div class="section-index">04 / 제작 순서</div><h2 id="making-title">3층 시제품으로 먼저 판별합니다.</h2><p class="lead">이 방식의 성공 여부는 계산보다 실물 마찰과 하중에 크게 좌우되므로,<br>작은 시제품이 가장 중요한 검증입니다.</p></div><p class="aside-note">처음부터 20층을 만들지 않습니다.</p></div>
 
 <div class="steps">
-<article class="step"><div class="step-num">1</div><div class="eyebrow">MECHANICAL / ONE GROUP</div><h3>레이어 2~3개를 한 축에 묶기</h3><p>서로 다른 고정 각도로 장착한 8자 레이어들을 한 회전 슬리브에 연결하고 손으로 돌려봅니다.</p><div class="checkpoint"><b>확인</b><br>기울어짐 · 간섭 · 축 흔들림<br>장착 각도에 따른 실루엣</div></article>
-<article class="step"><div class="step-num">2</div><div class="eyebrow">DRIVE / TWO GROUPS</div><h3>BLDC 2개로 속도 두 개 만들기</h3><p>중첩된 두 회전 슬리브를 각각 BLDC로 돌립니다. 두 모터 모두 같은 방향으로, 속도만 다르게 설정합니다.</p><div class="checkpoint"><b>핵심 검증</b><br>중앙축 하나처럼 보이는가<br>저속에서 서로 끌고 돌지 않는가</div></article>
-<article class="step"><div class="step-num">3</div><div class="eyebrow">FINAL / FOUR GROUPS</div><h3>20층을 4그룹으로 확대</h3><p>기본안은 5층씩 네 그룹입니다. BLDC 4계통의 속도를 다르게 정하고 장시간 운전 상태를 확인합니다.</p><div class="checkpoint"><b>전시 전</b><br>소음 · 진동 · 발열 · 마찰<br>정지 스위치 · 정비 가능성</div></article>
+<article class="step"><div class="step-num">1</div><div class="eyebrow">FREE ROTATION</div><h3>세 레이어를 자유롭게 돌리기</h3><p>각 레이어가 같은 중앙축을 중심으로 베어링에서 독립적으로 잘 도는지 확인합니다.</p><div class="checkpoint"><b>확인</b><br>축 흔들림 · 층 간 간섭 · 레이어 무게<br>손으로 밀었을 때 부드러운 회전</div></article>
+<article class="step"><div class="step-num">2</div><div class="eyebrow">ONE BLDC</div><h3>공통 축 + coupling 3개</h3><p>BLDC 하나로 축을 돌리고, 세 층의 결합 압력을 서로 다르게 줍니다. 목표는 정확한 rpm이 아니라 서로 다른 시각적 속도입니다.</p><div class="checkpoint"><b>성공 조건</b><br>세 층 모두 같은 방향<br>느림·빠름이 높이와 무관하게 섞임</div></article>
+<article class="step"><div class="step-num">3</div><div class="eyebrow">LONG RUN</div><h3>5층으로 늘려 장시간 시험</h3><p>마찰열과 마모로 속도차가 사라지는지, 특정 층이 붙거나 멈추는지 확인합니다.</p><div class="checkpoint"><b>20층으로 가기 전</b><br>소음 · 발열 · 마모 · 재조정 가능성<br>축 정렬과 교체 방법 확인</div></article>
 </div>
 
-<div class="safety"><h4>제작 상담 때 꼭 가져갈 정보</h4><p>가장 큰 레이어의 폭과 무게, 재질, 전체 높이, 원하는 층 간격을 알아야 중앙축 안에 몇 개의 회전 슬리브를 넣을 수 있는지 판단할 수 있습니다. 이 네 값이 정해지기 전에는 “4그룹이 실제로 들어간다”거나 중앙축 지름을 확정할 수 없습니다.</p></div>
+<div class="safety"><h4>이 방식이 안 맞는 신호</h4><p>층별 속도를 정확히 지정해야 하거나, 마찰 상태가 조금만 바뀌어도 작품성이 무너지는 경우에는 passive coupling이 맞지 않습니다. 그때는 여러 모터 또는 기계적으로 고정된 속도비(기어·벨트 등) 방식으로 다시 비교해야 합니다.</p></div>
 
-<div class="brief" id="brief"><div><div class="eyebrow">작가 → 제작 도움을 줄 사람</div><h3>현재 결정된 조건.</h3><p class="brief-lead">구동 방향과 외관은 고정하고, 실제 작품 치수만 채우면 상담용 메모가 됩니다.</p>
-<div class="brief-fields"><div class="brief-field"><label for="actualCount">실제 레이어 수</label><input id="actualCount" type="number" min="1" max="300" value="20" inputmode="numeric"></div><div class="brief-field"><label for="diameter">가장 큰 8자 폭 (cm)</label><input id="diameter" type="number" min="0.1" max="1000" step="0.1" placeholder="예: 30" inputmode="decimal"></div><div class="brief-field"><label for="mass">가장 무거운 레이어 (g)</label><input id="mass" type="number" min="0.1" max="100000" step="0.1" placeholder="미정이면 비워두기" inputmode="decimal"></div><div class="brief-field"><label for="targetGap">목표 층 간격 (mm)</label><input id="targetGap" type="number" min="0.1" max="1000" step="0.1" placeholder="예: 12" inputmode="decimal"></div><div class="brief-field full"><label for="visibility">외관·구동 조건</label><input id="visibility" value="중앙축만 노출 / BLDC 그룹 구동 / 전부 같은 방향 / 그룹별 속도만 다르게" readonly></div><div class="brief-field full"><label for="notes">추가 조건</label><textarea id="notes" maxlength="1200" placeholder="예: 금속 레이어 / 하루 6시간 작동 / 최대한 조용하게"></textarea></div></div></div>
-<div class="brief-preview"><div class="brief-preview-head"><span>제작 상담 메모</span><span class="mono">LIVE NOTE</span></div><pre id="briefPreview"></pre><div class="btn-row"><button class="btn" id="copyBrief">선택 내용 복사</button><button class="btn ghost" id="saveBrief">메모 파일 저장</button></div><p class="save-help">현재 그룹 수와 속도 차이 설정도 함께 기록됩니다.</p><div class="copy-fallback" id="copyFallback" hidden><label for="copyText">아래 내용을 직접 복사하세요.</label><textarea id="copyText" readonly></textarea></div></div>
+<div class="brief" id="brief"><div><div class="eyebrow">작가 → 제작 도움을 줄 사람</div><h3>현재 결정된 조건.</h3><p class="brief-lead">외관과 동작 목표는 고정하고, 실제 크기·재료만 채우면 상담용 메모가 됩니다.</p>
+<div class="brief-fields"><div class="brief-field"><label for="actualCount">실제 레이어 수</label><input id="actualCount" type="number" min="1" max="300" value="20" inputmode="numeric"></div><div class="brief-field"><label for="diameter">가장 큰 8자 폭 (cm)</label><input id="diameter" type="number" min="0.1" max="1000" step="0.1" placeholder="예: 30" inputmode="decimal"></div><div class="brief-field"><label for="mass">가장 무거운 레이어 (g)</label><input id="mass" type="number" min="0.1" max="100000" step="0.1" placeholder="미정이면 비워두기" inputmode="decimal"></div><div class="brief-field"><label for="targetGap">목표 층 간격 (mm)</label><input id="targetGap" type="number" min="0.1" max="1000" step="0.1" placeholder="예: 12" inputmode="decimal"></div><div class="brief-field full"><label for="visibility">외관·구동 조건</label><input id="visibility" value="중앙축만 노출 / BLDC 1개 / 공통 축 / 층별 병렬 passive coupling / 같은 방향·속도는 제각각" readonly></div><div class="brief-field full"><label for="notes">추가 조건</label><textarea id="notes" maxlength="1200" placeholder="예: 금속 레이어 / 하루 6시간 작동 / 최대한 조용하게"></textarea></div></div></div>
+<div class="brief-preview"><div class="brief-preview-head"><span>제작 상담 메모</span><span class="mono">LIVE NOTE</span></div><pre id="briefPreview"></pre><div class="btn-row"><button class="btn" id="copyBrief">선택 내용 복사</button><button class="btn ghost" id="saveBrief">메모 파일 저장</button></div><p class="save-help">현재 모형의 층수와 속도차 설정도 함께 기록됩니다.</p><div class="copy-fallback" id="copyFallback" hidden><label for="copyText">아래 내용을 직접 복사하세요.</label><textarea id="copyText" readonly></textarea></div></div>
 </div>
 </section>
 
-<details class="sources" id="sources"><summary>기술 설명의 근거·제작 범위</summary><p>아래 자료는 BLDC 제어와 프레임리스 모터의 일반적인 구성에 대한 참고입니다. <strong>여러 동심 회전 슬리브를 중앙축 안에 넣는 구조는 이 작품을 위한 개념안</strong>이며 아직 실제 치수·강성·수명 검증을 거친 제작도면이 아닙니다.</p>
+<details class="sources" id="sources"><summary>기술 설명의 근거·제작 범위</summary><p>BLDC 구동 자체는 아래 기술 자료를 참고했습니다. <strong>공통 축 + 층별 passive coupling</strong>은 이 작품의 요구조건을 바탕으로 제안한 개념 구조이며, 특정 상용품 조합을 검증한 설계가 아닙니다. 특히 마찰식 coupling으로 실제 속도차가 얼마나 안정적으로 유지되는지는 시제품 실험이 필요합니다.</p>
 <div class="source-grid">
 <div class="source-item" id="source4"><a href="https://docs.simplefoc.com/bldcmotor" target="_blank" rel="noopener noreferrer">[1] SimpleFOC — BLDC configuration</a><small>BLDC 모터·드라이버·센서 구성과 제어 설정에 대한 기술 자료.</small></div>
-<div class="source-item" id="source6"><a href="https://www.kollmorgen.com/en-us/products/motors/frameless-motors" target="_blank" rel="noopener noreferrer">[2] Kollmorgen — Frameless motors</a><small>프레임리스 모터의 고정자·회전자 구성과 별도 기계 지지가 필요한 점에 대한 제조사 설명.</small></div>
-</div><p>그림은 관계를 이해하기 위한 개념도이며, 제품 치수·토크·소음·축 강성·베어링 수명을 검증한 결과가 아닙니다.</p></details>
-<footer class="footer"><p>현재 방향: 중앙축만 노출 · BLDC 그룹 구동 · 전부 같은 방향 · 그룹별 속도만 다르게.</p><p class="mono">KINETIC STUDY / 2026.10.05 / V1.3</p></footer>
+<div class="source-item" id="source6"><a href="https://www.kollmorgen.com/en-us/products/motors/frameless-motors" target="_blank" rel="noopener noreferrer">[2] Kollmorgen — Frameless motors</a><small>공간 제약이 큰 경우 검토할 수 있는 프레임리스 모터의 일반적인 구성.</small></div>
+</div><p>페이지의 속도비·마찰 세기는 모두 개념 시각화입니다. 실제 rpm, 토크, 온도, 수명, 축 지름, 베어링 규격을 뜻하지 않습니다.</p></details>
+<footer class="footer"><p>현재 방향: 중앙축만 노출 · BLDC 1개 · 각 층 병렬 passive coupling · 같은 방향, 속도는 제각각.</p><p class="mono">KINETIC STUDY / 2026.10.05 / V1.4</p></footer>
 <div class="print-summary" id="printSummary"></div>
 </main><div class="toast" role="status" id="toast"></div>
 <script>
@@ -148,60 +169,52 @@ const $=id=>document.getElementById(id);
 const all=q=>Array.from(document.querySelectorAll(q));
 const TAU=Math.PI*2;
 const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const state={shaftSpeed:.78,variation:.48,count:20,shape:'figure8',spacing:1,markers:false,selected:9,playing:!reduced,yaw:.18,elevation:.22,assembly:'top',part:'all',cover:'inside',seed:20261005,time:0};
+let layers=[],cw=0,ch=0,dpr=1,lastFrame=0,rafId=0,drag=null,toastTimer;
 
-const state={speed:.75,spread:.45,count:20,groupCount:4,grouping:'blocks',shape:'figure8',spacing:1,markers:false,selected:9,playing:!reduced,yaw:.18,elevation:.22,assembly:'top',part:'all',cover:'inside',time:0};
-let groups=[],layers=[],cw=0,ch=0,dpr=1,lastFrame=0,rafId=0,drag=null,toastTimer;
-
-const shapeNames={figure8:'8자(∞)형',ellipse:'타원',circle:'완전한 원'};
-const groupingNames={blocks:'연속 구간 묶기',interleaved:'엇갈려 묶기'};
-const groupLetters='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
+function rngFactory(seed){let a=seed>>>0;return()=>{a+=0x6D2B79F5;let t=a;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296;};}
 function toast(msg){const el=$('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2200);}
-function speedWord(){return state.speed<.5?'아주 느리게':state.speed<.72?'느리게':state.speed<1?'보통':'빠르게';}
-function spreadWord(){return state.spread<.25?'작게':state.spread<.55?'중간':'크게';}
-function groupIndexForLayer(i){
-  if(state.grouping==='interleaved') return i%state.groupCount;
-  return Math.min(state.groupCount-1,Math.floor(i*state.groupCount/state.count));
-}
-function rebuild(preserve=true){
-  const prev=groups;
-  groups=Array.from({length:state.groupCount},(_,g)=>{
-    const centered=state.groupCount===1?0:(g/(state.groupCount-1)-.5)*2;
-    const factor=1+centered*state.spread*.72;
-    return {angle:preserve&&prev[g]?prev[g].angle:g*.63,speedFactor:Math.max(.18,factor)};
-  });
+function speedWord(){return state.shaftSpeed<.5?'아주 느리게':state.shaftSpeed<.72?'느리게':state.shaftSpeed<1?'보통':'빠르게';}
+function variationWord(){return state.variation<.3?'작게':state.variation<.6?'중간':'크게';}
+function couplingLabel(v){return v<.48?'약한 결합':v<.72?'중간 결합':'강한 결합';}
+
+function rebuild(preserveAngle=true){
+  const prev=layers,rng=rngFactory(state.seed);
   layers=Array.from({length:state.count},(_,i)=>{
-    const g=groupIndexForLayer(i);
-    // Fixed assembly angle: same group speed, different visual orientation.
-    const local=(i*2.399963229728653 + g*.31)%TAU;
-    return {group:g,mountOffset:local};
+    // Deliberately non-monotonic with height. This is a visualization, not a friction model.
+    const raw=.34+rng()*.62;
+    const centered=.65+(raw-.65)*(state.variation/.48);
+    const factor=Math.max(.18,Math.min(.98,centered));
+    return {
+      angle:preserveAngle&&prev[i]?prev[i].angle:(i*2.399963229728653)%TAU,
+      factor,
+      coupling:factor,
+      mountOffset:(i*1.61803398875)%TAU
+    };
   });
   state.selected=Math.min(state.selected,state.count-1);
   $('selectedLayer').innerHTML=layers.map((_,i)=>'<option value="'+i+'">'+(i+1)+'층</option>').join('');
   $('selectedLayer').value=String(state.selected);
-  renderGroupSummary(); updateLive(); drawScene(); updateBrief();
+  renderSpeedStrip();updateLive();drawScene();updateBrief();
 }
-function renderGroupSummary(){
-  $('groupCountLabel').textContent=state.groupCount+'그룹';
-  $('groupSummary').innerHTML=groups.map((g,i)=>{
-    const n=layers.filter(l=>l.group===i).length;
-    return '<div class="group-chip"><b>그룹 '+groupLetters[i]+' · '+g.speedFactor.toFixed(2)+'×</b><span>'+n+'개 레이어 · ↻ 같은 방향</span></div>';
-  }).join('');
-}
-function updateLive(){
-  const l=layers[state.selected]; if(!l)return;
-  const g=groups[l.group];
-  $('layerLive').textContent='그룹 '+groupLetters[l.group]+' · '+g.speedFactor.toFixed(2)+'× · ↻';
+function renderSpeedStrip(){
+  const pick=[];
+  const slots=Math.min(5,state.count);
+  for(let j=0;j<slots;j++)pick.push(Math.round(j*(state.count-1)/Math.max(1,slots-1)));
+  $('speedStrip').innerHTML=pick.map(i=>'<div class="speed-chip"><b>'+(i+1)+'층 · '+layers[i].factor.toFixed(2)+'×</b><span>'+couplingLabel(layers[i].coupling)+'</span></div>').join('');
 }
 function syncLabels(){
-  $('speedLabel').textContent=speedWord();
-  $('spreadLabel').textContent=spreadWord();
+  $('shaftSpeedLabel').textContent=speedWord();
+  $('variationLabel').textContent=variationWord();
   $('spacingLabel').textContent=state.spacing<.9?'촘촘하게':state.spacing>1.1?'넓게':'보통';
-  $('groupCountLabel').textContent=state.groupCount+'그룹';
 }
 function syncPlay(){
   $('playButton').textContent=state.playing?'일시정지':'재생';
-  $('stageState').textContent=(state.playing?'':'일시정지 · ')+'모든 그룹 ↻ 같은 방향 · 속도만 다름';
+  $('stageState').textContent=(state.playing?'':'일시정지 · ')+'전부 ↻ 같은 방향 · 높이와 무관하게 속도 차이';
+}
+function updateLive(){
+  const l=layers[state.selected];if(!l)return;
+  $('layerLive').textContent='↻ · '+l.factor.toFixed(2)+'× 예시 · '+couplingLabel(l.coupling);
 }
 
 const canvas=$('sculpture'),ctx=canvas.getContext('2d');
@@ -212,105 +225,96 @@ function resizeCanvas(){
 function drawScene(){
   if(!cw||!ch)return;
   ctx.clearRect(0,0,cw,ch);
-  const n=state.count;
-  const layerHeight=Math.max(210,Math.min(360,(n-1)*19))*state.spacing;
-  const top=layerHeight+78;
-  const scale=Math.min(cw/430,(ch-135)/(top+70));
-  const cy=ch-78,cx=cw*.48;
+  const n=state.count,layerHeight=Math.max(210,Math.min(360,(n-1)*19))*state.spacing,top=layerHeight+78;
+  const scale=Math.min(cw/430,(ch-135)/(top+70)),cy=ch-78,cx=cw*.48;
   const co=Math.cos(state.yaw),si=Math.sin(state.yaw),ce=Math.cos(state.elevation),se=Math.sin(state.elevation);
   const pr=(x,y,z)=>{const xx=x*co-y*si,yy=x*si+y*co;return [cx+xx*scale,cy-(z*ce+yy*se)*scale,yy*ce-z*se];};
 
-  const sh=pr(0,0,-8);
-  ctx.save();ctx.translate(sh[0],sh[1]+9);ctx.scale(1,.23);const grad=ctx.createRadialGradient(0,0,5,0,0,130*scale);grad.addColorStop(0,'rgba(45,51,35,.18)');grad.addColorStop(1,'rgba(45,51,35,0)');ctx.fillStyle=grad;ctx.beginPath();ctx.arc(0,0,130*scale,0,TAU);ctx.fill();ctx.restore();
+  const sh=pr(0,0,-8);ctx.save();ctx.translate(sh[0],sh[1]+9);ctx.scale(1,.23);
+  const grad=ctx.createRadialGradient(0,0,5,0,0,130*scale);grad.addColorStop(0,'rgba(45,51,35,.18)');grad.addColorStop(1,'rgba(45,51,35,0)');
+  ctx.fillStyle=grad;ctx.beginPath();ctx.arc(0,0,130*scale,0,TAU);ctx.fill();ctx.restore();
 
   const base=pr(0,0,4),bw=70*scale,bh=Math.max(10,70*se*scale);
   ctx.fillStyle='#272d25';ctx.beginPath();ctx.ellipse(base[0],base[1]+10*scale,bw,bh,0,0,TAU);ctx.fill();
   ctx.beginPath();ctx.ellipse(base[0],base[1],bw,bh,0,0,TAU);ctx.fillStyle='#42483d';ctx.fill();ctx.strokeStyle='#676f60';ctx.stroke();
 
   const shaftA=pr(0,0,15),shaftB=pr(0,0,top+15);
-  ctx.beginPath();ctx.moveTo(shaftA[0],shaftA[1]);ctx.lineTo(shaftB[0],shaftB[1]);ctx.strokeStyle='#65716b';ctx.lineWidth=3*scale;ctx.stroke();
+  ctx.beginPath();ctx.moveTo(shaftA[0],shaftA[1]);ctx.lineTo(shaftB[0],shaftB[1]);ctx.strokeStyle='#65716b';ctx.lineWidth=3.2*scale;ctx.stroke();
 
-  const pieces=[],N=110;
+  const pieces=[],N=108;
   for(let i=0;i<n;i++){
-    const k=n===1?0:i/(n-1),z=62+(1-k)*layerHeight;
-    const radius=24+98*Math.pow(Math.sin(Math.PI*k),.92);
-    const l=layers[i],a=groups[l.group].angle+l.mountOffset,ca=Math.cos(a),sa=Math.sin(a);
+    const k=n===1?0:i/(n-1),z=62+(1-k)*layerHeight,radius=24+98*Math.pow(Math.sin(Math.PI*k),.92);
+    const l=layers[i],a=l.angle+l.mountOffset,ca=Math.cos(a),sa=Math.sin(a);
     const pnt=t=>{
       let xx,yy;
       if(state.shape==='figure8'){xx=radius*Math.sin(t);yy=radius*.54*Math.sin(2*t);}
-      else {const asp=state.shape==='ellipse'?.64:1;xx=radius*Math.cos(t);yy=radius*asp*Math.sin(t);}
+      else{const asp=state.shape==='ellipse'?.64:1;xx=radius*Math.cos(t);yy=radius*asp*Math.sin(t);}
       return pr(xx*ca+yy*sa,-xx*sa+yy*ca,z);
     };
     const pts=[];for(let j=0;j<=N;j++)pts.push(pnt(j/N*TAU));
-    for(let j=0;j<N;j++){const p=pts[j],q=pts[j+1];pieces.push({type:'line',p,q,d:(p[2]+q[2])/2,selected:i===state.selected,sameGroup:l.group===layers[state.selected]?.group});}
-    const hub=pr(0,0,z);pieces.push({type:'hub',p:hub,d:hub[2]+.1,selected:i===state.selected,sameGroup:l.group===layers[state.selected]?.group});
-    if(state.markers){const pp=pnt(0);pieces.push({type:'dot',p:pp,d:pp[2]+1,selected:i===state.selected,sameGroup:l.group===layers[state.selected]?.group});}
+    for(let j=0;j<N;j++){const p=pts[j],q=pts[j+1];pieces.push({type:'line',p,q,d:(p[2]+q[2])/2,selected:i===state.selected});}
+    const hub=pr(0,0,z);pieces.push({type:'hub',p:hub,d:hub[2]+.1,selected:i===state.selected});
+    if(state.markers){const pp=pnt(0);pieces.push({type:'dot',p:pp,d:pp[2]+1,selected:i===state.selected});}
   }
   pieces.sort((a,b)=>b.d-a.d);
   for(const o of pieces){
-    if(o.type==='line'){
-      ctx.beginPath();ctx.moveTo(o.p[0],o.p[1]);ctx.lineTo(o.q[0],o.q[1]);
-      ctx.strokeStyle=o.selected?'#bd4929':o.sameGroup?'#b7775e':(o.d>0?'#92998c':'#3d443b');
-      ctx.lineWidth=(o.selected?3.0:o.sameGroup?2.5:2.1)*scale;ctx.stroke();
-    } else if(o.type==='hub'){
-      ctx.fillStyle=o.selected?'#c34a2a':o.sameGroup?'#a57260':'#626e60';ctx.beginPath();ctx.ellipse(o.p[0],o.p[1],4.6*scale,2.4*scale,0,0,TAU);ctx.fill();
-    } else {
-      ctx.fillStyle=o.selected?'#c34a2a':'#f6f3ea';ctx.strokeStyle='#596350';ctx.lineWidth=1.2*scale;ctx.beginPath();ctx.arc(o.p[0],o.p[1],3.4*scale,0,TAU);ctx.fill();ctx.stroke();
-    }
+    if(o.type==='line'){ctx.beginPath();ctx.moveTo(o.p[0],o.p[1]);ctx.lineTo(o.q[0],o.q[1]);ctx.strokeStyle=o.selected?'#bd4929':(o.d>0?'#919889':'#3d443b');ctx.lineWidth=(o.selected?3.1:2.15)*scale;ctx.stroke();}
+    else if(o.type==='hub'){ctx.fillStyle=o.selected?'#c34a2a':'#626e60';ctx.beginPath();ctx.ellipse(o.p[0],o.p[1],4.7*scale,2.4*scale,0,0,TAU);ctx.fill();}
+    else{ctx.fillStyle=o.selected?'#c34a2a':'#f6f3ea';ctx.strokeStyle='#596350';ctx.lineWidth=1.2*scale;ctx.beginPath();ctx.arc(o.p[0],o.p[1],3.4*scale,0,TAU);ctx.fill();ctx.stroke();}
   }
 }
+
 canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,yaw:state.yaw,p:e.pointerId};});
 canvas.addEventListener('pointermove',e=>{if(!drag||drag.p!==e.pointerId)return;state.yaw=drag.yaw+(e.clientX-drag.x)*.009;drawScene();});
-window.addEventListener('pointerup',()=>drag=null);
-canvas.addEventListener('pointercancel',()=>drag=null);
+window.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('pointercancel',()=>drag=null);
 
 $('playButton').addEventListener('click',()=>{state.playing=!state.playing;syncPlay();});
 $('resetView').addEventListener('click',()=>{state.yaw=.18;state.elevation=.22;drawScene();});
-$('groupCount').addEventListener('change',e=>{state.groupCount=Number(e.target.value);rebuild(false);});
-$('baseSpeed').addEventListener('input',e=>{state.speed=Number(e.target.value)/100;syncLabels();updateBrief();});
-$('speedSpread').addEventListener('input',e=>{state.spread=Number(e.target.value)/100;syncLabels();rebuild(true);});
-$('grouping').addEventListener('change',e=>{state.grouping=e.target.value;rebuild(false);});
+$('shaftSpeed').addEventListener('input',e=>{state.shaftSpeed=Number(e.target.value)/100;syncLabels();updateBrief();});
+$('variation').addEventListener('input',e=>{state.variation=Number(e.target.value)/100;syncLabels();rebuild(true);});
+$('reseed').addEventListener('click',()=>{state.seed=(state.seed+7919)>>>0;rebuild(true);toast('높이와 무관한 다른 속도 분포 예시를 만들었습니다.');});
 $('count').addEventListener('change',e=>{state.count=Number(e.target.value);state.selected=Math.floor(state.count/2);rebuild(false);});
-$('shape').addEventListener('change',e=>{state.shape=e.target.value;$('shapeHint').textContent=state.shape==='figure8'?'8자형 레이어 모두가 같은 중앙축을 회전 중심으로 공유합니다. 가운데 레이어가 가장 크고 위·아래로 갈수록 작아집니다.':'모든 레이어의 회전 중심은 그대로 중앙축에 있습니다.';drawScene();updateBrief();});
+$('shape').addEventListener('change',e=>{state.shape=e.target.value;$('shapeHint').textContent=state.shape==='figure8'?'8자형 레이어 모두가 같은 중앙축을 회전 중심으로 공유하고, 가운데가 가장 크며 위·아래로 갈수록 작아집니다.':'모든 레이어의 회전 중심은 그대로 같은 중앙축에 있습니다.';drawScene();updateBrief();});
 $('spacing').addEventListener('input',e=>{state.spacing=Number(e.target.value)/100;syncLabels();drawScene();updateBrief();});
 $('markers').addEventListener('change',e=>{state.markers=e.target.checked;drawScene();});
 $('selectedLayer').addEventListener('change',e=>{state.selected=Number(e.target.value);updateLive();drawScene();});
-$('resetAll').addEventListener('click',()=>{Object.assign(state,{speed:.75,spread:.45,count:20,groupCount:4,grouping:'blocks',shape:'figure8',spacing:1,markers:false,selected:9,yaw:.18,elevation:.22,time:0});$('groupCount').value='4';$('baseSpeed').value='75';$('speedSpread').value='45';$('grouping').value='blocks';$('count').value='20';$('shape').value='figure8';$('spacing').value='100';$('markers').checked=false;syncLabels();rebuild(false);toast('기본 20층·4그룹 설정으로 되돌렸습니다.');});
+$('resetAll').addEventListener('click',()=>{Object.assign(state,{shaftSpeed:.78,variation:.48,count:20,shape:'figure8',spacing:1,markers:false,selected:9,yaw:.18,elevation:.22,seed:20261005,time:0});$('shaftSpeed').value='78';$('variation').value='48';$('count').value='20';$('shape').value='figure8';$('spacing').value='100';$('markers').checked=false;syncLabels();rebuild(false);toast('기본 설정으로 되돌렸습니다.');});
 
-// Structure diagram
+// Structure diagrams
 const partText={
- shaft:{state:'고정되는 부분',body:'가운데 고정 코어는 베이스와 연결되어 전체 구조를 지지합니다. 겉에서 보이는 중앙 기둥의 중심 기준이 됩니다.'},
- bearing:{state:'그룹끼리 따로 돌게 하는 부분',body:'각 회전 슬리브가 이웃 슬리브나 고정 코어와 마찰 없이 상대 회전하도록 베어링과 스페이서를 둡니다.'},
- ring:{state:'회전하는 부분',body:'A/B/C/D 각 그룹은 별도의 회전 슬리브에 연결됩니다. 같은 그룹의 여러 레이어는 이 슬리브와 함께 같은 속도로 회전합니다.'},
- drive:{state:'베이스 안에 숨기는 부분',body:'그룹 수만큼의 BLDC 구동 계통을 베이스 내부에 두고 각 회전 슬리브를 같은 방향으로, 서로 다른 속도로 돌리는 개념입니다.'},
- all:{state:'전체 개념',body:'고정 코어 주변에 여러 회전 슬리브가 동심으로 놓이고, 베이스 안의 BLDC들이 각 슬리브를 따로 구동합니다. 실제 지름과 베어링 배치는 아직 설계가 필요합니다.'}
+ shaft:{state:'계속 같은 속도로 도는 부분',body:'베이스 안 BLDC 하나가 공통 구동축 하나를 돌립니다. 각 레이어는 이 축에서 직접 토크를 받습니다.'},
+ bearing:{state:'레이어를 자유롭게 하는 부분',body:'레이어 허브가 공통 축과 완전히 고정되지 않고 독립적으로 회전할 수 있도록 베어링 또는 부싱으로 지지합니다.'},
+ coupling:{state:'속도 차이를 만드는 핵심',body:'회전축과 레이어 허브 사이에 조절 가능한 마찰 또는 자기 결합을 둡니다. 각 층의 결합 조건을 다르게 하여 시각적인 속도 차이를 만드는 개념입니다.'},
+ ring:{state:'실제로 보이는 회전부',body:'8자형 레이어는 자기 허브와 함께 회전합니다. 같은 축을 중심으로 돌지만, 다른 층과 기계적으로 직렬 연결되지는 않습니다.'},
+ all:{state:'전체 개념',body:'공통 축 하나가 계속 돌고, 각 레이어는 자신의 베어링과 passive coupling을 통해 그 축에서 직접 힘을 받습니다.'}
 };
 function hs(x,y,n,key){return '<g class="hotspot" data-hotspot="'+key+'" role="button" tabindex="0"><circle cx="'+x+'" cy="'+y+'" r="18" fill="#c34a2a" stroke="#fffefa" stroke-width="3"/><text x="'+x+'" y="'+(y+6)+'" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">'+n+'</text></g>';}
 function assemblyTop(){
-  const rings=[34,48,62,76].slice(0,Math.min(4,state.groupCount));
-  return '<svg viewBox="0 0 700 430" role="img" aria-label="중앙축 내부 동심 회전 슬리브 개념도" xmlns="http://www.w3.org/2000/svg">'+
-  '<g data-component="ring">'+rings.map((r,i)=>'<circle cx="315" cy="208" r="'+r+'" fill="none" stroke="#c34a2a" stroke-width="9" opacity="'+(.95-i*.13)+'"/>').join('')+'</g>'+
-  '<g data-component="shaft"><circle cx="315" cy="208" r="18" fill="#58737c"/><path d="M315 72V344" stroke="#58737c" stroke-width="3" stroke-dasharray="6 6"/></g>'+
-  '<g data-component="bearing"><g fill="none" stroke="#91a8a4" stroke-width="4">'+rings.slice(0,-1).map(r=>'<circle cx="315" cy="208" r="'+(r+7)+'"/>').join('')+'</g></g>'+
-  '<g data-component="drive"><rect x="505" y="110" width="105" height="195" rx="14" fill="#e3eceb" stroke="#58737c" stroke-width="2"/><text x="558" y="139" text-anchor="middle" font-size="14" fill="#58737c">베이스 내부</text>'+[0,1,2,3].slice(0,Math.min(4,state.groupCount)).map((_,i)=>'<rect x="526" y="'+(154+i*35)+'" width="64" height="24" rx="6" fill="#8fa29c" stroke="#58737c"/><text x="558" y="'+(171+i*35)+'" text-anchor="middle" font-size="11" fill="#fff">BLDC '+groupLetters[i]+'</text>').join('')+'</g>'+
-  hs(315,58,1,'shaft')+hs(202,318,2,'bearing')+hs(416,208,3,'ring')+hs(620,96,4,'drive')+
-  '<text x="315" y="394" text-anchor="middle" font-size="14" fill="#676b62">위에서 보면 하나의 중앙축 안에 여러 동심 회전부가 겹친 개념</text></svg>';
+  return '<svg viewBox="0 0 700 430" role="img" aria-label="한 레이어의 공통 축, 베어링, passive coupling, 허브 개념도" xmlns="http://www.w3.org/2000/svg">'+
+  '<g data-component="ring"><path d="M90 210C170 120 250 120 315 210C380 120 460 120 540 210C460 300 380 300 315 210C250 300 170 300 90 210Z" fill="none" stroke="#c34a2a" stroke-width="8"/><circle cx="315" cy="210" r="56" fill="#f3d1bf" stroke="#c34a2a" stroke-width="3"/></g>'+
+  '<g data-component="bearing"><circle cx="315" cy="210" r="39" fill="none" stroke="#91a8a4" stroke-width="10"/></g>'+
+  '<g data-component="coupling"><circle cx="315" cy="210" r="27" fill="none" stroke="#d69572" stroke-width="8" stroke-dasharray="8 4"/></g>'+
+  '<g data-component="shaft"><circle cx="315" cy="210" r="13" fill="#58737c"/><path d="M315 72V348" stroke="#58737c" stroke-width="2" stroke-dasharray="5 5"/></g>'+
+  '<path d="M315 182A28 28 0 0 1 340 205" fill="none" stroke="#c34a2a" stroke-width="3"/><path d="M337 198l6 9-10 2" fill="#c34a2a"/>'+
+  hs(315,65,1,'shaft')+hs(205,330,2,'bearing')+hs(420,326,3,'coupling')+hs(553,176,4,'ring')+
+  '<text x="315" y="395" text-anchor="middle" font-size="14" fill="#676b62">레이어 하나를 위에서 본 개념 · 결합부는 중앙 허브 안에 숨김</text></svg>';
 }
 function assemblySide(exploded=false){
-  const shift=exploded?38:0;
-  return '<svg viewBox="0 0 700 430" role="img" aria-label="옆에서 본 그룹별 중앙축 구조 개념도" xmlns="http://www.w3.org/2000/svg">'+
-  '<g data-component="shaft"><rect x="326" y="45" width="18" height="300" rx="4" fill="#58737c"/></g>'+
-  '<g data-component="ring">'+[0,1,2,3].slice(0,Math.min(4,state.groupCount)).map((_,i)=>{const x=300-i*12-shift*i,y=88+i*69,w=70+i*24;return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="32" rx="6" fill="none" stroke="#c34a2a" stroke-width="6"/><path d="M'+x+' '+(y+16)+'H'+(170-i*5)+'M'+(x+w)+' '+(y+16)+'H'+(530+i*5)+'" stroke="#c34a2a" stroke-width="4"/>';}).join('')+'</g>'+
-  '<g data-component="bearing">'+[0,1,2,3].slice(0,Math.min(4,state.groupCount)).map((_,i)=>'<circle cx="335" cy="'+(104+i*69)+'" r="'+(27+i*9)+'" fill="none" stroke="#91a8a4" stroke-width="3"/>').join('')+'</g>'+
-  '<g data-component="drive"><rect x="235" y="345" width="200" height="60" rx="12" fill="#e3eceb" stroke="#58737c" stroke-width="2"/><text x="335" y="370" text-anchor="middle" font-size="14" fill="#58737c">베이스 내부 BLDC × '+state.groupCount+'</text><text x="335" y="390" text-anchor="middle" font-size="11" fill="#676b62">각 슬리브를 같은 방향, 다른 속도로 구동</text></g>'+
-  hs(361,58,1,'shaft')+hs(198,137,2,'bearing')+hs(555,220,3,'ring')+hs(460,370,4,'drive')+
-  '<text x="335" y="423" text-anchor="middle" font-size="12" fill="#676b62">'+(exploded?'관계를 보기 위해 좌우로 벌린 개념도':'실제 연결 형상·베어링 위치는 치수 설계 후 결정')+'</text></svg>';
+  const gap=exploded?55:0;
+  return '<svg viewBox="0 0 700 430" role="img" aria-label="옆에서 본 한 레이어의 passive coupling 개념 단면" xmlns="http://www.w3.org/2000/svg">'+
+  '<g data-component="shaft"><rect x="325" y="35" width="20" height="330" rx="5" fill="#58737c"/></g>'+
+  '<g data-component="bearing" transform="translate(0,'+(-gap)+')"><rect x="285" y="190" width="100" height="54" rx="8" fill="#e3eceb" stroke="#91a8a4" stroke-width="5"/><circle cx="335" cy="217" r="22" fill="#fffefa" stroke="#91a8a4" stroke-width="5"/></g>'+
+  '<g data-component="coupling" transform="translate(0,'+(exploded?0:0)+')"><rect x="297" y="'+(250+gap*.2)+'" width="76" height="18" rx="5" fill="#d69572"/><path d="M304 '+(274+gap*.2)+'h62" stroke="#c34a2a" stroke-width="5" stroke-dasharray="7 4"/></g>'+
+  '<g data-component="ring" transform="translate(0,'+gap+')"><path d="M80 294H285M385 294H590" stroke="#c34a2a" stroke-width="9" stroke-linecap="round"/><rect x="280" y="275" width="110" height="38" rx="8" fill="#f3d1bf" stroke="#c34a2a" stroke-width="3"/></g>'+
+  '<g data-component="drive"><rect x="245" y="365" width="180" height="42" rx="10" fill="#31392e"/><text x="335" y="391" text-anchor="middle" fill="#fff" font-size="13">베이스 내부 BLDC 1개</text></g>'+
+  hs(369,60,1,'shaft')+hs(196,180-gap,2,'bearing')+hs(445,257+gap*.2,3,'coupling')+hs(585,294+gap,4,'ring')+
+  '<text x="335" y="425" text-anchor="middle" font-size="12" fill="#676b62">'+(exploded?'관계를 보기 위해 위아래로 벌린 개념도':'실제 마찰재·스프링·고정 방식은 시제품에서 결정')+'</text></svg>';
 }
 function renderAssembly(){
   all('[data-assembly]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.assembly===state.assembly)));
   $('assemblyDrawing').innerHTML=state.assembly==='top'?assemblyTop():assemblySide(state.assembly==='exploded');
-  $('assemblyCaption').textContent=state.assembly==='top'?'동심 슬리브 개념을 위에서 본 모습입니다. 실제로 필요한 슬리브 수와 두께는 그룹 수와 하중에 따라 달라집니다.':state.assembly==='exploded'?'부품 관계를 보기 위한 분해 개념도입니다. 실제 조립 상태의 간격이나 형상을 뜻하지 않습니다.':'옆에서 본 개념입니다. 같은 그룹의 여러 레이어는 하나의 회전 슬리브에 연결됩니다.';
-  all('[data-hotspot]').forEach(el=>{el.addEventListener('click',()=>selectPart(el.dataset.hotspot));});
+  $('assemblyCaption').textContent=state.assembly==='top'?'공통 축·베어링·coupling·레이어 허브의 관계를 단순화한 위쪽 개념도입니다.':state.assembly==='exploded'?'부품 관계를 보기 위해 벌린 그림입니다. 실제 작동 간격이나 제작 치수를 뜻하지 않습니다.':'한 층의 단면 개념입니다. 레이어는 베어링에서 자유롭고 coupling을 통해 공통 축의 회전을 일부 전달받습니다.';
+  all('[data-hotspot]').forEach(el=>el.addEventListener('click',()=>selectPart(el.dataset.hotspot)));
   applyPart();
 }
 function applyPart(){
@@ -323,28 +327,27 @@ all('[data-part]').forEach(b=>b.addEventListener('click',()=>selectPart(b.datase
 all('[data-assembly]').forEach(b=>b.addEventListener('click',()=>{state.assembly=b.dataset.assembly;renderAssembly();}));
 $('showAllParts').addEventListener('click',()=>selectPart('all'));
 
-// BLDC placement concept
+// Outside/internal placement
 function placementSvg(){
-  const inside=state.cover==='inside';
-  if(!inside){
-    return '<svg viewBox="0 0 600 390" role="img" aria-label="외부에서 본 완성 작품 개념"><rect x="125" y="331" width="350" height="25" rx="7" fill="#31392e"/><path d="M300 52V330" stroke="#65716b" stroke-width="8"/>'+[0,1,2,3,4,5,6,7].map((_,i)=>{const y=82+i*31,r=38+62*Math.sin(Math.PI*i/7);return '<path d="M300 '+y+'c'+(-r)+' '+(-r*.24)+' '+(-r)+' '+(r*.24)+' 0 0c'+r+' '+(-r*.24)+' '+r+' '+(r*.24)+' 0 0" fill="none" stroke="#c34a2a" stroke-width="3"/>';}).join('')+'<text x="300" y="380" text-anchor="middle" font-size="14" fill="#676b62">밖에서는 중앙축 + 레이어만 보이는 것이 목표</text></svg>';
+  if(state.cover==='outside'){
+    return '<svg viewBox="0 0 600 390" role="img" aria-label="외부에서 중앙축과 레이어만 보이는 완성 작품 개념"><rect x="125" y="331" width="350" height="25" rx="7" fill="#31392e"/><path d="M300 48V330" stroke="#65716b" stroke-width="8"/>'+[0,1,2,3,4,5,6,7].map((_,i)=>{const y=78+i*32,r=36+64*Math.sin(Math.PI*i/7);return '<path d="M300 '+y+'c'+(-r)+' '+(-r*.24)+' '+(-r)+' '+(r*.24)+' 0 0c'+r+' '+(-r*.24)+' '+r+' '+(r*.24)+' 0 0" fill="none" stroke="#c34a2a" stroke-width="3"/>';}).join('')+'<text x="300" y="380" text-anchor="middle" font-size="14" fill="#676b62">외관 목표: 중앙축과 8자 레이어만 보임</text></svg>';
   }
-  return '<svg viewBox="0 0 600 390" role="img" aria-label="베이스 내부 BLDC와 중앙축 내부 그룹별 회전 슬리브 개념"><rect x="125" y="315" width="350" height="42" rx="8" fill="#31392e"/><path d="M300 55V315" stroke="#58737c" stroke-width="14"/>'+[0,1,2,3].slice(0,Math.min(4,state.groupCount)).map((_,i)=>'<path d="M'+(285-i*7)+' 70V'+(285-i*22)+'" stroke="#c34a2a" stroke-width="5" opacity="'+(1-i*.14)+'"/>').join('')+[0,1,2,3].slice(0,Math.min(4,state.groupCount)).map((_,i)=>'<rect x="'+(158+i*72)+'" y="326" width="58" height="24" rx="5" fill="#8fa29c"/><text x="'+(187+i*72)+'" y="343" text-anchor="middle" font-size="10" fill="#fff">'+groupLetters[i]+' BLDC</text>').join('')+'<text x="300" y="382" text-anchor="middle" font-size="13" fill="#676b62">개념: BLDC는 베이스에 숨기고 회전만 중앙축 내부로 전달</text></svg>';
+  return '<svg viewBox="0 0 600 390" role="img" aria-label="BLDC 하나와 공통 축, 층별 passive coupling 내부 개념"><rect x="125" y="320" width="350" height="38" rx="8" fill="#31392e"/><rect x="260" y="326" width="80" height="25" rx="6" fill="#8fa29c"/><text x="300" y="343" text-anchor="middle" font-size="11" fill="#fff">BLDC × 1</text><path d="M300 48V320" stroke="#58737c" stroke-width="10"/>'+[0,1,2,3,4].map((_,i)=>{const y=82+i*48,r=74+18*Math.sin(i*1.7);return '<circle cx="300" cy="'+y+'" r="18" fill="none" stroke="#91a8a4" stroke-width="5"/><circle cx="300" cy="'+y+'" r="12" fill="none" stroke="#d69572" stroke-width="4" stroke-dasharray="5 3"/><path d="M318 '+y+'H'+(300+r)+'M282 '+y+'H'+(300-r)+'" stroke="#c34a2a" stroke-width="4"/>';}).join('')+'<text x="300" y="382" text-anchor="middle" font-size="13" fill="#676b62">각 층은 같은 축에서 직접 힘을 받음 · 직렬 전달 아님</text></svg>';
 }
 function renderPlacement(){
   all('[data-cover]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.cover===state.cover)));
   $('placementDrawing').innerHTML=placementSvg();
-  $('placementCaption').textContent=state.cover==='inside'?'BLDC '+state.groupCount+'계통과 그룹별 회전 슬리브를 모두 중앙축·베이스 내부에 숨기는 개념입니다.':'최종 외관에서는 옆 모터, 벨트, 보조 세로축이 보이지 않는 것을 목표로 합니다.';
-  $('motorText').innerHTML='<div class="eyebrow">CURRENT CONCEPT</div><h3>'+state.groupCount+'개 BLDC 그룹 구동</h3><p class="short-desc">모든 그룹은 같은 방향으로 회전하고 속도만 다릅니다.</p><dl class="fact-list"><div class="fact-row"><dt>모터 수</dt><dd>기본 '+state.groupCount+'개 구동 계통</dd></div><div class="fact-row"><dt>레이어</dt><dd>'+state.count+'개를 '+state.groupCount+'그룹으로 묶음</dd></div><div class="fact-row"><dt>방향</dt><dd>전부 같은 방향 ↻</dd></div><div class="fact-row"><dt>차이</dt><dd>그룹별 속도 + 레이어별 고정 장착 각도</dd></div><div class="fact-row"><dt>외관</dt><dd>중앙축과 레이어만 노출</dd></div></dl>';
+  $('placementCaption').textContent=state.cover==='inside'?'베이스의 BLDC 하나가 공통 축 하나를 돌리고, 각 높이의 레이어가 자기 coupling을 통해 직접 토크를 받는 개념입니다.':'외부에서는 보조 세로축·옆모터·벨트가 보이지 않는 것을 목표로 합니다.';
+  $('motorText').innerHTML='<div class="eyebrow">CURRENT CONCEPT</div><h3>BLDC 1개 + 병렬 coupling</h3><p class="short-desc">정확한 속도 제어 대신, 층마다 다른 passive slip을 이용해 시각적인 속도 차이를 만드는 안입니다.</p><dl class="fact-list"><div class="fact-row"><dt>모터</dt><dd>BLDC 1개</dd></div><div class="fact-row"><dt>축</dt><dd>공통 구동축 1개</dd></div><div class="fact-row"><dt>층별 부품</dt><dd>베어링 + 조절 가능한 passive coupling</dd></div><div class="fact-row"><dt>방향</dt><dd>전부 같은 방향 ↻</dd></div><div class="fact-row"><dt>속도</dt><dd>높이와 무관하게 다르게 보이도록 조정 · 정확한 rpm은 보장하지 않음</dd></div><div class="fact-row"><dt>외관</dt><dd>중앙축과 레이어만 노출</dd></div></dl>';
 }
 all('[data-cover]').forEach(b=>b.addEventListener('click',()=>{state.cover=b.dataset.cover;renderPlacement();}));
 
 function numberValue(id,unit){const e=$(id);if(!e||e.value===''||!e.validity.valid||Number(e.value)<=0)return '미정';return Number(e.value)+unit;}
 function createBrief(){
-  const factors=groups.map((g,i)=>groupLetters[i]+' '+g.speedFactor.toFixed(2)+'×').join(' / ');
-  let t='움직이는 조각 — 제작 상담 메모\n\n[고정 조건]\n- 외부에는 중앙축과 8자형 레이어만 노출\n- 구동: BLDC 그룹 구동\n- 모든 그룹 같은 회전 방향\n- 그룹별 속도만 다르게\n\n[현재 개념안]\n- 레이어 '+state.count+'개 / '+state.groupCount+'그룹\n- 묶는 방식: '+groupingNames[state.grouping]+'\n- 상대 속도: '+factors+'\n- 같은 그룹 안에서는 동일 속도, 레이어별 장착 각도는 다르게 가능\n\n[실제 제작 조건]\n- 레이어 수: '+numberValue('actualCount','개')+'\n- 가장 큰 8자 폭: '+numberValue('diameter',' cm')+'\n- 가장 무거운 레이어: '+numberValue('mass',' g')+'\n- 목표 층 간격: '+numberValue('targetGap',' mm')+'\n';
+  const sample=layers.slice(0,Math.min(8,layers.length)).map((l,i)=>(i+1)+'층 '+l.factor.toFixed(2)+'×').join(' / ');
+  let t='움직이는 조각 — 제작 상담 메모\n\n[고정 조건]\n- 외부에는 중앙축과 8자형 레이어만 노출\n- BLDC 1개로 공통 구동축 1개 회전\n- 모든 레이어 같은 방향\n- 각 층은 공통 축에서 병렬 passive coupling으로 직접 힘을 받음\n- 정확한 rpm보다 시각적으로 서로 다른 속도가 목표\n\n[화면 개념 모형]\n- 레이어 '+state.count+'개\n- 축 속도 설정: '+speedWord()+'\n- 층별 속도차: '+variationWord()+'\n- 비단조 속도 예시: '+sample+'\n※ 위 속도비는 실제 마찰 성능 예측값이 아님\n\n[실제 제작 조건]\n- 레이어 수: '+numberValue('actualCount','개')+'\n- 가장 큰 8자 폭: '+numberValue('diameter',' cm')+'\n- 가장 무거운 레이어: '+numberValue('mass',' g')+'\n- 목표 층 간격: '+numberValue('targetGap',' mm')+'\n';
   const notes=$('notes').value.trim();if(notes)t+='- 추가 조건: '+notes+'\n';
-  t+='\n[먼저 검증]\n1) 한 슬리브에 여러 레이어 연결\n2) BLDC 2개 + 중첩 슬리브 2개\n3) 중앙축 하나처럼 보이는 상태에서 서로 다른 두 속도 확인\n4) 가능하면 '+state.groupCount+'그룹으로 확대\n\n※ 중앙축 지름·베어링·슬리브 구조는 실제 크기와 무게를 기준으로 기계 설계 필요';
+  t+='\n[권장 검증]\n1) 3개 레이어를 베어링으로 독립 회전\n2) BLDC 1개 + 공통 축 + 마찰 coupling 3개\n3) 느림·빠름·중간이 높이와 무관하게 나오는지 확인\n4) 5층 장시간 시험 후 20층 확대 여부 결정\n\n※ 마찰 coupling이 붙어버리거나 속도차가 불안정하면 자기 coupling 또는 다른 전달 방식 재검토';
   return t;
 }
 function updateBrief(){if($('briefPreview'))$('briefPreview').textContent=createBrief();}
@@ -352,12 +355,11 @@ function updateBrief(){if($('briefPreview'))$('briefPreview').textContent=create
 $('copyBrief').addEventListener('click',async()=>{const t=createBrief();try{await navigator.clipboard.writeText(t);toast('제작 상담 메모를 복사했습니다.');}catch(e){$('copyFallback').hidden=false;$('copyText').value=t;$('copyText').focus();$('copyText').select();}});
 $('saveBrief').addEventListener('click',()=>{const blob=new Blob(['\ufeff',createBrief()],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='kinetic_sculpture_제작메모.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 
-document.addEventListener('click',e=>{const a=e.target.closest('a.source-ref');if(a){e.preventDefault();$('sources').open=true;const target=$(a.getAttribute('href').slice(1));if(target)target.scrollIntoView({behavior:'smooth',block:'center'});}});
-
 function tick(ts){
   const dt=Math.min(.05,(ts-lastFrame)/1000||0);lastFrame=ts;
   if(state.playing&&!document.hidden){
-    groups.forEach(g=>{g.angle=(g.angle+g.speedFactor*state.speed*.34*dt)%TAU;});
+    // Every layer remains positive direction. Factors are conceptual passive-slip examples.
+    layers.forEach(l=>{l.angle=(l.angle+l.factor*state.shaftSpeed*.38*dt)%TAU;});
     state.time+=dt;drawScene();
   }
   rafId=requestAnimationFrame(tick);
