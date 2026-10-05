@@ -93,7 +93,7 @@
 
 
 <section class="cad-hero" id="cad" aria-labelledby="cad-title">
-<div class="cad-head"><div><div class="eyebrow">CAD-STYLE CONCEPT ASSEMBLY</div><h1 id="cad-title">안과 밖을 돌려보며 확인하기.</h1></div><p>20개의 8자 레이어, 공통 회전축, 베이스 내부 구동부와 한 층의 passive coupling을 3D로 살펴봅니다. <strong>형상·치수는 설명용 가정</strong>이며 제작도면은 아닙니다.</p></div>
+<div class="cad-head"><div><div class="eyebrow">CAD-STYLE CONCEPT ASSEMBLY</div><h1 id="cad-title">안과 밖을 돌려보며 확인하기.</h1></div><p>20개의 8자 레이어, 공통 Z축, 베이스 내부 구동부와 한 층의 passive coupling을 3D로 살펴봅니다. <strong>형상·치수는 설명용 가정</strong>이며 제작도면은 아닙니다.</p></div>
 <div class="cad-shell">
 <div class="cad-grid">
 <div class="cad-view" id="cadView">
@@ -105,7 +105,7 @@
 <div class="cad-panel">
 <h3>3D 모델 보기</h3><p class="helper">외관 → 내부 → 단면 → 한 층 분해 → 힘 전달 순서로 보면 구조가 가장 쉽게 이해됩니다.</p>
 <div class="cad-modes" role="group" aria-label="3D 보기 모드">
-<button class="cad-mode" data-cad-mode="exterior" aria-pressed="true" type="button"><strong>외관</strong><span>사진처럼 중앙축과 레이어만</span></button>
+<button class="cad-mode" data-cad-mode="exterior" aria-pressed="true" type="button"><strong>외관</strong><span>사진처럼 중앙 Z축과 레이어만</span></button>
 <button class="cad-mode" data-cad-mode="internal" aria-pressed="false" type="button"><strong>내부</strong><span>베이스·허브를 투명하게</span></button>
 <button class="cad-mode" data-cad-mode="section" aria-pressed="false" type="button"><strong>단면</strong><span>중앙축을 잘라 내부 스택 보기</span></button>
 <button class="cad-mode" data-cad-mode="exploded" aria-pressed="false" type="button"><strong>분해</strong><span>선택한 한 층을 부품별로 벌리기</span></button>
@@ -139,7 +139,7 @@
 </div>
 </section>
 <section class="hero" id="movement" aria-labelledby="hero-title">
-<div class="hero-head"><div><div class="eyebrow">정숙성 우선 구동안</div><h1 id="hero-title">조용한 모터 하나, 층은 제각각.</h1></div><p class="hero-sub">사진처럼 <strong>중앙축만 보이게</strong> 유지하면서,<br>베이스 안의 <strong>BLDC 1개를 정숙성 우선 후보</strong>로 두고 공통 축을 돌립니다.<br class="desktop-br"> 각 레이어는 그 축에서 <strong>병렬로</strong> 힘을 받아 서로 다른 속도로 움직입니다.</p></div>
+<div class="hero-head"><div><div class="eyebrow">정숙성 우선 구동안</div><h1 id="hero-title">조용한 모터 하나, 층은 제각각.</h1></div><p class="hero-sub">사진처럼 <strong>중앙 Z축만 보이게</strong> 유지하면서,<br>베이스 안의 <strong>BLDC 1개를 정숙성 우선 후보</strong>로 두고 공통 축을 돌립니다.<br class="desktop-br"> 각 레이어는 그 축에서 <strong>병렬로</strong> 힘을 받아 서로 다른 속도로 움직입니다.</p></div>
 
 <div class="workbench">
 <figure class="stage" aria-label="공통 중앙축에서 병렬 passive coupling으로 힘을 받아 같은 방향, 서로 다른 속도로 회전하는 8자형 레이어 모형">
@@ -170,7 +170,7 @@
 <p class="helper" style="margin-top:13px">애니메이션의 속도비는 실제 마찰클러치 성능을 예측하는 값이 아닙니다. “높이 순서와 무관하게 속도가 섞일 수 있다”는 개념만 보여줍니다.</p>
 </div></div>
 
-<div class="scene-meta"><p id="shapeHint">8자형 레이어 모두가 같은 중앙축을 회전 중심으로 공유하고, 가운데가 가장 크며 위·아래로 갈수록 작아집니다.</p><div class="layer-controls"><label for="selectedLayer">확인할 레이어</label><select class="select" id="selectedLayer"></select><span class="live-layer" id="layerLive">↻ · 0.7× 예시</span></div></div>
+<div class="scene-meta"><p id="shapeHint">8자형 레이어 모두가 같은 중앙 Z축을 회전 중심으로 공유하고, 가운데가 가장 크며 위·아래로 갈수록 작아집니다.</p><div class="layer-controls"><label for="selectedLayer">확인할 레이어</label><select class="select" id="selectedLayer"></select><span class="live-layer" id="layerLive">↻ · 0.7× 예시</span></div></div>
 
 <div class="insight"><span class="insight-icon" aria-hidden="true">i</span><p><b>핵심은 직렬이 아니라 병렬입니다.</b> 1층이 2층을 돌리고 2층이 3층을 돌리는 구조라면 손실이 누적될 수 있지만, 여기서는 모든 층이 같은 회전축에서 각각 직접 토크를 받습니다. 그래서 높이가 속도 순서를 결정하지 않습니다.</p></div>
 
@@ -208,53 +208,44 @@
 </section>
 
 <section class="section" id="methods" aria-labelledby="methods-title">
-<div class="section-head"><div><div class="section-index">03 / 선택한 제작안</div><h2 id="methods-title">정숙성 우선: BLDC 1개 + 층별 passive coupling.</h2><p class="lead">BLDC를 고른 이유는 중앙에 넣기 쉬워서가 아니라 <strong>소음을 줄이는 것을 우선</strong>했기 때문입니다.<br>베이스 안에서 FOC 제어하고, 필요하면 타이밍 벨트로 감속해 공통축을 천천히 돌립니다.</p></div><p class="aside-note">실제 소음은 모터·드라이버·벨트·베어링·베이스 공진까지<br>시제품에서 확인해야 합니다.</p></div>
+<div class="section-head"><div><div class="section-index">03 / 현재 제작안</div><h2 id="methods-title">정숙성 우선 BLDC 1개 + 공통축 + 층별 마찰 coupling.</h2><p class="lead">이 페이지에서는 지금 정한 구조만 설명합니다.<br>베이스 안의 BLDC를 FOC로 부드럽게 돌리고, 필요하면 타이밍 벨트로 감속한 뒤 공통축에서 각 층이 직접 토크를 받습니다.</p></div><p class="aside-note">외부에는 중앙 Z축과 8자 레이어만 노출<br>전부 같은 방향 · 층별 속도는 제각각</p></div>
 
 <div class="motor-selector">
-<article class="motor-choice" style="cursor:default"><span class="eyebrow">QUIET MOTOR</span><strong>BLDC × 1</strong><small>기어박스 없이 정숙성 우선</small></article>
+<article class="motor-choice" style="cursor:default"><span class="eyebrow">DRIVE</span><strong>BLDC × 1</strong><small>베이스 내부 · 정숙성 우선</small></article>
 <article class="motor-choice" style="cursor:default"><span class="eyebrow">CONTROL</span><strong>FOC</strong><small>저속에서 부드럽게 구동</small></article>
-<article class="motor-choice" style="cursor:default"><span class="eyebrow">REDUCTION</span><strong>벨트 감속</strong><small>필요할 때 베이스 안에서 사용</small></article>
+<article class="motor-choice" style="cursor:default"><span class="eyebrow">LAYER</span><strong>마찰 coupling × 층수</strong><small>높이와 무관한 속도 차이</small></article>
 </div>
 
-<div class="motor-detail"><div class="placement"><div class="diagram-toolbar"><span class="eyebrow">겉모습 / 내부</span><div class="pillset" role="group"><button data-cover="outside" aria-pressed="false">겉에서 보기</button><button data-cover="inside" aria-pressed="true">내부 보기</button></div></div><div class="diagram-wrap" id="placementDrawing"></div><div class="legend"><span><i class="swatch fixed"></i>공통 축·고정부</span><span><i class="swatch"></i>독립 레이어</span><span><i class="swatch contact"></i>층별 coupling</span></div><p class="diagram-caption" id="placementCaption"></p></div><div class="motor-text" id="motorText"></div></div>
-<details class="wide-details"><summary>왜 BLDC를 정숙성 우선 후보로 골랐나요?</summary><div class="details-grid"><div><h4>기어 소음을 피하기 쉽습니다.</h4><p>이 안에서는 모터를 베이스 안에 넣을 수 있으므로 얇은 모터가 필수는 아닙니다. 대신 기어박스 없이 BLDC를 돌리고, 필요하면 <strong>타이밍 벨트 감속</strong>을 사용해 기계적인 기어 소음을 피하는 방향을 우선 검토합니다.</p></div><div><h4>단, BLDC라고 자동으로 조용한 것은 아닙니다.</h4><p>저속에서의 소리와 진동은 모터의 코깅, 제어 방식, 베어링, 벨트 장력, 베이스 공진에 좌우됩니다. 그래서 <strong>FOC 설정과 방진 마운트까지 포함한 실물 소음 시험</strong>이 필요합니다. <a class="source-ref" href="#source4">[1]</a></p></div></div></details>
-<details class="wide-details"><summary>DC 기어모터나 스테퍼는 왜 1순위에서 빠졌나요?</summary><div class="details-grid"><div><h4>DC 기어모터</h4><p>구현은 쉽지만 이번 작품은 조용한 전시를 우선하므로 기어박스에서 나는 기계음이 변수가 됩니다. 소음이 충분히 작은 제품을 찾으면 대안으로 남길 수 있습니다.</p></div><div><h4>스테퍼</h4><p>각도 제어에는 유리하지만 이번 작품은 정확한 위치 정지가 필요하지 않습니다. 저속 진동·공진을 따로 관리해야 하므로 정숙성 우선안에서는 후순위로 둡니다.</p></div></div></details>
+<div class="motor-detail"><div class="placement"><div class="diagram-toolbar"><span class="eyebrow">겉모습 / 내부</span><div class="pillset" role="group"><button data-cover="outside" aria-pressed="false">겉에서 보기</button><button data-cover="inside" aria-pressed="true">내부 보기</button></div></div><div class="diagram-wrap" id="placementDrawing"></div><div class="legend"><span><i class="swatch fixed"></i>공통축·고정부</span><span><i class="swatch"></i>독립 레이어</span><span><i class="swatch contact"></i>층별 마찰 coupling</span></div><p class="diagram-caption" id="placementCaption"></p></div><div class="motor-text" id="motorText"></div></div>
 
-<details class="wide-details"><summary>가장 단순한 coupling은 무엇인가요?</summary><div class="details-grid"><div><h4>첫 시제품: 마찰식</h4><p>축에 고정된 칼라와 레이어 허브 사이에 마찰재를 두고, <strong>디스크 스프링(Belleville)</strong>의 예압이나 조임 정도로 접촉력을 바꾸는 식의 조절 가능한 마찰 결합을 먼저 시험할 수 있습니다. 디스크 스프링은 축방향 하중을 만드는 부품이므로 실제 힘·변형량은 규격에 맞춰 선정해야 합니다. <a class="source-ref" href="#source7">[3]</a></p></div><div><h4>후속 후보: 비접촉 자기 결합</h4><p>마찰재 마모·소음·발열이 문제라면 자석을 이용한 비접촉 결합도 검토할 수 있습니다. 다만 자석 배치와 간격 설계가 추가되어 첫 시제품보다는 어렵습니다.</p></div></div></details>
+<details class="wide-details" open><summary>한 층의 중앙 허브는 어떻게 구성하나요?</summary><div class="details-grid"><div><h4>현재 후보 스택</h4><p><strong>공통축 → 축 칼라 → 디스크 스프링 → 마찰 링 → 베어링 → 회전 허브 → 조정 칼라</strong> 순서로 검토합니다. 디스크 스프링의 예압으로 마찰면의 접촉력을 조절하고, 베어링이 허브의 독립 회전을 지지합니다. <a class="source-ref" href="#source7">[3]</a></p></div><div><h4>치수는 아직 확정하지 않습니다.</h4><p>예압은 베어링의 축방향 하중에도 영향을 주므로, 실제 레이어 무게와 필요한 마찰 토크가 정해진 뒤 베어링·스프링 규격을 선정해야 합니다. <a class="source-ref" href="#source8">[4]</a></p></div></div></details>
 
-<details class="wide-details"><summary>베어링과 디스크 스프링은 그냥 아무 규격이나 쓰면 되나요?</summary><div class="details-grid"><div><h4>아니요. 예압이 곧 베어링의 축방향 하중이 됩니다.</h4><p>마찰력을 만들기 위해 디스크 스프링으로 눌러주면 그 힘이 허브와 베어링에도 전달됩니다. 따라서 베어링의 허용 축방향 하중과 수명을 실제 규격에서 확인해야 합니다. <a class="source-ref" href="#source8">[4]</a></p></div><div><h4>그래서 지금 3D는 “부품 순서”까지만 보여줍니다.</h4><p>디스크 스프링의 외경·내경·예압량과 베어링 규격은 레이어의 실제 질량과 필요한 마찰 토크를 측정한 뒤 선정합니다. 화면의 두께와 간격은 제작 치수가 아닙니다.</p></div></div></details>
-<details class="wide-details"><summary>왜 위로 갈수록 단조롭게 느려지지 않나요?</summary><div class="details-grid"><div><h4>각 층의 결합 조건을 따로 만들 수 있기 때문입니다.</h4><p>예를 들어 1층은 약하게, 2층은 강하게, 3층은 중간, 4층은 다시 강하게 설정하는 식으로 높이 순서와 무관하게 배치할 수 있습니다.</p></div><div><h4>하지만 속도는 정확히 예측할 수 없습니다.</h4><p>마찰식 passive coupling에서는 결합력·베어링 저항·레이어 무게가 함께 영향을 줍니다. 따라서 “0.6×, 0.9×” 같은 화면 표시는 동작 개념을 위한 예시일 뿐입니다.</p></div></div></details>
+<details class="wide-details"><summary>왜 위로 갈수록 단조롭게 느려지지 않나요?</summary><div class="details-grid"><div><h4>모든 층이 공통축에서 병렬로 힘을 받기 때문입니다.</h4><p>아래층이 윗층을 차례로 돌리는 구조가 아닙니다. 각 층의 마찰 coupling 조건을 따로 조절하므로 느림 → 빠름 → 중간 → 빠름처럼 높이 순서와 무관한 속도 분포를 만들 수 있습니다.</p></div><div><h4>정확한 rpm 제어가 목적은 아닙니다.</h4><p>마찰식 coupling은 부하·예압·마찰재 상태에 따라 slip이 달라질 수 있습니다. 목표는 각 층의 정확한 회전수를 지정하는 것이 아니라, 같은 방향으로 서로 다른 속도가 시각적으로 유지되는 것입니다.</p></div></div></details>
 
-<details class="wide-details"><summary>조각학과 학생이 직접 할 수 있는 범위는?</summary><div class="details-grid"><div><h4>3층 시제품은 접근 가능한 편입니다.</h4><p>레이어 제작, 베어링·허브 조립, 마찰재와 스프링 와셔를 바꿔보는 실험은 메이커스페이스 수준의 도움을 받으면 시도할 수 있습니다.</p></div><div><h4>20층 최종작은 정렬 도움을 받는 편이 좋습니다.</h4><p>긴 축의 흔들림, 베어링 정렬, 층 간 간섭, 축 강성, 장시간 마모는 기계 제작 경험이 있는 사람과 함께 확인하는 것이 안전합니다.</p></div></div></details>
+<details class="wide-details"><summary>정숙성을 위해 무엇을 확인하나요?</summary><div class="details-grid"><div><h4>모터와 감속</h4><p>BLDC를 FOC로 저속 구동하고, 직접 저속 운전이 불안정하면 베이스 안에서 타이밍 벨트 감속을 사용합니다. <a class="source-ref" href="#source4">[1]</a></p></div><div><h4>완성품에서의 소음</h4><p>실제 소음은 모터뿐 아니라 베어링, 벨트 장력, 마찰면, 베이스 공진의 영향을 받으므로 3~5층 시제품에서 장시간 확인합니다.</p></div></div></details>
 
-<div class="decision-band"><span class="big-arrow">↳</span><div><strong>3층에서 “느림·빠름·중간”이 안정적으로 보이는지 먼저 확인.</strong><p>여기서 원하는 느낌이 나오면 5층으로 늘리고, 장시간 돌려도 속도차가 사라지거나 붙어버리지 않는지 확인한 뒤 20층으로 가는 순서가 적절합니다.</p></div></div>
+<div class="decision-band"><span class="big-arrow">↳</span><div><strong>현재 구조의 핵심 검증은 3층 마찰 coupling 시제품.</strong><p>세 층이 모두 같은 방향으로 돌면서, 높이와 무관한 서로 다른 속도가 일정 시간 유지되는지 먼저 확인합니다.</p></div></div>
 </section>
 
 <section class="section" id="making" aria-labelledby="making-title">
-<div class="section-head"><div><div class="section-index">04 / 제작 순서</div><h2 id="making-title">3층 시제품으로 먼저 판별합니다.</h2><p class="lead">이 방식의 성공 여부는 계산보다 실물 마찰과 하중에 크게 좌우되므로,<br>작은 시제품이 가장 중요한 검증입니다.</p></div><p class="aside-note">처음부터 20층을 만들지 않습니다.</p></div>
+<div class="section-head"><div><div class="section-index">04 / 제작 순서</div><h2 id="making-title">3층에서 구조를 검증하고 20층으로 확대합니다.</h2><p class="lead">현재 안의 제작 가능성은 마찰 coupling의 실제 동작과 긴 공통축의 정렬에서 결정됩니다.</p></div><p class="aside-note">처음부터 20층을 만들지 않습니다.</p></div>
 
 <div class="steps">
-<article class="step"><div class="step-num">1</div><div class="eyebrow">FREE ROTATION</div><h3>세 레이어를 자유롭게 돌리기</h3><p>각 레이어가 같은 중앙축을 중심으로 베어링에서 독립적으로 잘 도는지 확인합니다.</p><div class="checkpoint"><b>확인</b><br>축 흔들림 · 층 간 간섭 · 레이어 무게<br>손으로 밀었을 때 부드러운 회전</div></article>
-<article class="step"><div class="step-num">2</div><div class="eyebrow">QUIET DRIVE</div><h3>BLDC + FOC + coupling 3개</h3><p>BLDC 하나를 베이스 안에 두고 FOC로 부드럽게 돌립니다. 공통축 속도가 너무 낮아 직접 구동이 불안정하면 타이밍 벨트 감속을 함께 시험합니다.</p><div class="checkpoint"><b>성공 조건</b><br>세 층 모두 같은 방향 · 속도 차이 확인<br>전시 거리에서 모터·벨트 소음이 거슬리지 않음</div></article>
-<article class="step"><div class="step-num">3</div><div class="eyebrow">LONG RUN</div><h3>5층으로 늘려 장시간 시험</h3><p>마찰열과 마모로 속도차가 사라지는지, 특정 층이 붙거나 멈추는지 확인합니다.</p><div class="checkpoint"><b>20층으로 가기 전</b><br>소음 · 발열 · 마모 · 재조정 가능성<br>축 정렬과 교체 방법 확인</div></article>
+<article class="step"><div class="step-num">1</div><div class="eyebrow">FREE ROTATION</div><h3>3개 허브를 베어링에 조립</h3><p>각 레이어가 동일한 Z축을 중심으로 서로 간섭 없이 자유롭게 회전하는지 확인합니다.</p><div class="checkpoint"><b>확인</b><br>축 동심도 · 허브 흔들림 · 층 간 간섭<br>손으로 돌렸을 때의 베어링 저항</div></article>
+<article class="step"><div class="step-num">2</div><div class="eyebrow">FRICTION COUPLING</div><h3>마찰 coupling 3개 추가</h3><p>각 층의 디스크 스프링 예압을 다르게 설정하고 하나의 공통축으로 구동합니다.</p><div class="checkpoint"><b>성공 조건</b><br>세 층 모두 같은 방향으로 회전<br>속도 차이가 높이 순서와 무관하게 나타남</div></article>
+<article class="step"><div class="step-num">3</div><div class="eyebrow">QUIET DRIVE</div><h3>BLDC + FOC로 장시간 운전</h3><p>필요하면 베이스 내부 타이밍 벨트 감속을 넣고 5층까지 확대해 소음·발열·마모를 확인합니다.</p><div class="checkpoint"><b>20층 전 확인</b><br>마찰면 마모 · 예압 변화 · 베어링 온도<br>공통축 흔들림 · 전시 거리 소음</div></article>
 </div>
 
-<div class="safety"><h4>이 방식이 안 맞는 신호</h4><p>층별 속도를 정확히 지정해야 하거나, 마찰 상태가 조금만 바뀌어도 작품성이 무너지는 경우에는 passive coupling이 맞지 않습니다. 그때는 여러 모터 또는 기계적으로 고정된 속도비(기어·벨트 등) 방식으로 다시 비교해야 합니다.</p></div>
-
-<div class="brief" id="brief"><div><div class="eyebrow">작가 → 제작 도움을 줄 사람</div><h3>현재 결정된 조건.</h3><p class="brief-lead">외관과 동작 목표는 고정하고, 실제 크기·재료만 채우면 상담용 메모가 됩니다.</p>
-<div class="brief-fields"><div class="brief-field"><label for="actualCount">실제 레이어 수</label><input id="actualCount" type="number" min="1" max="300" value="20" inputmode="numeric"></div><div class="brief-field"><label for="diameter">가장 큰 8자 폭 (cm)</label><input id="diameter" type="number" min="0.1" max="1000" step="0.1" placeholder="예: 30" inputmode="decimal"></div><div class="brief-field"><label for="mass">가장 무거운 레이어 (g)</label><input id="mass" type="number" min="0.1" max="100000" step="0.1" placeholder="미정이면 비워두기" inputmode="decimal"></div><div class="brief-field"><label for="targetGap">목표 층 간격 (mm)</label><input id="targetGap" type="number" min="0.1" max="1000" step="0.1" placeholder="예: 12" inputmode="decimal"></div><div class="brief-field full"><label for="visibility">외관·구동 조건</label><input id="visibility" value="중앙축만 노출 / 정숙성 우선 BLDC 1개 + FOC / 필요 시 베이스 내부 벨트 감속 / 공통 축 / 층별 병렬 passive coupling / 같은 방향·속도는 제각각" readonly></div><div class="brief-field full"><label for="notes">추가 조건</label><textarea id="notes" maxlength="1200" placeholder="예: 금속 레이어 / 하루 6시간 작동 / 최대한 조용하게"></textarea></div></div></div>
-<div class="brief-preview"><div class="brief-preview-head"><span>제작 상담 메모</span><span class="mono">LIVE NOTE</span></div><pre id="briefPreview"></pre><div class="btn-row"><button class="btn" id="copyBrief">선택 내용 복사</button><button class="btn ghost" id="saveBrief">메모 파일 저장</button></div><p class="save-help">현재 모형의 층수와 속도차 설정도 함께 기록됩니다.</p><div class="copy-fallback" id="copyFallback" hidden><label for="copyText">아래 내용을 직접 복사하세요.</label><textarea id="copyText" readonly></textarea></div></div>
-</div>
+<div class="safety"><h4>아직 확정하지 않은 것</h4><p>축 지름, 베어링 규격, 디스크 스프링 규격, 마찰재, 예압량, 모터 크기와 감속비는 실제 레이어 크기·무게·층 간격을 기준으로 선정합니다. 현재 CAD는 이 부품들의 <strong>관계와 회전축 정렬</strong>을 설명하기 위한 모델입니다.</p></div>
 </section>
 
-<details class="sources" id="sources"><summary>기술 설명의 근거·제작 범위</summary><p>BLDC는 <strong>정숙성 우선 후보</strong>로 선택했지만, 아직 특정 모터·드라이버·벨트 조합의 실제 소음은 측정하지 않았습니다. <strong>공통 축 + 층별 passive coupling</strong> 역시 이 작품의 요구조건을 바탕으로 한 개념 구조이며, 실제 속도 안정성은 시제품 실험이 필요합니다.</p>
+<details class="sources" id="sources"><summary>기술 설명의 근거·제작 범위</summary><p>현재 설명은 <strong>정숙성 우선 BLDC + FOC + 공통 Z축 + 층별 마찰 coupling</strong> 구조에 한정합니다. 마찰 coupling의 실제 속도 안정성은 아직 실물 검증 전입니다.</p>
 <div class="source-grid">
-<div class="source-item" id="source4"><a href="https://docs.simplefoc.com/bldcmotor" target="_blank" rel="noopener noreferrer">[1] SimpleFOC — BLDC configuration</a><small>BLDC 모터·드라이버·센서 구성과 제어 설정에 대한 기술 자료.</small></div>
-<div class="source-item" id="source6"><a href="https://www.kollmorgen.com/en-us/products/motors/frameless-motors" target="_blank" rel="noopener noreferrer">[2] Kollmorgen — Frameless motors</a><small>공간 제약이 큰 경우 검토할 수 있는 프레임리스 모터의 일반적인 구성.</small></div>
-<div class="source-item" id="source7"><a href="https://kr.spirol.com/product/disc-springs/" target="_blank" rel="noopener noreferrer">[3] SPIROL — Disc Springs</a><small>디스크 스프링은 축방향 하중을 만들며 힘-변형 특성과 적층 방식에 따라 예압을 설계하는 부품이라는 제조사 자료.</small></div>
-<div class="source-item" id="source8"><a href="https://cdn.skfmediahub.skf.com/api/public/0901d196802809de/pdf_preview_medium/0901d196802809de_pdf_preview_medium.pdf" target="_blank" rel="noopener noreferrer">[4] SKF — Deep groove ball bearings</a><small>소형 볼 베어링의 축방향 하중 허용은 규격과 하중 조건에 따라 달라지므로 예압 스택을 실제 베어링 정격에 맞춰 검토해야 합니다.</small></div>
-</div><p>페이지의 속도비·마찰 세기는 모두 개념 시각화입니다. 실제 rpm, 토크, 온도, 수명, 축 지름, 베어링 규격을 뜻하지 않습니다.</p></details>
-<footer class="footer"><p>현재 방향: 중앙축만 노출 · 정숙성 우선 BLDC 1개 + FOC · 필요 시 벨트 감속 · 각 층 병렬 passive coupling.</p><p class="mono">KINETIC STUDY / 2026.10.05 / V2.2</p></footer>
+<div class="source-item" id="source4"><a href="https://docs.simplefoc.com/bldcmotor" target="_blank" rel="noopener noreferrer">[1] SimpleFOC — BLDC configuration</a><small>BLDC 모터·드라이버·센서 구성과 FOC 제어 참고.</small></div>
+<div class="source-item" id="source7"><a href="https://kr.spirol.com/product/disc-springs/" target="_blank" rel="noopener noreferrer">[3] SPIROL — Disc Springs</a><small>디스크 스프링의 축방향 하중과 예압 설계 참고.</small></div>
+<div class="source-item" id="source8"><a href="https://cdn.skfmediahub.skf.com/api/public/0901d196802809de/pdf_preview_medium/0901d196802809de_pdf_preview_medium.pdf" target="_blank" rel="noopener noreferrer">[4] SKF — Deep groove ball bearings</a><small>볼 베어링의 하중 조건과 규격 선정 참고.</small></div>
+</div><p>페이지의 속도비·부품 크기·간격은 모두 개념 시각화입니다. 실제 rpm, 토크, 공차, 수명을 뜻하지 않습니다.</p></details>
+<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.05 / V2.4</p></footer>
 <div class="print-summary" id="printSummary"></div>
 </main><div class="toast" role="status" id="toast"></div>
 <script>
@@ -368,7 +359,7 @@ $('shaftSpeed').addEventListener('input',e=>{state.shaftSpeed=Number(e.target.va
 $('variation').addEventListener('input',e=>{state.variation=Number(e.target.value)/100;syncLabels();rebuild(true);});
 $('reseed').addEventListener('click',()=>{state.seed=(state.seed+7919)>>>0;rebuild(true);toast('높이와 무관한 다른 속도 분포 예시를 만들었습니다.');});
 $('count').addEventListener('change',e=>{state.count=Number(e.target.value);state.selected=Math.floor(state.count/2);rebuild(false);});
-$('shape').addEventListener('change',e=>{state.shape=e.target.value;$('shapeHint').textContent=state.shape==='figure8'?'8자형 레이어 모두가 같은 중앙축을 회전 중심으로 공유하고, 가운데가 가장 크며 위·아래로 갈수록 작아집니다.':'모든 레이어의 회전 중심은 그대로 같은 중앙축에 있습니다.';drawScene();updateBrief();});
+$('shape').addEventListener('change',e=>{state.shape=e.target.value;$('shapeHint').textContent=state.shape==='figure8'?'8자형 레이어 모두가 같은 중앙 Z축을 회전 중심으로 공유하고, 가운데가 가장 크며 위·아래로 갈수록 작아집니다.':'모든 레이어의 회전 중심은 그대로 같은 중앙 Z축에 있습니다.';drawScene();updateBrief();});
 $('spacing').addEventListener('input',e=>{state.spacing=Number(e.target.value)/100;syncLabels();drawScene();updateBrief();});
 $('markers').addEventListener('change',e=>{state.markers=e.target.checked;drawScene();});
 $('selectedLayer').addEventListener('change',e=>{state.selected=Number(e.target.value);updateLive();drawScene();});
@@ -424,31 +415,19 @@ $('showAllParts').addEventListener('click',()=>selectPart('all'));
 // Outside/internal placement
 function placementSvg(){
   if(state.cover==='outside'){
-    return '<svg viewBox="0 0 600 390" role="img" aria-label="외부에서 중앙축과 레이어만 보이는 완성 작품 개념"><rect x="125" y="331" width="350" height="25" rx="7" fill="#31392e"/><path d="M300 48V330" stroke="#65716b" stroke-width="8"/>'+[0,1,2,3,4,5,6,7].map((_,i)=>{const y=78+i*32,r=36+64*Math.sin(Math.PI*i/7);return '<path d="M300 '+y+'c'+(-r)+' '+(-r*.24)+' '+(-r)+' '+(r*.24)+' 0 0c'+r+' '+(-r*.24)+' '+r+' '+(r*.24)+' 0 0" fill="none" stroke="#c34a2a" stroke-width="3"/>';}).join('')+'<text x="300" y="380" text-anchor="middle" font-size="14" fill="#676b62">외관 목표: 중앙축과 8자 레이어만 보임</text></svg>';
+    return '<svg viewBox="0 0 600 390" role="img" aria-label="외부에서 중앙 Z축과 레이어만 보이는 완성 작품 개념"><rect x="125" y="331" width="350" height="25" rx="7" fill="#31392e"/><path d="M300 48V330" stroke="#65716b" stroke-width="8"/>'+[0,1,2,3,4,5,6,7].map((_,i)=>{const y=78+i*32,r=36+64*Math.sin(Math.PI*i/7);return '<path d="M300 '+y+'c'+(-r)+' '+(-r*.24)+' '+(-r)+' '+(r*.24)+' 0 0c'+r+' '+(-r*.24)+' '+r+' '+(r*.24)+' 0 0" fill="none" stroke="#c34a2a" stroke-width="3"/>';}).join('')+'<text x="300" y="380" text-anchor="middle" font-size="14" fill="#676b62">외관 목표: 중앙 Z축과 8자 레이어만 보임</text></svg>';
   }
   return '<svg viewBox="0 0 600 390" role="img" aria-label="정숙성 우선 BLDC와 FOC, 공통 축, 층별 passive coupling 내부 개념"><rect x="125" y="320" width="350" height="38" rx="8" fill="#31392e"/><rect x="260" y="326" width="80" height="25" rx="6" fill="#8fa29c"/><text x="300" y="343" text-anchor="middle" font-size="11" fill="#fff">BLDC + FOC</text><path d="M300 48V320" stroke="#58737c" stroke-width="10"/>'+[0,1,2,3,4].map((_,i)=>{const y=82+i*48,r=74+18*Math.sin(i*1.7);return '<circle cx="300" cy="'+y+'" r="18" fill="none" stroke="#91a8a4" stroke-width="5"/><circle cx="300" cy="'+y+'" r="12" fill="none" stroke="#d69572" stroke-width="4" stroke-dasharray="5 3"/><path d="M318 '+y+'H'+(300+r)+'M282 '+y+'H'+(300-r)+'" stroke="#c34a2a" stroke-width="4"/>';}).join('')+'<text x="300" y="382" text-anchor="middle" font-size="13" fill="#676b62">각 층은 같은 축에서 직접 힘을 받음 · 직렬 전달 아님</text></svg>';
 }
 function renderPlacement(){
   all('[data-cover]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.cover===state.cover)));
   $('placementDrawing').innerHTML=placementSvg();
-  $('placementCaption').textContent=state.cover==='inside'?'베이스의 정숙성 우선 BLDC 하나를 FOC로 구동하고, 필요하면 베이스 안에서 벨트 감속한 뒤 공통 축을 돌립니다. 각 레이어는 자기 coupling을 통해 직접 토크를 받습니다.':'외부에서는 중앙축과 레이어만 보입니다. BLDC·드라이버·필요한 벨트 감속은 베이스 안에 숨깁니다.';
-  $('motorText').innerHTML='<div class="eyebrow">QUIET-FIRST CONCEPT</div><h3>BLDC 1개 + FOC + 병렬 coupling</h3><p class="short-desc">모터 선택 기준은 두께가 아니라 정숙성입니다. 기어박스 대신 필요 시 타이밍 벨트 감속을 사용하고, 층별 속도차는 passive slip으로 만듭니다.</p><dl class="fact-list"><div class="fact-row"><dt>모터</dt><dd>정숙성 우선 BLDC 1개</dd></div><div class="fact-row"><dt>제어</dt><dd>FOC · 저속 부드러움과 소음 확인</dd></div><div class="fact-row"><dt>감속</dt><dd>필요 시 베이스 내부 타이밍 벨트</dd></div><div class="fact-row"><dt>층별 부품</dt><dd>베어링 + 조절 가능한 passive coupling</dd></div><div class="fact-row"><dt>방향</dt><dd>전부 같은 방향 ↻</dd></div><div class="fact-row"><dt>속도</dt><dd>높이와 무관하게 다르게 보이도록 조정 · 정확한 rpm은 보장하지 않음</dd></div><div class="fact-row"><dt>외관</dt><dd>중앙축과 레이어만 노출</dd></div></dl>';
+  $('placementCaption').textContent=state.cover==='inside'?'베이스의 정숙성 우선 BLDC 하나를 FOC로 구동하고, 필요하면 베이스 안에서 벨트 감속한 뒤 공통 축을 돌립니다. 각 레이어는 자기 coupling을 통해 직접 토크를 받습니다.':'외부에서는 중앙 Z축과 레이어만 보입니다. BLDC·드라이버·필요한 벨트 감속은 베이스 안에 숨깁니다.';
+  $('motorText').innerHTML='<div class="eyebrow">QUIET-FIRST CONCEPT</div><h3>BLDC 1개 + FOC + 병렬 coupling</h3><p class="short-desc">모터 선택 기준은 두께가 아니라 정숙성입니다. 기어박스 대신 필요 시 타이밍 벨트 감속을 사용하고, 층별 속도차는 passive slip으로 만듭니다.</p><dl class="fact-list"><div class="fact-row"><dt>모터</dt><dd>정숙성 우선 BLDC 1개</dd></div><div class="fact-row"><dt>제어</dt><dd>FOC · 저속 부드러움과 소음 확인</dd></div><div class="fact-row"><dt>감속</dt><dd>필요 시 베이스 내부 타이밍 벨트</dd></div><div class="fact-row"><dt>층별 부품</dt><dd>베어링 + 조절 가능한 passive coupling</dd></div><div class="fact-row"><dt>방향</dt><dd>전부 같은 방향 ↻</dd></div><div class="fact-row"><dt>속도</dt><dd>높이와 무관하게 다르게 보이도록 조정 · 정확한 rpm은 보장하지 않음</dd></div><div class="fact-row"><dt>외관</dt><dd>중앙 Z축과 레이어만 노출</dd></div></dl>';
 }
 all('[data-cover]').forEach(b=>b.addEventListener('click',()=>{state.cover=b.dataset.cover;renderPlacement();}));
 
-function numberValue(id,unit){const e=$(id);if(!e||e.value===''||!e.validity.valid||Number(e.value)<=0)return '미정';return Number(e.value)+unit;}
-function createBrief(){
-  const sample=layers.slice(0,Math.min(8,layers.length)).map((l,i)=>(i+1)+'층 '+l.factor.toFixed(2)+'×').join(' / ');
-  let t='움직이는 조각 — 제작 상담 메모\n\n[고정 조건]\n- 외부에는 중앙축과 8자형 레이어만 노출\n- 정숙성 우선 모터: BLDC 1개 + FOC\n- 필요 시 베이스 내부 타이밍 벨트 감속\n- 공통 구동축 1개 회전\n- 모든 레이어 같은 방향\n- 각 층은 공통 축에서 병렬 passive coupling으로 직접 힘을 받음\n- 정확한 rpm보다 시각적으로 서로 다른 속도가 목표\n\n[화면 개념 모형]\n- 레이어 '+state.count+'개\n- 축 속도 설정: '+speedWord()+'\n- 층별 속도차: '+variationWord()+'\n- 비단조 속도 예시: '+sample+'\n※ 위 속도비는 실제 마찰 성능 예측값이 아님\n\n[실제 제작 조건]\n- 레이어 수: '+numberValue('actualCount','개')+'\n- 가장 큰 8자 폭: '+numberValue('diameter',' cm')+'\n- 가장 무거운 레이어: '+numberValue('mass',' g')+'\n- 목표 층 간격: '+numberValue('targetGap',' mm')+'\n';
-  const notes=$('notes').value.trim();if(notes)t+='- 추가 조건: '+notes+'\n';
-  t+='\n[권장 검증]\n1) 3개 레이어를 베어링으로 독립 회전\n2) BLDC 1개 + FOC + 공통 축 + 마찰 coupling 3개\n3) 필요 시 벨트 감속을 넣고 소음·저속 안정성 확인\n4) 느림·빠름·중간이 높이와 무관하게 나오는지 확인\n5) 5층 장시간 시험 후 20층 확대 여부 결정\n\n※ 마찰 coupling이 붙어버리거나 속도차가 불안정하면 자기 coupling 또는 다른 전달 방식 재검토';
-  return t;
-}
-function updateBrief(){if($('briefPreview'))$('briefPreview').textContent=createBrief();}
-['actualCount','diameter','mass','targetGap','notes'].forEach(id=>$(id).addEventListener('input',updateBrief));
-$('copyBrief').addEventListener('click',async()=>{const t=createBrief();try{await navigator.clipboard.writeText(t);toast('제작 상담 메모를 복사했습니다.');}catch(e){$('copyFallback').hidden=false;$('copyText').value=t;$('copyText').focus();$('copyText').select();}});
-$('saveBrief').addEventListener('click',()=>{const blob=new Blob(['\ufeff',createBrief()],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='kinetic_sculpture_제작메모.txt';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);});
-
+function updateBrief(){}
 function tick(ts){
   const dt=Math.min(.05,(ts-lastFrame)/1000||0);lastFrame=ts;
   if(state.playing&&!document.hidden){
@@ -497,15 +476,16 @@ renderer.outputColorSpace=THREE.SRGBColorSpace;
 renderer.shadowMap.enabled=true;
 renderer.shadowMap.type=THREE.PCFSoftShadowMap;
 renderer.localClippingEnabled=true;
-const sectionPlane=new THREE.Plane(new THREE.Vector3(0,0,-1),.01);
+const sectionPlane=new THREE.Plane(new THREE.Vector3(0,-1,0),.01);
 
 const scene=new THREE.Scene();
 scene.background=new THREE.Color(0xf0f1ec);
 scene.fog=new THREE.Fog(0xf0f1ec,9,15);
 const camera=new THREE.PerspectiveCamera(34,1,.02,40);
-camera.position.set(5.4,4.7,7.2);
+camera.up.set(0,0,1);
+camera.position.set(5.4,7.2,4.7);
 const controls=new OrbitControls(camera,canvas);
-controls.target.set(0,2.2,0);
+controls.target.set(0,0,2.2);
 controls.enableDamping=true;
 controls.dampingFactor=.07;
 controls.minDistance=3.2;
@@ -514,12 +494,12 @@ controls.maxPolarAngle=Math.PI*.88;
 controls.update();
 
 scene.add(new THREE.HemisphereLight(0xffffff,0xaeb5a9,2.2));
-const key=new THREE.DirectionalLight(0xffffff,3.3);key.position.set(4,7,5);key.castShadow=true;key.shadow.mapSize.set(1024,1024);scene.add(key);
-const fill=new THREE.DirectionalLight(0xdde6ea,1.1);fill.position.set(-5,3,-3);scene.add(fill);
+const key=new THREE.DirectionalLight(0xffffff,3.3);key.position.set(4,5,7);key.castShadow=true;key.shadow.mapSize.set(1024,1024);scene.add(key);
+const fill=new THREE.DirectionalLight(0xdde6ea,1.1);fill.position.set(-5,-3,3);scene.add(fill);
 
 const floor=new THREE.Mesh(new THREE.CircleGeometry(5.5,80),new THREE.MeshStandardMaterial({color:0xe3e5de,roughness:.92,metalness:0}));
-floor.rotation.x=-Math.PI/2;floor.position.y=-.015;floor.receiveShadow=true;scene.add(floor);
-const grid=new THREE.GridHelper(7,28,0xc7cbc2,0xd9dcd4);grid.position.y=.002;grid.material.opacity=.36;grid.material.transparent=true;scene.add(grid);
+floor.position.z=-.015;floor.receiveShadow=true;scene.add(floor);
+const grid=new THREE.GridHelper(7,28,0xc7cbc2,0xd9dcd4);grid.rotation.x=Math.PI/2;grid.position.z=.002;grid.material.opacity=.36;grid.material.transparent=true;scene.add(grid);
 
 const mats={
   structure:new THREE.MeshStandardMaterial({color:0x66706a,roughness:.52,metalness:.45}),
@@ -547,22 +527,28 @@ const internals=new THREE.Group();root3d.add(internals);
 const layersGroup=new THREE.Group();root3d.add(layersGroup);
 const selectedInternals=new THREE.Group();root3d.add(selectedInternals);
 
-const base=new THREE.Mesh(new THREE.CylinderGeometry(1.35,1.45,.38,72),mats.cover);
-base.position.y=.19;base.castShadow=true;base.receiveShadow=true;baseGroup.add(base);
-const baseTop=new THREE.Mesh(new THREE.CylinderGeometry(1.17,1.17,.07,72),mats.dark);
-baseTop.position.y=.405;baseTop.castShadow=true;baseGroup.add(baseTop);
-const shaft=new THREE.Mesh(new THREE.CylinderGeometry(.055,.055,4.35,28),mats.structure);
-shaft.position.y=2.55;shaft.castShadow=true;root3d.add(shaft);
+function zCylinder(rTop,rBottom,h,segments=48){
+  const g=new THREE.CylinderGeometry(rTop,rBottom,h,segments);
+  g.rotateX(Math.PI/2);
+  return g;
+}
 
-const motorBody=new THREE.Mesh(new THREE.CylinderGeometry(.23,.23,.3,40),mats.motor);
-motorBody.position.set(.62,.2,0);motorBody.castShadow=true;internals.add(motorBody);
-const motorPulley=new THREE.Mesh(new THREE.CylinderGeometry(.14,.14,.06,36),mats.drive);
-motorPulley.position.set(.62,.405,0);internals.add(motorPulley);
-const shaftPulley=new THREE.Mesh(new THREE.CylinderGeometry(.31,.31,.06,48),mats.drive);
-shaftPulley.position.set(0,.405,0);internals.add(shaftPulley);
-const beltA=new THREE.Mesh(new THREE.BoxGeometry(.62,.035,.035),mats.belt);beltA.position.set(.31,.405,.18);internals.add(beltA);
-const beltB=beltA.clone();beltB.position.z=-.18;internals.add(beltB);
-const driverBox=new THREE.Mesh(new THREE.BoxGeometry(.48,.08,.34),mats.structure);driverBox.position.set(-.68,.19,.25);internals.add(driverBox);
+const base=new THREE.Mesh(zCylinder(1.35,1.45,.38,72),mats.cover);
+base.position.z=.19;base.castShadow=true;base.receiveShadow=true;baseGroup.add(base);
+const baseTop=new THREE.Mesh(zCylinder(1.17,1.17,.07,72),mats.dark);
+baseTop.position.z=.405;baseTop.castShadow=true;baseGroup.add(baseTop);
+const shaft=new THREE.Mesh(zCylinder(.055,.055,4.35,28),mats.structure);
+shaft.position.z=2.55;shaft.castShadow=true;root3d.add(shaft);
+
+const motorBody=new THREE.Mesh(zCylinder(.23,.23,.3,40),mats.motor);
+motorBody.position.set(.62,0,.2);motorBody.castShadow=true;internals.add(motorBody);
+const motorPulley=new THREE.Mesh(zCylinder(.14,.14,.06,36),mats.drive);
+motorPulley.position.set(.62,0,.405);internals.add(motorPulley);
+const shaftPulley=new THREE.Mesh(zCylinder(.31,.31,.06,48),mats.drive);
+shaftPulley.position.set(0,0,.405);internals.add(shaftPulley);
+const beltA=new THREE.Mesh(new THREE.BoxGeometry(.62,.035,.035),mats.belt);beltA.position.set(.31,.18,.405);internals.add(beltA);
+const beltB=beltA.clone();beltB.position.y=-.18;internals.add(beltB);
+const driverBox=new THREE.Mesh(new THREE.BoxGeometry(.48,.34,.08),mats.structure);driverBox.position.set(-.68,.25,.19);internals.add(driverBox);
 
 const layerCount=20;
 const layerObjs=[];
@@ -572,24 +558,24 @@ function figure8Curve(scale){
   const N=96;
   for(let j=0;j<N;j++){
     const t=j/N*Math.PI*2;
-    pts.push(new THREE.Vector3(scale*Math.sin(t),0,scale*.54*Math.sin(2*t)));
+    pts.push(new THREE.Vector3(scale*Math.sin(t),scale*.54*Math.sin(2*t),0));
   }
   return new THREE.CatmullRomCurve3(pts,true,'centripetal');
 }
 for(let i=0;i<layerCount;i++){
   const k=i/(layerCount-1);
-  const y=.82+(1-k)*3.45;
+  const z=.82+(1-k)*3.45;
   const size=.34+1.28*Math.pow(Math.sin(Math.PI*k),.92);
   const group=new THREE.Group();
-  group.position.y=y;
-  group.rotation.y=(i*2.3999632297)%(Math.PI*2);
+  group.position.z=z;
+  group.rotation.z=(i*2.3999632297)%(Math.PI*2);
   layersGroup.add(group);
   const tube=new THREE.Mesh(new THREE.TubeGeometry(figure8Curve(size),96,.017,6,true),mats.layer.clone());
   tube.castShadow=true;tube.userData.layerIndex=i;group.add(tube);
-  const hub=new THREE.Mesh(new THREE.CylinderGeometry(.115,.115,.036,32),mats.hub.clone());
+  const hub=new THREE.Mesh(zCylinder(.115,.115,.036,32),mats.hub.clone());
   hub.userData.layerIndex=i;group.add(hub);
   const factorBase=.36+seeded(i)*.58;
-  layerObjs.push({group,tube,hub,y,size,baseFactor:factorBase,factor:factorBase});
+  layerObjs.push({group,tube,hub,z,size,baseFactor:factorBase,factor:factorBase});
 }
 
 function latheRing(rIn,rOut,h,material,cone=0){
@@ -599,7 +585,9 @@ function latheRing(rIn,rOut,h,material,cone=0){
     new THREE.Vector2(rOut,h*.5+cone),
     new THREE.Vector2(rIn,h*.5)
   ];
-  return new THREE.Mesh(new THREE.LatheGeometry(pts,48),material);
+  const g=new THREE.LatheGeometry(pts,48);
+  g.rotateX(Math.PI/2);
+  return new THREE.Mesh(g,material);
 }
 const driveCollar=latheRing(.058,.132,.032,mats.drive);
 selectedInternals.add(driveCollar);
@@ -612,14 +600,14 @@ selectedInternals.add(frictionRing);
 
 const bearingGroup=new THREE.Group();selectedInternals.add(bearingGroup);
 const bearingInner=new THREE.Mesh(new THREE.TorusGeometry(.082,.012,10,48),mats.race);
-bearingInner.rotation.x=Math.PI/2;bearingGroup.add(bearingInner);
+bearingGroup.add(bearingInner);
 const bearingOuter=new THREE.Mesh(new THREE.TorusGeometry(.137,.014,10,48),mats.race);
-bearingOuter.rotation.x=Math.PI/2;bearingGroup.add(bearingOuter);
+bearingGroup.add(bearingOuter);
 const bearingBalls=new THREE.Group();bearingGroup.add(bearingBalls);
 for(let j=0;j<12;j++){
   const a=j/12*Math.PI*2;
   const ball=new THREE.Mesh(new THREE.SphereGeometry(.012,12,8),mats.ball);
-  ball.position.set(Math.cos(a)*.11,0,Math.sin(a)*.11);
+  ball.position.set(Math.cos(a)*.11,Math.sin(a)*.11,0);
   bearingBalls.add(ball);
 }
 
@@ -631,7 +619,7 @@ selectedInternals.add(retainer);
 
 const explodeGuides=new THREE.Group();selectedInternals.add(explodeGuides);
 for(const xx of [-.28,.28]){
-  const pts=[new THREE.Vector3(xx,-.8,0),new THREE.Vector3(xx,.8,0)];
+  const pts=[new THREE.Vector3(xx,0,-.34),new THREE.Vector3(xx,0,.34)];
   const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineDashedMaterial({color:0x9fa69e,dashSize:.035,gapSize:.025,transparent:true,opacity:.55}));
   line.computeLineDistances();explodeGuides.add(line);
 }
@@ -668,21 +656,22 @@ function selectLayer(i){
 }
 function positionSelectedInternals(immediate=false){
   const l=layerObjs[state.selected];
-  selectedInternals.position.set(0,l.y,0);
+  selectedInternals.position.set(0,0,l.z);
   const a=state.mode==='exploded'?state.explode:0;
 
-  // Compact candidate stack at a = 0; separated axially for exploded view.
-  driveCollar.position.y=-.105-.44*a;
-  discSpring.position.y=-.067-.29*a;
-  frictionRing.position.y=-.035-.15*a;
-  bearingGroup.position.y=.002+.03*a;
-  hubCarrier.position.y=.008+.21*a;
-  retainer.position.y=.052+.42*a;
+  // All parts remain coaxial with global Z. Exploded view only opens a local hub stack.
+  const e=.22*a;
+  driveCollar.position.z=-.072-e*1.15;
+  discSpring.position.z=-.044-e*.72;
+  frictionRing.position.z=-.020-e*.35;
+  bearingGroup.position.z=.004;
+  hubCarrier.position.z=.010+e*.42;
+  retainer.position.z=.044+e*.82;
 
   explodeGuides.visible=state.mode==='exploded'&&a>.05;
-  const lift=.56*a;
-  l.group.position.y=l.y+lift;
-  layerObjs.forEach((o,idx)=>{if(idx!==state.selected)o.group.position.y=o.y;});
+  const lift=.16*a;
+  l.group.position.z=l.z+lift;
+  layerObjs.forEach((o,idx)=>{if(idx!==state.selected)o.group.position.z=o.z;});
 }
 function setMode(mode){
   state.mode=mode;
@@ -714,9 +703,15 @@ function setMode(mode){
   q('cadExplode').disabled=mode!=='exploded';
   q('cadModeBadge').textContent={exterior:'외관 보기',internal:'내부 보기',section:'중앙 단면',exploded:'부품 분해',operation:'힘 전달'}[mode];
 
+  if(mode==='exploded'){
+    camera.position.set(1.7,2.25,layerObjs[state.selected].z+.9);
+    controls.target.set(0,0,layerObjs[state.selected].z);
+    controls.update();
+  }
+
   if(mode==='section'){
-    camera.position.set(4.7,3.25,5.2);
-    controls.target.set(0,layerObjs[state.selected].y,0);
+    camera.position.set(3.3,4.4,layerObjs[state.selected].z+1.1);
+    controls.target.set(0,0,layerObjs[state.selected].z);
     controls.update();
   }
 
@@ -727,7 +722,7 @@ function allCadModes(){
 }
 root.querySelectorAll('[data-cad-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.cadMode)));
 q('cadPlay').addEventListener('click',()=>{state.playing=!state.playing;q('cadPlay').textContent=state.playing?'일시정지':'재생';});
-q('cadResetCamera').addEventListener('click',()=>{camera.position.set(5.4,4.7,7.2);controls.target.set(0,2.2,0);controls.update();});
+q('cadResetCamera').addEventListener('click',()=>{camera.position.set(5.4,7.2,4.7);controls.target.set(0,0,2.2);controls.update();});
 q('cadLayer').innerHTML=Array.from({length:layerCount},(_,i)=>'<option value="'+i+'">'+(i+1)+'층</option>').join('');
 q('cadLayer').addEventListener('change',e=>selectLayer(Number(e.target.value)));
 q('cadSpeed').addEventListener('input',e=>{state.speed=Number(e.target.value)/100;updateReadout();});
@@ -760,10 +755,10 @@ function updatePulse(t){
   if(state.mode!=='operation')return;
   const l=layerObjs[state.selected];
   const u=(t*.24)%1;
-  let x,y,z=0;
-  if(u<.25){const a=u/.25;x=.62*(1-a);y=.43;z=.18;}
-  else if(u<.85){const a=(u-.25)/.60;x=0;y=.43+(l.y-.43)*a;z=0;}
-  else{const a=(u-.85)/.15;x=.18*a;y=l.y;z=0;}
+  let x=0,y=0,z=.43;
+  if(u<.25){const a=u/.25;x=.62*(1-a);y=.18*(1-a);z=.43;}
+  else if(u<.85){const a=(u-.25)/.60;x=0;y=0;z=.43+(l.z-.43)*a;}
+  else{const a=(u-.85)/.15;x=.18*a;y=0;z=l.z;}
   pulse.position.set(x,y,z);
   pulse.scale.setScalar(.82+.35*Math.sin(t*8)*.5+.18);
   frictionRing.material.emissive=new THREE.Color(0x4d2719);
@@ -777,20 +772,20 @@ function frame(now){
   if(state.playing){
     const shaftDelta=state.speed*.55*dt;
     const selectedDelta=state.speed*layerObjs[state.selected].factor*.55*dt;
-    shaft.rotation.y+=shaftDelta;
-    shaftPulley.rotation.y+=shaftDelta;
-    motorPulley.rotation.y+=state.speed*1.2*dt;
-    layerObjs.forEach(o=>o.group.rotation.y+=state.speed*o.factor*.55*dt);
+    shaft.rotation.z+=shaftDelta;
+    shaftPulley.rotation.z+=shaftDelta;
+    motorPulley.rotation.z+=state.speed*1.2*dt;
+    layerObjs.forEach(o=>o.group.rotation.z+=state.speed*o.factor*.55*dt);
 
     // Shaft-side parts follow the common shaft; hub-side parts follow the selected layer.
-    driveCollar.rotation.y+=shaftDelta;
-    discSpring.rotation.y+=shaftDelta;
-    frictionRing.rotation.y+=shaftDelta;
-    bearingInner.rotation.y+=shaftDelta;
-    retainer.rotation.y+=shaftDelta;
-    bearingOuter.rotation.y+=selectedDelta;
-    hubCarrier.rotation.y+=selectedDelta;
-    bearingBalls.rotation.y+=(shaftDelta+selectedDelta)*.5;
+    driveCollar.rotation.z+=shaftDelta;
+    discSpring.rotation.z+=shaftDelta;
+    frictionRing.rotation.z+=shaftDelta;
+    bearingInner.rotation.z+=shaftDelta;
+    retainer.rotation.z+=shaftDelta;
+    bearingOuter.rotation.z+=selectedDelta;
+    hubCarrier.rotation.z+=selectedDelta;
+    bearingBalls.rotation.z+=(shaftDelta+selectedDelta)*.5;
 
     state.time+=dt;
   }
