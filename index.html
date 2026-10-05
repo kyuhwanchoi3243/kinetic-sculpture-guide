@@ -8,13 +8,13 @@
 <title>조용한 모터 하나, 층은 제각각 — 키네틱 조각 제작 가이드</title>
 <style>
 :root{--paper:#f5f3ed;--white:#fffefa;--ink:#262823;--muted:#676b62;--line:#d9dcd2;--accent:#c34a2a;--tint:#f9e8df;--fixed:#58737c;--fixed-light:#e3eceb;--soft:#eaece4;--radius:18px;--font:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;letter-spacing:-.025em;word-break:keep-all}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer;touch-action:manipulation}button:disabled{cursor:not-allowed;opacity:.45}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}button{color:var(--ink)}svg{display:block}button svg{pointer-events:none}h1,h2,h3,h4,p,figure{margin:0}h1,h2,h3{line-height:1.28}h1{font-size:clamp(34px,4vw,56px);letter-spacing:-.06em;font-weight:760}h2{font-size:clamp(27px,3vw,38px);letter-spacing:-.05em;font-weight:740}h3{font-size:23px;letter-spacing:-.04em}small,.small{font-size:13px;line-height:1.65}strong{font-weight:700}a,button,input{touch-action:manipulation}.wrap{width:min(1216px,calc(100% - 64px));margin:0 auto}.sr-only{position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);overflow:hidden;white-space:nowrap}.skip{position:fixed;top:-80px;left:20px;background:var(--ink);color:white;padding:12px 22px;z-index:100}.skip:focus{top:10px}.mono{font-family:"SFMono-Regular",Consolas,monospace;font-size:12px;letter-spacing:.08em}.eyebrow{font-size:11px;letter-spacing:.14em;font-weight:750;text-transform:uppercase}.muted{color:var(--muted)}.accent{color:var(--accent)}.fixed{color:var(--fixed)}.topbar{position:sticky;top:0;z-index:30;background:rgba(245,243,237,.95);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}.topbar-inner{height:67px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:15px;font-weight:750;white-space:nowrap}.brand-mark{width:29px;height:29px;flex:none}.topnav{display:flex;gap:25px;align-items:center;font-size:13px;font-weight:650}.topnav a{text-decoration:none;color:var(--muted);padding:8px 0;white-space:nowrap;border-bottom:2px solid transparent}.topnav a.active{color:var(--ink);border-bottom-color:var(--accent)}.badge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:30px;padding:5px 10px;font-size:11px;line-height:1.5;letter-spacing:.01em;white-space:nowrap;background:var(--white)}.badge.dot:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}.hero{padding:49px 0 0}.hero-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:27px}.hero-head .eyebrow{margin-bottom:12px;color:var(--accent)}.hero-sub{max-width:405px;color:var(--muted);font-size:15px;line-height:1.75;padding-bottom:4px}.lead{font-size:16px;color:var(--muted);margin-top:12px;max-width:670px}.section{padding-top:77px}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:27px}.section-index{font-size:12px;color:var(--accent);font-weight:750;letter-spacing:.08em;margin-bottom:10px}.section-head .aside-note{font-size:13px;color:var(--muted);max-width:260px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--white);padding:10px 16px;min-height:44px;border-radius:9px;font-size:13px;font-weight:650;text-decoration:none;transition:background .15s,border-color .15s}.btn:hover{background:var(--soft);border-color:#a9ada1}.btn.primary{background:var(--ink);color:var(--white);border-color:var(--ink)}.btn.primary:hover{background:#41463d}.btn.accent-btn{background:var(--accent);color:white;border-color:var(--accent)}.btn.ghost{background:transparent}.btn.compact{padding:7px 11px;min-height:36px;font-size:12px}.btn .icon{width:16px;height:16px}.btn-row{display:flex;gap:8px;flex-wrap:wrap}.pillset{display:flex;padding:4px;gap:3px;background:var(--soft);border-radius:10px;align-items:center}.pillset button{flex:1;border:0;border-radius:7px;background:transparent;min-height:35px;font-size:12px;font-weight:650;padding:6px 10px;white-space:nowrap}.pillset button[aria-pressed=true]{background:var(--white);box-shadow:0 1px 4px #272d2212;color:var(--accent)}.pillset button:hover{background:#ffffff77}.workbench{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(325px,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--white)}.stage{position:relative;min-width:0;min-height:600px;overflow:hidden;background:radial-gradient(ellipse at 45% 35%,#fffefa 0%,#f1f0e8 65%,#eceee5 100%)}.stage:before{position:absolute;inset:0;content:"";background-image:radial-gradient(#8b90801f .8px,transparent .8px);background-size:22px 22px;pointer-events:none}.stage-toolbar{position:absolute;top:19px;left:20px;right:20px;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:10px}.stage canvas{width:100%;height:600px;display:block;position:relative;touch-action:pan-y;cursor:grab}.stage canvas:active{cursor:grabbing}.stage-floor{position:absolute;bottom:17px;left:22px;right:22px;display:flex;justify-content:space-between;align-items:end;gap:20px;font-size:11px;color:var(--muted);pointer-events:none}.stage-floor span:last-child{text-align:right}.stage-mood{font-size:10px;letter-spacing:.13em;color:var(--muted)}.stage-state{position:absolute;top:71px;left:22px;z-index:2;font-size:11px;color:var(--muted)}.control-panel{padding:25px;border-left:1px solid var(--line)}.control-title{display:flex;align-items:center;gap:8px;margin-bottom:15px;font-size:15px;font-weight:700}.control-title .num{display:inline-flex;background:var(--ink);color:white;width:22px;height:22px;border-radius:50%;align-items:center;justify-content:center;font-size:11px}.mode-group{display:grid;gap:8px}.mode-btn{width:100%;text-align:left;display:grid;grid-template-columns:29px 1fr 17px;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);padding:12px 13px;border-radius:11px;min-height:72px;transition:.15s}.mode-btn[aria-pressed=true]{background:var(--tint);border-color:var(--accent)}.mode-btn:hover{border-color:var(--accent)}.mode-icon{font-size:24px;font-weight:400;line-height:1}.mode-name{display:block;font-size:14px;font-weight:700}.mode-detail{display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px}.checkmark{width:16px;height:16px;border:1px solid #a9ada1;border-radius:50%;position:relative}.mode-btn[aria-pressed=true] .checkmark{background:var(--accent);border-color:var(--accent)}.mode-btn[aria-pressed=true] .checkmark:after{content:"";position:absolute;width:6px;height:3px;top:4px;left:4px;border:solid white;border-width:0 0 2px 2px;transform:rotate(-45deg)}.field-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px;font-size:13px;font-weight:650}.field-head output{color:var(--accent);font-weight:650}.control-field{margin-top:22px}input[type=range]{appearance:none;-webkit-appearance:none;width:100%;height:5px;border-radius:10px;background:var(--line);cursor:pointer;accent-color:var(--accent);display:block;margin:14px 0}input[type=range]::-webkit-slider-thumb{appearance:none;width:18px;height:18px;background:var(--accent);border:3px solid var(--white);box-shadow:0 0 0 1px var(--accent);border-radius:50%}input[type=range]::-moz-range-thumb{width:14px;height:14px;background:var(--accent);border:3px solid var(--white);border-radius:50%}.range-ends{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}details{border-top:1px solid var(--line)}summary{cursor:pointer;list-style:none;padding:16px 0;font-size:13px;font-weight:650;display:flex;align-items:center;justify-content:space-between;gap:12px;user-select:none}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:20px;color:var(--muted);line-height:1}details[open]>summary:after{content:"−"}details p{font-size:13px;color:var(--muted);margin:0 0 13px}details p:last-child{margin-bottom:16px}.advanced{margin-top:19px}.advanced .control-field{margin-top:10px;margin-bottom:17px}.advanced label{font-size:12px}.select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);min-height:44px;font-size:13px;max-width:100%}.checkbox{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--muted);line-height:1.6;cursor:pointer}.checkbox input{accent-color:var(--accent);width:17px;height:17px;flex:none;margin:2px 0 0}.helper{font-size:12px;line-height:1.7;color:var(--muted)}.mode-feedback{border-left:2px solid var(--accent);padding-left:11px;margin-top:13px;font-size:12px;line-height:1.75}.scene-meta{display:grid;grid-template-columns:1fr auto;gap:16px;padding:17px 21px;border:1px solid var(--line);border-top:none;border-radius:0 0 13px 13px;margin:0 13px;background:var(--white)}.scene-meta p{font-size:12px;color:var(--muted)}.layer-controls{display:flex;align-items:center;gap:10px;font-size:12px;white-space:nowrap}.layer-controls .select{width:90px;min-height:35px;padding:5px 8px;font-size:12px}.live-layer{font-size:11px;display:inline-flex;padding:3px 8px;border-radius:6px;background:var(--tint);color:var(--accent);min-width:65px;justify-content:center}.insight{display:flex;gap:17px;align-items:flex-start;margin-top:22px;padding:19px 22px;border-radius:13px;background:var(--soft);font-size:13px}.insight b{color:var(--accent)}.insight-icon{font-family:Georgia,serif;font-style:italic;flex:none;border:1px solid var(--ink);border-radius:50%;height:24px;width:24px;text-align:center;line-height:23px;font-size:16px}.reference{margin-top:19px}.reference-wrap{display:grid;grid-template-columns:110px 1fr;gap:21px;padding-bottom:20px}.reference img{width:110px;border-radius:9px;display:block}.reference p{max-width:750px;margin-top:0}.reference small{display:block;margin-top:8px;color:var(--muted);font-size:11px}.structure-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr)}.diagram-side{min-width:0;background:#f8f8f2;display:flex;flex-direction:column}.diagram-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px 21px}.diagram-toolbar .eyebrow{font-size:10px;color:var(--muted)}.diagram-wrap{min-height:345px;display:flex;align-items:center;justify-content:center;padding:0 12px}.diagram-wrap svg{width:100%;height:auto;max-height:410px}.legend{display:flex;gap:15px;padding:6px 23px 10px;font-size:11px;flex-wrap:wrap}.legend span{display:flex;align-items:center;gap:6px}.swatch{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block}.swatch.fixed{background:var(--fixed)}.swatch.contact{background:#91a8a4}.diagram-caption{font-size:11px;color:var(--muted);padding:0 23px 18px;min-height:54px;line-height:1.7}.part-panel{padding:23px;border-left:1px solid var(--line)}.part-panel>p{font-size:13px;color:var(--muted);margin-bottom:16px}.part-list{display:grid;gap:7px}.part-button{display:flex;gap:12px;align-items:center;border:1px solid var(--line);background:var(--white);border-radius:9px;padding:11px 12px;text-align:left;min-height:56px}.part-button[aria-pressed=true]{border-color:var(--accent);background:var(--tint)}.part-number{font-size:12px;color:var(--accent);font-weight:700;flex:none}.part-button strong{font-size:13px;display:block}.part-button small{font-size:11px;color:var(--muted);display:block;font-weight:400}.part-explanation{margin-top:16px;border-top:1px solid var(--line);padding-top:15px;min-height:106px}.part-explanation p{font-size:13px;line-height:1.8}.part-explanation .part-state{font-size:11px;font-weight:700;margin-bottom:6px;color:var(--fixed)}.two-notes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.note-card{padding:21px 22px;border:1px solid var(--line);border-radius:12px;background:#fffefa80}.note-card h4{font-size:14px;margin:0 0 7px}.note-card p{font-size:13px;color:var(--muted)}.motor-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:17px}.motor-choice{padding:20px 22px;background:var(--white);border:1px solid var(--line);border-radius:12px;text-align:left;position:relative}.motor-choice[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--white)}.motor-choice:hover{border-color:var(--ink)}.motor-choice .eyebrow{font-size:10px;display:block;color:var(--muted);margin-bottom:9px}.motor-choice[aria-pressed=true] .eyebrow{color:#d3d8c9}.motor-choice strong{font-size:20px;display:block}.motor-choice small{display:block;font-size:12px;margin-top:5px;color:var(--muted)}.motor-choice[aria-pressed=true] small{color:#d3d8c9}.motor-choice .choice-arrow{position:absolute;right:18px;top:15px;opacity:.45;font-size:20px}.motor-detail{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--radius);background:var(--white);overflow:hidden}.placement{background:#eeeee5;min-width:0;display:flex;flex-direction:column}.placement .diagram-wrap{padding:0 14px;min-height:295px}.placement svg{width:100%;height:auto;max-height:335px}.placement .diagram-caption{padding-top:12px}.motor-text{padding:30px;border-left:1px solid var(--line)}.motor-text .eyebrow{color:var(--accent);margin-bottom:9px}.motor-text .short-desc{font-size:14px;color:var(--muted);margin-top:10px;margin-bottom:21px}.fact-row{display:grid;grid-template-columns:78px 1fr;border-top:1px solid var(--line);padding:12px 0;gap:14px;font-size:13px;line-height:1.7}.fact-row dt{color:var(--muted);font-size:12px}.fact-row dd{margin:0}.fact-list{margin:0}.source-ref{font-size:10px;color:var(--accent);text-decoration:none;vertical-align:super;letter-spacing:0;padding:0 2px}.source-ref:hover{text-decoration:underline}.wide-details{margin-top:17px;border-bottom:1px solid var(--line)}.wide-details summary{font-size:14px}.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;padding:0 0 20px}.details-grid h4{font-size:14px;margin:0 0 8px}.details-grid p{margin:0;font-size:13px}.decision-band{display:grid;grid-template-columns:45px 1fr;gap:17px;margin-top:23px;background:var(--tint);border-radius:13px;padding:24px}.decision-band .big-arrow{font-size:31px;line-height:1.2;color:var(--accent)}.decision-band strong{font-size:16px;display:block;margin-bottom:5px}.decision-band p{font-size:13px;color:#715448}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step{padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--white)}.step-num{font-family:Georgia,serif;font-size:42px;line-height:1.1;color:#a0a58f;margin-bottom:20px}.step .eyebrow{font-size:10px;color:var(--accent);margin-bottom:7px}.step h3{font-size:21px}.step>p{font-size:13px;color:var(--muted);margin-top:12px;min-height:65px}.step .checkpoint{border-top:1px solid var(--line);margin-top:18px;padding-top:14px;font-size:12px;line-height:1.8}.step .checkpoint b{color:var(--accent)}.safety{display:grid;grid-template-columns:160px 1fr;gap:24px;margin-top:18px;padding:22px;border:1px solid var(--line);border-radius:12px;font-size:12px}.safety h4{font-size:13px;margin:0}.safety p{color:var(--muted)}.brief{margin-top:30px;background:var(--ink);color:var(--white);border-radius:var(--radius);padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:35px}.brief .eyebrow{color:#e1a18b;margin-bottom:11px}.brief h3{font-size:25px}.brief .brief-lead{font-size:13px;color:#c5ccbe;margin-top:10px;margin-bottom:20px}.brief-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}.brief-field label{display:block;font-size:12px;margin-bottom:6px;color:#d3d8cb}.brief input,.brief select,.brief textarea{width:100%;min-width:0;min-height:44px;padding:10px 11px;border:1px solid #68715e;border-radius:8px;background:#353c31;color:var(--white);font-size:13px}.brief input::placeholder,.brief textarea::placeholder{color:#b1b8a9}.brief input:focus-visible,.brief select:focus-visible,.brief textarea:focus-visible{outline-color:#efc0aa}.brief .full{grid-column:1/-1}.brief textarea{resize:vertical;min-height:75px;line-height:1.6}.brief .privacy{font-size:11px;color:#b8c1ae;margin-top:13px}.brief-preview{border:1px solid #65715a;border-radius:12px;overflow:hidden;background:#2e3429;display:flex;flex-direction:column}.brief-preview-head{display:flex;align-items:center;justify-content:space-between;padding:13px 17px;border-bottom:1px solid #515e45;font-size:12px;font-weight:650}.brief-preview pre{font-family:var(--font);font-size:12px;line-height:1.85;white-space:pre-wrap;word-break:keep-all;overflow-wrap:anywhere;margin:0;padding:17px;flex:1;color:#edf0e6}.brief-preview .btn-row{padding:0 16px 16px}.brief-preview .btn{background:#e9ede1;border-color:#e9ede1;color:#252c20;font-size:12px}.brief-preview .btn.ghost{background:transparent;color:#edf0e6;border-color:#65715a}.brief .save-help{font-size:11px;color:#b8c1ae;padding:0 17px 13px}.copy-fallback{margin:0 16px 16px}.copy-fallback label{font-size:11px}.copy-fallback textarea{margin-top:5px}.sources{margin:40px 0 0;border-bottom:1px solid var(--line)}.sources summary{font-size:13px}.source-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 30px;padding-bottom:20px}.source-item{font-size:12px;line-height:1.8;padding:8px 0;overflow-wrap:anywhere}.source-item a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}.source-item small{font-size:11px;color:var(--muted);display:block}.footer{display:flex;justify-content:space-between;gap:30px;padding:27px 0 35px;font-size:11px;color:var(--muted)}.footer .mono{font-size:10px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:var(--white);border:1px solid #65715a;padding:12px 20px;border-radius:10px;font-size:13px;z-index:50;transition:opacity .2s,transform .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.noscript{padding:18px;background:var(--tint);margin-top:16px;font-size:14px}.fadeable{transition:opacity .2s}.part-dim{opacity:.38}.hotspot{cursor:pointer}.hotspot circle{transition:fill .2s}.hotspot:hover circle{fill:var(--ink)}.print-summary{display:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.7;letter-spacing:-.025em;word-break:keep-all}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer;touch-action:manipulation}button:disabled{cursor:not-allowed;opacity:.45}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}button{color:var(--ink)}svg{display:block}button svg{pointer-events:none}h1,h2,h3,h4,p,figure{margin:0}h1,h2,h3{line-height:1.28}h1{font-size:clamp(34px,4vw,56px);letter-spacing:-.06em;font-weight:760}h2{font-size:clamp(27px,3vw,38px);letter-spacing:-.05em;font-weight:740}h3{font-size:23px;letter-spacing:-.04em}small,.small{font-size:13px;line-height:1.65}strong{font-weight:700}a,button,input{touch-action:manipulation}.wrap{width:min(1216px,calc(100% - 64px));margin:0 auto}.sr-only{position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);overflow:hidden;white-space:nowrap}.skip{position:fixed;top:-80px;left:20px;background:var(--ink);color:white;padding:12px 22px;z-index:100}.skip:focus{top:10px}.mono{font-family:"SFMono-Regular",Consolas,monospace;font-size:12px;letter-spacing:.08em}.eyebrow{font-size:11px;letter-spacing:.14em;font-weight:750;text-transform:uppercase}.muted{color:var(--muted)}.accent{color:var(--accent)}.fixed{color:var(--fixed)}.topbar{position:sticky;top:0;z-index:30;background:rgba(245,243,237,.95);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}.topbar-inner{height:67px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:15px;font-weight:750;white-space:nowrap}.brand-mark{width:29px;height:29px;flex:none}.topnav{display:flex;gap:25px;align-items:center;font-size:13px;font-weight:650}.topnav a{text-decoration:none;color:var(--muted);padding:8px 0;white-space:nowrap;border-bottom:2px solid transparent}.topnav a.active{color:var(--ink);border-bottom-color:var(--accent)}.badge{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:30px;padding:5px 10px;font-size:11px;line-height:1.5;letter-spacing:.01em;white-space:nowrap;background:var(--white)}.badge.dot:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}.hero{padding:49px 0 0}.hero-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:27px}.hero-head .eyebrow{margin-bottom:12px;color:var(--accent)}.hero-sub{max-width:405px;color:var(--muted);font-size:15px;line-height:1.75;padding-bottom:4px}.lead{font-size:16px;color:var(--muted);margin-top:12px;max-width:670px}.section{padding-top:77px}.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:27px}.section-index{font-size:12px;color:var(--accent);font-weight:750;letter-spacing:.08em;margin-bottom:10px}.section-head .aside-note{font-size:13px;color:var(--muted);max-width:260px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--white);padding:10px 16px;min-height:44px;border-radius:9px;font-size:13px;font-weight:650;text-decoration:none;transition:background .15s,border-color .15s}.btn:hover{background:var(--soft);border-color:#a9ada1}.btn.primary{background:var(--ink);color:var(--white);border-color:var(--ink)}.btn.primary:hover{background:#41463d}.btn.accent-btn{background:var(--accent);color:white;border-color:var(--accent)}.btn.ghost{background:transparent}.btn.compact{padding:7px 11px;min-height:36px;font-size:12px}.btn .icon{width:16px;height:16px}.btn-row{display:flex;gap:8px;flex-wrap:wrap}.pillset{display:flex;padding:4px;gap:3px;background:var(--soft);border-radius:10px;align-items:center}.pillset button{flex:1;border:0;border-radius:7px;background:transparent;min-height:35px;font-size:12px;font-weight:650;padding:6px 10px;white-space:nowrap}.pillset button[aria-pressed=true]{background:var(--white);box-shadow:0 1px 4px #272d2212;color:var(--accent)}.pillset button:hover{background:#ffffff77}.workbench{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(325px,1fr);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--white)}.stage{position:relative;min-width:0;min-height:600px;overflow:hidden;background:radial-gradient(ellipse at 45% 35%,#fffefa 0%,#f1f0e8 65%,#eceee5 100%)}.stage:before{position:absolute;inset:0;content:"";background-image:radial-gradient(#8b90801f .8px,transparent .8px);background-size:22px 22px;pointer-events:none}.stage-toolbar{position:absolute;top:19px;left:20px;right:20px;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:10px}.stage canvas{width:100%;height:600px;display:block;position:relative;touch-action:pan-y;cursor:grab}.stage canvas:active{cursor:grabbing}.stage-floor{position:absolute;bottom:17px;left:22px;right:22px;display:flex;justify-content:space-between;align-items:end;gap:20px;font-size:11px;color:var(--muted);pointer-events:none}.stage-floor span:last-child{text-align:right}.stage-mood{font-size:10px;letter-spacing:.13em;color:var(--muted)}.stage-state{position:absolute;top:71px;left:22px;z-index:2;font-size:11px;color:var(--muted)}.control-panel{padding:25px;border-left:1px solid var(--line)}.control-title{display:flex;align-items:center;gap:8px;margin-bottom:15px;font-size:15px;font-weight:700}.control-title .num{display:inline-flex;background:var(--ink);color:white;width:22px;height:22px;border-radius:50%;align-items:center;justify-content:center;font-size:11px}.mode-group{display:grid;gap:8px}.mode-btn{width:100%;text-align:left;display:grid;grid-template-columns:29px 1fr 17px;align-items:center;gap:10px;background:var(--white);border:1px solid var(--line);padding:12px 13px;border-radius:11px;min-height:72px;transition:.15s}.mode-btn[aria-pressed=true]{background:var(--tint);border-color:var(--accent)}.mode-btn:hover{border-color:var(--accent)}.mode-icon{font-size:24px;font-weight:400;line-height:1}.mode-name{display:block;font-size:14px;font-weight:700}.mode-detail{display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px}.checkmark{width:16px;height:16px;border:1px solid #a9ada1;border-radius:50%;position:relative}.mode-btn[aria-pressed=true] .checkmark{background:var(--accent);border-color:var(--accent)}.mode-btn[aria-pressed=true] .checkmark:after{content:"";position:absolute;width:6px;height:3px;top:4px;left:4px;border:solid white;border-width:0 0 2px 2px;transform:rotate(-45deg)}.field-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px;font-size:13px;font-weight:650}.field-head output{color:var(--accent);font-weight:650}.control-field{margin-top:22px}input[type=range]{appearance:none;-webkit-appearance:none;width:100%;height:5px;border-radius:10px;background:var(--line);cursor:pointer;accent-color:var(--accent);display:block;margin:14px 0}input[type=range]::-webkit-slider-thumb{appearance:none;width:18px;height:18px;background:var(--accent);border:3px solid var(--white);box-shadow:0 0 0 1px var(--accent);border-radius:50%}input[type=range]::-moz-range-thumb{width:14px;height:14px;background:var(--accent);border:3px solid var(--white);border-radius:50%}.range-ends{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}details{border-top:1px solid var(--line)}summary{cursor:pointer;list-style:none;padding:16px 0;font-size:13px;font-weight:650;display:flex;align-items:center;justify-content:space-between;gap:12px;user-select:none}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:20px;color:var(--muted);line-height:1}details[open]>summary:after{content:"−"}details p{font-size:13px;color:var(--muted);margin:0 0 13px}details p:last-child{margin-bottom:16px}.advanced{margin-top:19px}.advanced .control-field{margin-top:10px;margin-bottom:17px}.advanced label{font-size:12px}.select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--white);color:var(--ink);min-height:44px;font-size:13px;max-width:100%}.checkbox{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--muted);line-height:1.6;cursor:pointer}.checkbox input{accent-color:var(--accent);width:17px;height:17px;flex:none;margin:2px 0 0}.helper{font-size:12px;line-height:1.7;color:var(--muted)}.mode-feedback{border-left:2px solid var(--accent);padding-left:11px;margin-top:13px;font-size:12px;line-height:1.75}.scene-meta{display:grid;grid-template-columns:1fr auto;gap:16px;padding:17px 21px;border:1px solid var(--line);border-top:none;border-radius:0 0 13px 13px;margin:0 13px;background:var(--white)}.scene-meta p{font-size:12px;color:var(--muted)}.layer-controls{display:flex;align-items:center;gap:10px;font-size:12px;white-space:nowrap}.layer-controls .select{width:90px;min-height:35px;padding:5px 8px;font-size:12px}.live-layer{font-size:11px;display:inline-flex;padding:3px 8px;border-radius:6px;background:var(--tint);color:var(--accent);min-width:65px;justify-content:center}.insight{display:flex;gap:17px;align-items:flex-start;margin-top:22px;padding:19px 22px;border-radius:13px;background:var(--soft);font-size:13px}.insight b{color:var(--accent)}.insight-icon{font-family:Georgia,serif;font-style:italic;flex:none;border:1px solid var(--ink);border-radius:50%;height:24px;width:24px;text-align:center;line-height:23px;font-size:16px}.reference{margin-top:19px}.reference-wrap{display:grid;grid-template-columns:110px 1fr;gap:21px;padding-bottom:20px}.reference img{width:110px;border-radius:9px;display:block}.reference p{max-width:750px;margin-top:0}.reference small{display:block;margin-top:8px;color:var(--muted);font-size:11px}.structure-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr)}.diagram-side{min-width:0;background:#f8f8f2;display:flex;flex-direction:column}.diagram-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:19px 21px}.diagram-toolbar .eyebrow{font-size:10px;color:var(--muted)}.diagram-wrap{min-height:345px;display:flex;align-items:center;justify-content:center;padding:0 12px}.diagram-wrap svg{width:100%;height:auto;max-height:410px}.legend{display:flex;gap:15px;padding:6px 23px 10px;font-size:11px;flex-wrap:wrap}.legend span{display:flex;align-items:center;gap:6px}.swatch{width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block}.swatch.fixed{background:var(--fixed)}.swatch.contact{background:#91a8a4}.diagram-caption{font-size:11px;color:var(--muted);padding:0 23px 18px;min-height:54px;line-height:1.7}.part-panel{padding:23px;border-left:1px solid var(--line)}.part-panel>p{font-size:13px;color:var(--muted);margin-bottom:16px}.part-list{display:grid;gap:7px}.part-button{display:flex;gap:12px;align-items:center;border:1px solid var(--line);background:var(--white);border-radius:9px;padding:11px 12px;text-align:left;min-height:56px}.part-button[aria-pressed=true]{border-color:var(--accent);background:var(--tint)}.part-number{font-size:12px;color:var(--accent);font-weight:700;flex:none}.part-button strong{font-size:13px;display:block}.part-button small{font-size:11px;color:var(--muted);display:block;font-weight:400}.part-explanation{margin-top:16px;border-top:1px solid var(--line);padding-top:15px;min-height:106px}.part-explanation p{font-size:13px;line-height:1.8}.part-explanation .part-state{font-size:11px;font-weight:700;margin-bottom:6px;color:var(--fixed)}.two-notes{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.note-card{padding:21px 22px;border:1px solid var(--line);border-radius:12px;background:#fffefa80}.note-card h4{font-size:14px;margin:0 0 7px}.note-card p{font-size:13px;color:var(--muted)}.motor-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:17px}.motor-choice{padding:20px 22px;background:var(--white);border:1px solid var(--line);border-radius:12px;text-align:left;position:relative}.motor-choice[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:var(--white)}.motor-choice:hover{border-color:var(--ink)}.motor-choice .eyebrow{font-size:10px;display:block;color:var(--muted);margin-bottom:9px}.motor-choice[aria-pressed=true] .eyebrow{color:#d3d8c9}.motor-choice strong{font-size:20px;display:block}.motor-choice small{display:block;font-size:12px;margin-top:5px;color:var(--muted)}.motor-choice[aria-pressed=true] small{color:#d3d8c9}.motor-choice .choice-arrow{position:absolute;right:18px;top:15px;opacity:.45;font-size:20px}.motor-detail{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--radius);background:var(--white);overflow:hidden}.placement{background:#eeeee5;min-width:0;display:flex;flex-direction:column}.placement .diagram-wrap{padding:0 14px;min-height:295px}.placement svg{width:100%;height:auto;max-height:335px}.placement .diagram-caption{padding-top:12px}.motor-text{padding:30px;border-left:1px solid var(--line)}.motor-text .eyebrow{color:var(--accent);margin-bottom:9px}.motor-text .short-desc{font-size:14px;color:var(--muted);margin-top:10px;margin-bottom:21px}.fact-row{display:grid;grid-template-columns:78px 1fr;border-top:1px solid var(--line);padding:12px 0;gap:14px;font-size:13px;line-height:1.7}.fact-row dt{color:var(--muted);font-size:12px}.fact-row dd{margin:0}.fact-list{margin:0}.source-ref{font-size:10px;color:var(--accent);text-decoration:none;vertical-align:super;letter-spacing:0;padding:0 2px}.source-ref:hover{text-decoration:underline}.wide-details{margin-top:17px;border-bottom:1px solid var(--line)}.wide-details summary{font-size:14px}.details-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;padding:0 0 20px}.details-grid h4{font-size:14px;margin:0 0 8px}.details-grid p{margin:0;font-size:13px}.decision-band{display:grid;grid-template-columns:45px 1fr;gap:17px;margin-top:23px;background:var(--tint);border-radius:13px;padding:24px}.decision-band .big-arrow{font-size:31px;line-height:1.2;color:var(--accent)}.decision-band strong{font-size:16px;display:block;margin-bottom:5px}.decision-band p{font-size:13px;color:#715448}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step{padding:24px;border:1px solid var(--line);border-radius:14px;background:var(--white)}.step-num{font-family:Georgia,serif;font-size:42px;line-height:1.1;color:#a0a58f;margin-bottom:20px}.step .eyebrow{font-size:10px;color:var(--accent);margin-bottom:7px}.step h3{font-size:21px}.step>p{font-size:13px;color:var(--muted);margin-top:12px;min-height:65px}.step .checkpoint{border-top:1px solid var(--line);margin-top:18px;padding-top:14px;font-size:12px;line-height:1.8}.step .checkpoint b{color:var(--accent)}.safety{display:grid;grid-template-columns:160px 1fr;gap:24px;margin-top:18px;padding:22px;border:1px solid var(--line);border-radius:12px;font-size:12px}.safety h4{font-size:13px;margin:0}.safety p{color:var(--muted)}.sources{margin:40px 0 0;border-bottom:1px solid var(--line)}.sources summary{font-size:13px}.source-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 30px;padding-bottom:20px}.source-item{font-size:12px;line-height:1.8;padding:8px 0;overflow-wrap:anywhere}.source-item a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}.source-item small{font-size:11px;color:var(--muted);display:block}.footer{display:flex;justify-content:space-between;gap:30px;padding:27px 0 35px;font-size:11px;color:var(--muted)}.footer .mono{font-size:10px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:var(--ink);color:var(--white);border:1px solid #65715a;padding:12px 20px;border-radius:10px;font-size:13px;z-index:50;transition:opacity .2s,transform .2s;pointer-events:none;max-width:calc(100% - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.noscript{padding:18px;background:var(--tint);margin-top:16px;font-size:14px}.fadeable{transition:opacity .2s}.part-dim{opacity:.38}.hotspot{cursor:pointer}.hotspot circle{transition:fill .2s}.hotspot:hover circle{fill:var(--ink)}
 @media(min-width:1440px){.hero{padding-top:54px}.stage{min-height:620px}.stage canvas{height:620px}}
-@media(max-width:1020px){.wrap{width:calc(100% - 40px)}.hero-head{align-items:flex-start}.hero-sub{max-width:340px}.workbench{grid-template-columns:minmax(0,1.4fr) minmax(300px,1fr)}.control-panel{padding:20px}.stage canvas{height:620px}.stage{min-height:620px}.stage-toolbar{left:14px;right:14px;top:14px}.stage-state{left:16px}.structure-card{grid-template-columns:1.35fr 1fr}.diagram-toolbar{padding:16px;flex-wrap:wrap}.part-panel{padding:18px}.part-button{padding:9px}.motor-text{padding:24px}.scene-meta{grid-template-columns:1fr}.layer-controls{justify-content:flex-start}.brief{gap:22px;padding:25px}.steps{gap:12px}.step{padding:21px}.topnav{gap:17px}.motor-choice{padding:18px}.motor-choice strong{font-size:18px}}
-@media(max-width:760px){html{scroll-padding-top:110px}.wrap{width:calc(100% - 32px)}.topbar-inner{height:auto;min-height:61px;flex-wrap:wrap;gap:0;padding-top:12px}.brand{font-size:14px}.brand-mark{width:24px;height:24px}.topbar .edition{font-size:10px;padding:4px 8px}.topnav{width:100%;order:3;justify-content:space-between;gap:10px;font-size:12px;margin-top:6px}.topnav a{padding:9px 0}.hero{padding-top:28px}.hero-head{display:block;margin-bottom:21px}.hero-head .eyebrow{font-size:10px;margin-bottom:10px}h1{font-size:38px}.hero-sub{margin-top:13px;max-width:100%;font-size:14px}.workbench{display:flex;flex-direction:column}.stage{min-height:440px}.stage canvas{height:440px}.control-panel{border-left:0;border-top:1px solid var(--line);padding:20px}.mode-group{gap:7px}.mode-btn{min-height:65px;padding:10px 13px}.control-title{margin-bottom:13px}.control-field{margin-top:18px}.stage-toolbar .badge{font-size:10px;padding:4px 8px}.stage-toolbar .btn{font-size:11px;min-height:34px;padding:6px 9px}.stage-floor{left:16px;right:16px;bottom:13px;font-size:10px;gap:10px}.stage-state{top:62px}.stage-mood{font-size:9px}.scene-meta{padding:15px;margin:0 8px;gap:12px}.scene-meta p{font-size:11px}.layer-controls{gap:8px;flex-wrap:wrap;font-size:11px}.layer-controls .select{width:83px}.insight{padding:16px;gap:12px;font-size:12px;line-height:1.8}.insight-icon{margin-top:2px}.section{padding-top:52px}.section-head{display:block;margin-bottom:21px}.section-head .aside-note{max-width:100%;margin-top:13px;font-size:12px}.section-index{font-size:11px;margin-bottom:9px}h2{font-size:28px}.lead{font-size:14px;margin-top:11px}.structure-card{display:flex;flex-direction:column}.part-panel{border-top:1px solid var(--line);border-left:none;padding:19px}.diagram-wrap{min-height:240px;padding:0 8px}.diagram-toolbar{padding:15px;flex-wrap:nowrap}.diagram-toolbar .eyebrow{display:none}.diagram-toolbar .pillset{width:100%}.diagram-caption{font-size:11px;padding-left:18px;padding-right:18px}.part-list{grid-template-columns:1fr 1fr;gap:8px}.part-button{gap:8px;padding:10px}.part-button strong{font-size:12px}.part-button small{font-size:10px}.part-explanation{min-height:86px}.part-explanation p{font-size:12px}.two-notes{grid-template-columns:1fr;gap:12px}.note-card{padding:18px}.note-card p{font-size:12px}.motor-selector{gap:7px}.motor-choice{padding:14px 9px}.motor-choice .eyebrow{font-size:8px;margin-bottom:7px;letter-spacing:.02em}.motor-choice strong{font-size:14px;white-space:nowrap}.motor-choice small{font-size:10px;line-height:1.5;margin-top:7px}.motor-choice .choice-arrow{display:none}.motor-detail{display:flex;flex-direction:column}.motor-text{border-left:0;border-top:1px solid var(--line);padding:22px}.motor-text h3{font-size:23px}.placement .diagram-wrap{min-height:220px}.placement .diagram-toolbar .eyebrow{display:block;font-size:9px}.placement .diagram-toolbar .pillset{width:auto}.fact-row{font-size:12px;grid-template-columns:69px 1fr;gap:12px}.fact-row dt{font-size:11px}.details-grid{grid-template-columns:1fr;gap:18px}.decision-band{padding:19px;gap:8px;grid-template-columns:29px 1fr}.decision-band .big-arrow{font-size:25px}.decision-band strong{font-size:15px}.decision-band p{font-size:12px}.steps{grid-template-columns:1fr}.step{padding:23px;position:relative}.step-num{position:absolute;top:20px;right:23px;font-size:37px;margin:0}.step .eyebrow{max-width:80%}.step>p{min-height:0;max-width:91%}.step .checkpoint{margin-top:14px;padding-top:12px}.safety{grid-template-columns:1fr;gap:8px;padding:18px}.brief{display:flex;flex-direction:column;padding:22px;gap:24px}.brief h3{font-size:24px}.brief-fields{gap:13px 10px}.brief-preview pre{font-size:11px;padding:15px}.source-grid{grid-template-columns:1fr;gap:2px}.footer{display:block;padding:22px 0 28px;font-size:10px}.footer .mono{margin-top:9px;font-size:9px}.reference-wrap{grid-template-columns:85px 1fr;gap:14px}.reference img{width:85px}.reference p{font-size:12px}.reference small{font-size:10px}summary{font-size:12px}.wide-details summary{font-size:13px}.sources{margin-top:30px}.sources summary{font-size:12px}}
-@media(max-width:370px){.wrap{width:calc(100% - 24px)}h1{font-size:34px}.hero-sub{font-size:13px}.stage canvas{height:410px}.stage{min-height:410px}.control-panel{padding:16px}.motor-choice strong{font-size:12px}.motor-choice small{font-size:9px}.brief{padding:18px}.brief-fields{grid-template-columns:1fr}.part-button small{display:none}.stage-floor span:last-child{max-width:120px}.brand{font-size:13px}}
+@media(max-width:1020px){.wrap{width:calc(100% - 40px)}.hero-head{align-items:flex-start}.hero-sub{max-width:340px}.workbench{grid-template-columns:minmax(0,1.4fr) minmax(300px,1fr)}.control-panel{padding:20px}.stage canvas{height:620px}.stage{min-height:620px}.stage-toolbar{left:14px;right:14px;top:14px}.stage-state{left:16px}.structure-card{grid-template-columns:1.35fr 1fr}.diagram-toolbar{padding:16px;flex-wrap:wrap}.part-panel{padding:18px}.part-button{padding:9px}.motor-text{padding:24px}.scene-meta{grid-template-columns:1fr}.layer-controls{justify-content:flex-start}.steps{gap:12px}.step{padding:21px}.topnav{gap:17px}.motor-choice{padding:18px}.motor-choice strong{font-size:18px}}
+@media(max-width:760px){html{scroll-padding-top:110px}.wrap{width:calc(100% - 32px)}.topbar-inner{height:auto;min-height:61px;flex-wrap:wrap;gap:0;padding-top:12px}.brand{font-size:14px}.brand-mark{width:24px;height:24px}.topbar .edition{font-size:10px;padding:4px 8px}.topnav{width:100%;order:3;justify-content:space-between;gap:10px;font-size:12px;margin-top:6px}.topnav a{padding:9px 0}.hero{padding-top:28px}.hero-head{display:block;margin-bottom:21px}.hero-head .eyebrow{font-size:10px;margin-bottom:10px}h1{font-size:38px}.hero-sub{margin-top:13px;max-width:100%;font-size:14px}.workbench{display:flex;flex-direction:column}.stage{min-height:440px}.stage canvas{height:440px}.control-panel{border-left:0;border-top:1px solid var(--line);padding:20px}.mode-group{gap:7px}.mode-btn{min-height:65px;padding:10px 13px}.control-title{margin-bottom:13px}.control-field{margin-top:18px}.stage-toolbar .badge{font-size:10px;padding:4px 8px}.stage-toolbar .btn{font-size:11px;min-height:34px;padding:6px 9px}.stage-floor{left:16px;right:16px;bottom:13px;font-size:10px;gap:10px}.stage-state{top:62px}.stage-mood{font-size:9px}.scene-meta{padding:15px;margin:0 8px;gap:12px}.scene-meta p{font-size:11px}.layer-controls{gap:8px;flex-wrap:wrap;font-size:11px}.layer-controls .select{width:83px}.insight{padding:16px;gap:12px;font-size:12px;line-height:1.8}.insight-icon{margin-top:2px}.section{padding-top:52px}.section-head{display:block;margin-bottom:21px}.section-head .aside-note{max-width:100%;margin-top:13px;font-size:12px}.section-index{font-size:11px;margin-bottom:9px}h2{font-size:28px}.lead{font-size:14px;margin-top:11px}.structure-card{display:flex;flex-direction:column}.part-panel{border-top:1px solid var(--line);border-left:none;padding:19px}.diagram-wrap{min-height:240px;padding:0 8px}.diagram-toolbar{padding:15px;flex-wrap:nowrap}.diagram-toolbar .eyebrow{display:none}.diagram-toolbar .pillset{width:100%}.diagram-caption{font-size:11px;padding-left:18px;padding-right:18px}.part-list{grid-template-columns:1fr 1fr;gap:8px}.part-button{gap:8px;padding:10px}.part-button strong{font-size:12px}.part-button small{font-size:10px}.part-explanation{min-height:86px}.part-explanation p{font-size:12px}.two-notes{grid-template-columns:1fr;gap:12px}.note-card{padding:18px}.note-card p{font-size:12px}.motor-selector{gap:7px}.motor-choice{padding:14px 9px}.motor-choice .eyebrow{font-size:8px;margin-bottom:7px;letter-spacing:.02em}.motor-choice strong{font-size:14px;white-space:nowrap}.motor-choice small{font-size:10px;line-height:1.5;margin-top:7px}.motor-choice .choice-arrow{display:none}.motor-detail{display:flex;flex-direction:column}.motor-text{border-left:0;border-top:1px solid var(--line);padding:22px}.motor-text h3{font-size:23px}.placement .diagram-wrap{min-height:220px}.placement .diagram-toolbar .eyebrow{display:block;font-size:9px}.placement .diagram-toolbar .pillset{width:auto}.fact-row{font-size:12px;grid-template-columns:69px 1fr;gap:12px}.fact-row dt{font-size:11px}.details-grid{grid-template-columns:1fr;gap:18px}.decision-band{padding:19px;gap:8px;grid-template-columns:29px 1fr}.decision-band .big-arrow{font-size:25px}.decision-band strong{font-size:15px}.decision-band p{font-size:12px}.steps{grid-template-columns:1fr}.step{padding:23px;position:relative}.step-num{position:absolute;top:20px;right:23px;font-size:37px;margin:0}.step .eyebrow{max-width:80%}.step>p{min-height:0;max-width:91%}.step .checkpoint{margin-top:14px;padding-top:12px}.safety{grid-template-columns:1fr;gap:8px;padding:18px}.source-grid{grid-template-columns:1fr;gap:2px}.footer{display:block;padding:22px 0 28px;font-size:10px}.footer .mono{margin-top:9px;font-size:9px}.reference-wrap{grid-template-columns:85px 1fr;gap:14px}.reference img{width:85px}.reference p{font-size:12px}.reference small{font-size:10px}summary{font-size:12px}.wide-details summary{font-size:13px}.sources{margin-top:30px}.sources summary{font-size:12px}}
+@media(max-width:370px){.wrap{width:calc(100% - 24px)}h1{font-size:34px}.hero-sub{font-size:13px}.stage canvas{height:410px}.stage{min-height:410px}.control-panel{padding:16px}.motor-choice strong{font-size:12px}.motor-choice small{font-size:9px}.part-button small{display:none}.stage-floor span:last-child{max-width:120px}.brand{font-size:13px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.toast{transition:none!important}}
-@media print{.topbar,.hero,.section,.sources,.footer,.toast{display:none!important}.print-summary{display:block;color:#111;white-space:pre-wrap;font-family:var(--font);font-size:12pt;line-height:1.8;margin:30px}.print-summary h2{font-size:22pt;margin-bottom:15px}.wrap{width:100%}body{background:white}}
+@media print{.topbar,.hero,.section,.sources,.footer,.toast{display:none!important}.wrap{width:100%}body{background:white}}
 
 .group-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
 .group-chip{border:1px solid var(--line);border-radius:9px;background:var(--white);padding:9px 10px;font-size:11px;line-height:1.5}
@@ -78,13 +78,29 @@
 @media(max-width:1020px){.cad-grid{grid-template-columns:minmax(0,1.35fr) minmax(285px,.85fr)}.cad-view{height:590px}}
 @media(max-width:760px){.cad-hero{padding-top:28px}.cad-head{display:block}.cad-head p{margin-top:12px;max-width:none}.cad-grid{display:flex;flex-direction:column}.cad-view{height:480px}.cad-panel{border-left:0;border-top:1px solid var(--line);padding:19px}.cad-viewbar{left:10px;right:10px;top:10px}.cad-status{left:10px;right:10px;bottom:10px;max-width:none}.cad-modes{grid-template-columns:1fr 1fr}.cad-note{padding:12px 14px}.cad-readout{grid-template-columns:1fr 1fr}}
 @media(max-width:370px){.cad-view{height:430px}.cad-mode{padding:9px 7px}.cad-panel{padding:16px}}
+
+#cadSoftwareCanvas{display:block;width:100%;height:100%;touch-action:none}
+#cadOverlay,#cadLabels{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.cad-part-label{position:absolute;background:rgba(255,254,250,.94);border:1px solid #ccd4c8;border-radius:5px;padding:3px 7px;font-size:12px;line-height:1.4;white-space:nowrap;color:#3b4d42}
+.cad-axis-hint{position:absolute;left:16px;top:64px;z-index:2;font-size:12px;color:#5f776b;background:#f0f1ecb8;padding:3px 6px;border-radius:4px;pointer-events:none}
+#cadRenderInfo{position:absolute;right:16px;bottom:14px;color:#748277;font-size:12px;z-index:3;pointer-events:none}
+.cad-operation-steps{position:absolute;top:98px;left:16px;z-index:3;display:grid;gap:2px;background:#fff9dfed;border:1px solid #edc86e;border-radius:8px;padding:8px 11px;font-size:13px;line-height:1.5;pointer-events:none}
+.cad-operation-steps[hidden],[hidden]{display:none!important}
+.cad-grid{align-items:start}.cad-view{position:sticky;top:0}.cad-panel .helper,.cad-mode span,.cad-readout div,.cad-stack-row,.cad-section-note,.cad-note,.cad-legend{font-size:13px}
+.cad-mode strong,.cad-readout b,.cad-stack-title,.cad-stack-row b{font-size:14px}.cad-stack-num{font-size:12px;width:20px;height:20px}
+.cad-status{font-size:13px;max-width:calc(100% - 110px)}.cad-gesture{font-size:12px;color:#7d897c}.cad-loading{font-size:16px;line-height:1.8}
+.cad-head p{font-size:16px}.cad-note{padding:16px}.cad-note strong{display:inline-block}
+.parallel-summary{margin-top:16px;text-align:center;font-size:14px}.parallel-summary>b{display:block;border:1px solid #bc9c83;background:#fffefa;border-radius:8px;padding:8px}.parallel-summary>div{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:18px}.parallel-summary>div>span{position:relative;background:#fffefa;border:1px solid #d9b09b;border-radius:8px;padding:10px}.parallel-summary>div>span:before{content:'';position:absolute;width:2px;height:18px;left:50%;top:-19px;background:#bc9c83}.parallel-summary small{display:block;margin-top:8px}
+.dimension-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.dimension-grid article{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px}.dimension-grid p{font-size:14px;color:var(--muted);margin-top:8px}
+.arch-card p,.note-card p,.step>p,.checkpoint,.fact-row,.details-grid p,.part-explanation p,.diagram-caption,.warning-box,.helper,.safety{font-size:14px}
+@media(max-width:760px){.cad-view{position:relative;height:500px}.cad-axis-hint{left:10px;top:61px;font-size:12px}.cad-status{left:10px;bottom:10px;padding:7px 9px;max-width:calc(100% - 95px);font-size:12px}.cad-gesture{display:none}#cadRenderInfo{right:10px;bottom:13px;font-size:11px}.cad-part-label{font-size:11px;padding:2px 4px}.cad-operation-steps{left:10px;top:91px;font-size:12px}.cad-head p{font-size:15px}.cad-note{font-size:13px}.dimension-grid{grid-template-columns:1fr 1fr}.cad-mode strong{font-size:14px}.topnav{gap:18px}.cad-grid{display:block}}
 </style>
 </head>
 <body>
 <a class="skip" href="#movement">움직임 실험으로 건너뛰기</a>
 <header class="topbar"><div class="wrap topbar-inner">
 <a class="brand" href="#top" aria-label="처음으로"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="16" cy="9" rx="8" ry="3"/><ellipse cx="16" cy="16" rx="13" ry="4"/><ellipse cx="16" cy="23" rx="8" ry="3"/><path d="M16 2v28"/></g><circle cx="28" cy="16" r="2.5" fill="#c34a2a"/></svg>움직이는 조각 노트</a>
-<nav class="topnav" aria-label="페이지 안에서 이동"><a href="#cad" class="active">3D 모델</a><a href="#movement">01 움직임</a><a href="#structure">02 한 층의 구조</a><a href="#methods">03 제작 방식</a><a href="#making">04 시작하기</a></nav>
+<nav class="topnav" aria-label="페이지 안에서 이동"><a href="#cad" class="active">3D 모델</a><a href="#movement">01 움직임</a><a href="#structure">02 한 층의 구조</a><a href="#methods">03 힘 전달</a><a href="#making">04 제작 순서</a><a href="#dimensions">05 필요한 치수</a></nav>
 <span class="badge edition">INTERACTIVE GUIDE</span>
 </div></header>
 <main class="wrap" id="top">
@@ -93,23 +109,23 @@
 
 
 <section class="cad-hero" id="cad" aria-labelledby="cad-title">
-<div class="cad-head"><div><div class="eyebrow">CAD-STYLE CONCEPT ASSEMBLY</div><h1 id="cad-title">안과 밖을 돌려보며 확인하기.</h1></div><p>20개의 8자 레이어, 공통 Z축, 베이스 내부 구동부와 한 층의 passive coupling을 3D로 살펴봅니다. <strong>형상·치수는 설명용 가정</strong>이며 제작도면은 아닙니다.</p></div>
+<div class="cad-head"><div><div class="eyebrow">CAD-STYLE CONCEPT ASSEMBLY</div><h1 id="cad-title">안과 밖을 돌려보며 확인하기.</h1></div><p>20개의 8자 레이어는 하나의 수직 Z축을 중심으로 회전합니다. 베이스 안의 모터부터 한 층의 마찰 결합부까지, 돌려보고 확대해 살펴보세요.</p></div>
 <div class="cad-shell">
 <div class="cad-grid">
 <div class="cad-view" id="cadView">
 <canvas id="cadCanvas" aria-label="키네틱 조각의 3D CAD 스타일 개념 모델. 마우스나 손가락으로 회전하고 확대할 수 있습니다."></canvas>
-<div class="cad-loading" id="cadLoading">3D 조립 모델을 불러오는 중…<br><small>실패해도 아래 2D 설명과 제작 가이드는 그대로 사용할 수 있습니다.</small></div>
+<div class="cad-loading" id="cadLoading">3D 조립 모델을 불러오는 중…<br><small>작품과 중앙 허브를 준비하고 있습니다.</small></div>
 <div class="cad-viewbar"><span class="badge dot" id="cadModeBadge">외관 보기</span><div class="btn-row"><button class="btn compact" id="cadPlay" type="button">일시정지</button><button class="btn compact" id="cadResetCamera" type="button">카메라 초기화</button></div></div>
-<div class="cad-status" id="cadStatus"><b>20층 · 외관 보기</b><br>드래그: 회전 · 휠/핀치: 확대 · 레이어 탭: 선택</div>
+<div id="cadAxisHint" class="cad-axis-hint">Z = 수직 중앙축 · 레이어 = XY 평면</div><div id="cadOperationSteps" class="cad-operation-steps" hidden><b>BLDC</b><span>→ 벨트 감속 → 공통 Z축</span><span>→ 마찰 링 → 회전 허브 → 8자 레이어</span></div><div class="cad-status" id="cadStatus"><b>20층 · 외관 보기</b><br>드래그: 회전 · 휠/핀치: 확대 · 레이어 탭: 선택</div>
 </div>
 <div class="cad-panel">
 <h3>3D 모델 보기</h3><p class="helper">외관 → 내부 → 단면 → 한 층 분해 → 힘 전달 순서로 보면 구조가 가장 쉽게 이해됩니다.</p>
 <div class="cad-modes" role="group" aria-label="3D 보기 모드">
 <button class="cad-mode" data-cad-mode="exterior" aria-pressed="true" type="button"><strong>외관</strong><span>사진처럼 중앙 Z축과 레이어만</span></button>
 <button class="cad-mode" data-cad-mode="internal" aria-pressed="false" type="button"><strong>내부</strong><span>베이스·허브를 투명하게</span></button>
-<button class="cad-mode" data-cad-mode="section" aria-pressed="false" type="button"><strong>단면</strong><span>중앙축을 잘라 내부 스택 보기</span></button>
+<button class="cad-mode" data-cad-mode="section" aria-pressed="false" type="button"><strong>단면</strong><span>한 층의 중앙 허브 확대</span></button>
 <button class="cad-mode" data-cad-mode="exploded" aria-pressed="false" type="button"><strong>분해</strong><span>선택한 한 층을 부품별로 벌리기</span></button>
-<button class="cad-mode" data-cad-mode="operation" aria-pressed="false" type="button"><strong>작동</strong><span>모터→축→coupling 경로</span></button>
+<button class="cad-mode" data-cad-mode="operation" aria-pressed="false" type="button"><strong>작동</strong><span>회전력이 레이어까지 가는 경로</span></button>
 </div>
 
 <div class="control-field"><div class="field-head"><label for="cadLayer">확인할 레이어</label><output id="cadLayerReadout">10층</output></div><select class="select" id="cadLayer"></select></div>
@@ -121,25 +137,25 @@
 <div><b id="cadLayerSpeed">0.67×</b>선택 레이어의 개념 속도</div>
 <div><b id="cadLayerCoupling">중간 결합</b>passive coupling 예시</div>
 </div>
-<div class="cad-legend"><span><i class="cad-dot"></i>고정/구조</span><span><i class="cad-dot rot"></i>회전 레이어</span><span><i class="cad-dot contact"></i>베어링·coupling</span><span><i class="cad-dot drive"></i>노란 선·점 = 힘 전달 표시</span></div>
+<div class="cad-legend"><span><i class="cad-dot"></i>공통축·칼라</span><span><i class="cad-dot rot"></i>회전 레이어</span><span><i class="cad-dot contact"></i>베어링·coupling</span><span><i class="cad-dot drive"></i>황색 선·점 = 회전력 전달</span></div>
 <div class="cad-stack">
 <div class="cad-stack-title">선택 레이어 중앙부 — 후보 부품 스택</div>
 <div class="cad-stack-row"><span class="cad-stack-num">1</span><span><b>축 칼라</b>공통축과 함께 회전하며 예압 스택을 받침</span></div>
-<div class="cad-stack-row"><span class="cad-stack-num">2</span><span><b>디스크 스프링 (Belleville)</b>마찰면에 축방향 예압을 주는 후보</span></div>
-<div class="cad-stack-row"><span class="cad-stack-num">3</span><span><b>마찰 링</b>공통축의 토크를 허브로 미끄러지며 전달</span></div>
+<div class="cad-stack-row"><span class="cad-stack-num">2</span><span><b>디스크 스프링 (Belleville)</b>접시형 스프링 · 미리 눌러두는 힘(예압)</span></div>
+<div class="cad-stack-row"><span class="cad-stack-num">3</span><span><b>마찰 링</b>회전력(토크)을 미끄러짐(slip)과 함께 전달</span></div>
 <div class="cad-stack-row"><span class="cad-stack-num">4</span><span><b>볼 베어링</b>레이어 허브가 축과 다른 속도로 회전하도록 지지</span></div>
 <div class="cad-stack-row"><span class="cad-stack-num">5</span><span><b>회전 허브</b>8자 레이어와 연결되는 실제 회전부</span></div>
 <div class="cad-stack-row"><span class="cad-stack-num">6</span><span><b>리테이너 / 조정 칼라</b>축방향 위치와 예압 범위를 잡는 후보</span></div>
-<div class="cad-section-note">이 순서는 <strong>개념 후보</strong>입니다. 실제 베어링의 축방향 하중, 디스크 스프링 예압, 마찰재는 최종 크기·무게에 맞춰 다시 선정해야 합니다.</div>
+<div class="cad-section-note"><strong>Concept mechanism</strong> · 부품의 배치와 역할을 보여줍니다. 실제 규격은 레이어 크기·무게·재질·층 간격을 정한 뒤 선정합니다.</div>
 </div>
 </div>
 </div>
-<div class="cad-note"><strong>CONCEPT MODEL — NOT FOR FABRICATION.</strong> 중앙 허브는 실제 기구에 가까운 부품 순서로 세분화했지만, 여전히 치수·공차·예압·마찰계수·베어링 수명·모터 토크를 검증한 제작도면은 아닙니다. 레이어 크기·무게·재질·층 간격과 베이스 치수가 확정되면 이 스택을 실제 규격으로 다시 설계해야 합니다.</div>
-<div class="cad-no-webgl" id="cadNoWebgl">3D 모듈 또는 WebGL 초기화가 완료되지 않았습니다. 위의 ‘3D 다시 불러오기’를 눌러 새 세션으로 다시 시도할 수 있습니다.</div>
+<div class="cad-note"><strong>CONCEPT MODEL — NOT FOR FABRICATION</strong><span> 부품의 관계를 보여주는 개념 모델입니다. 실제 제작 치수·공차·예압은 아직 확정하지 않았습니다.</span></div>
+<div class="cad-no-webgl" id="cadNoWebgl">아래의 움직임 모형과 구조 그림은 계속 확인할 수 있습니다.</div>
 </div>
 </section>
 <section class="hero" id="movement" aria-labelledby="hero-title">
-<div class="hero-head"><div><div class="eyebrow">정숙성 우선 구동안</div><h1 id="hero-title">조용한 모터 하나, 층은 제각각.</h1></div><p class="hero-sub">사진처럼 <strong>중앙 Z축만 보이게</strong> 유지하면서,<br>베이스 안의 <strong>BLDC 1개를 정숙성 우선 후보</strong>로 두고 공통 축을 돌립니다.<br class="desktop-br"> 각 레이어는 그 축에서 <strong>병렬로</strong> 힘을 받아 서로 다른 속도로 움직입니다.</p></div>
+<div class="hero-head"><div><div class="eyebrow">정숙성 우선 구동안</div><h2 id="hero-title">조용한 모터 하나, 층은 제각각.</h2></div><p class="hero-sub">사진처럼 <strong>중앙 Z축만 보이게</strong> 유지하면서,<br>베이스 안의 <strong>BLDC(브러시 없는 모터) 1개를 정숙성 우선</strong>로 두고 공통 축을 돌립니다.<br class="desktop-br"> 각 레이어는 그 축에서 <strong>병렬로</strong> 힘을 받아 서로 다른 속도로 움직입니다.</p></div>
 
 <div class="workbench">
 <figure class="stage" aria-label="공통 중앙축에서 병렬 passive coupling으로 힘을 받아 같은 방향, 서로 다른 속도로 회전하는 8자형 레이어 모형">
@@ -160,25 +176,25 @@
 <div class="speed-strip" id="speedStrip"></div>
 <div class="btn-row" style="margin-top:12px"><button class="btn compact" id="reseed">다른 속도 분포 예시</button></div>
 
-<details class="advanced"><summary>모양·층수·시점 조절</summary>
-<div class="control-field"><div class="field-head"><label for="shape">레이어 모양</label></div><select class="select" id="shape"><option value="figure8" selected>참고 이미지처럼 8자(∞)</option><option value="ellipse">타원</option><option value="circle">완전한 원</option></select></div>
+<details class="advanced"><summary>시제품 층수·간격 조절</summary>
+
 <div class="control-field"><div class="field-head"><label for="count">레이어 수</label></div><select class="select" id="count"><option value="3">3개 · 첫 실험</option><option value="5">5개 · 권장 시제품</option><option value="10">10개</option><option value="20" selected>20개 · 최종 형태 예시</option></select></div>
 <div class="control-field"><div class="field-head"><label for="spacing">층 간격</label><output id="spacingLabel">보통</output></div><input type="range" id="spacing" min="70" max="140" value="100" step="5"><div class="range-ends"><span>촘촘하게</span><span>넓게</span></div></div>
 <div class="control-field"><label class="checkbox"><input type="checkbox" id="markers"><span>각 레이어의 방향을 점으로 표시</span></label></div>
 <button class="btn compact" id="resetAll">모형 설정 초기화</button>
 </details>
-<p class="helper" style="margin-top:13px">애니메이션의 속도비는 실제 마찰클러치 성능을 예측하는 값이 아닙니다. “높이 순서와 무관하게 속도가 섞일 수 있다”는 개념만 보여줍니다.</p>
+<p class="helper" style="margin-top:13px">속도비는 움직임의 예시입니다. 실제 속도 차이와 유지 시간은 마찰 결합부를 만들어 확인합니다.</p>
 </div></div>
 
 <div class="scene-meta"><p id="shapeHint">8자형 레이어 모두가 같은 중앙 Z축을 회전 중심으로 공유하고, 가운데가 가장 크며 위·아래로 갈수록 작아집니다.</p><div class="layer-controls"><label for="selectedLayer">확인할 레이어</label><select class="select" id="selectedLayer"></select><span class="live-layer" id="layerLive">↻ · 0.7× 예시</span></div></div>
 
-<div class="insight"><span class="insight-icon" aria-hidden="true">i</span><p><b>핵심은 직렬이 아니라 병렬입니다.</b> 1층이 2층을 돌리고 2층이 3층을 돌리는 구조라면 손실이 누적될 수 있지만, 여기서는 모든 층이 같은 회전축에서 각각 직접 토크를 받습니다. 그래서 높이가 속도 순서를 결정하지 않습니다.</p></div>
+<div class="insight"><span class="insight-icon" aria-hidden="true">i</span><p><b>각 층은 같은 공통축에서 직접 힘을 받습니다.</b> 높이가 속도를 정하지 않습니다. 마찰 조건을 층마다 조절해 빠름과 느림이 섞이도록 유도합니다.</p></div>
 
-<details class="reference"><summary>출발점이 된 참고 이미지 보기</summary><div class="reference-wrap"><img src="data:image/webp;base64,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" alt="공통 중앙축 주변에 8자형 레이어가 겹쳐 있고 위아래로 갈수록 크기가 작아지는 조각 참고 사진" loading="lazy"><div><p>유지하려는 외형 조건은 <strong>중앙축 하나만 노출</strong>되고, 같은 회전 중심을 가진 8자형 레이어들이 위아래로 겹치는 모습입니다.</p><p>현재 안은 외부에 보조축·옆모터를 추가하지 않고, 베이스에 숨긴 BLDC 하나와 중앙부의 층별 passive coupling을 검토합니다.</p><small>사용자가 제공한 참고 이미지. 실제 원작 내부 구동 방식과 치수는 미확인.</small></div></div></details>
+<details class="reference"><summary>출발점이 된 참고 이미지 보기</summary><div class="reference-wrap"><img src="data:image/webp;base64,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" alt="공통 중앙축 주변에 8자형 레이어가 겹쳐 있고 위아래로 갈수록 크기가 작아지는 조각 참고 사진" loading="lazy"><div><p>유지하려는 외형 조건은 <strong>중앙축 하나만 노출</strong>되고, 같은 회전 중심을 가진 8자형 레이어들이 위아래로 겹치는 모습입니다.</p><p>구동부는 베이스 안에 숨기고, 중앙 허브의 마찰 결합부가 각 레이어에 힘을 전달합니다.</p><small>사용자가 제공한 참고 이미지. 실제 원작 내부 구동 방식과 치수는 미확인.</small></div></div></details>
 </section>
 
 <section class="section" id="structure" aria-labelledby="structure-title">
-<div class="section-head"><div><div class="section-index">02 / 한 층의 구조</div><h2 id="structure-title">공통 축은 돌고, 레이어는 따로 미끄러집니다.</h2><p class="lead">각 레이어는 베어링으로 자유롭게 회전할 수 있고,<br>공통 구동축과의 사이에 passive coupling을 두어 필요한 만큼만 힘을 전달받는 개념입니다.</p></div><p class="aside-note">정숙성 우선: BLDC 1개.<br>필요하면 베이스 안에서 벨트 감속.</p></div>
+<div class="section-head"><div><div class="section-index">02 / 한 층의 구조</div><h2 id="structure-title">공통 축은 돌고, 레이어는 따로 미끄러집니다.</h2><p class="lead">각 레이어는 베어링으로 자유롭게 회전할 수 있고,<br>공통축과 허브 사이에 <strong>passive coupling(별도 모터 없이 회전력을 나누는 결합부)</strong>을 둡니다.</p></div><p class="aside-note">정숙성 우선: BLDC 1개.<br>필요하면 베이스 안에서 벨트 감속.</p></div>
 
 <div class="structure-card">
 <div class="diagram-side"><div class="diagram-toolbar"><span class="eyebrow">ONE LAYER / PARALLEL COUPLING</span><div class="pillset" role="group" aria-label="한 층 구조 보기"><button data-assembly="top" aria-pressed="true">위에서</button><button data-assembly="side" aria-pressed="false">옆에서</button><button data-assembly="exploded" aria-pressed="false">분해 보기</button></div></div>
@@ -195,28 +211,24 @@
 </div>
 
 <div class="architecture-grid" style="grid-template-columns:1fr">
-<article class="arch-card recommended"><h4>현재 구조: 공통 Z축에서 각 층으로 병렬 전달</h4><p>모든 레이어 허브가 같은 공통 Z축을 중심으로 베어링에 지지되고, 각 높이의 마찰 coupling이 공통축의 토크를 해당 레이어에 직접 전달합니다. 층마다 예압을 다르게 하므로 높이와 무관한 속도 차이를 만들 수 있습니다.</p><div class="arch-mini">          공통 Z축
-     ↙      ↓      ↘
-  1층     2층     3층 ...
- 마찰     마찰     마찰
-coupling coupling coupling</div></article>
+<article class="arch-card recommended"><h4>현재 구조: 공통 Z축에서 각 층으로 병렬 전달</h4><p>모든 레이어 허브가 같은 공통 Z축을 중심으로 베어링에 지지되고, 각 높이의 마찰 coupling이 공통축의 토크를 해당 레이어에 직접 전달합니다. 층마다 예압을 다르게 하므로 높이와 무관한 속도 차이를 만들 수 있습니다.</p><div class="parallel-summary"><b>하나의 공통 Z축</b><div><span>1층 · 자기 마찰 링<br><strong>0.55×</strong></span><span>2층 · 자기 마찰 링<br><strong>0.90×</strong></span><span>3층 · 자기 마찰 링<br><strong>0.63×</strong></span></div><small>각 층으로 직접 전달 · 속도비는 예시</small></div></article>
 </div>
 
-<div class="warning-box"><strong>중요:</strong> 단순 마찰 클러치는 “압력을 정확히 30% 주면 속도가 정확히 30%”가 되는 장치가 아닙니다. 실제로는 붙어서 거의 같은 속도로 돌거나, 미끄러지면서 하중·온도·마모에 따라 속도가 변할 수 있습니다. 이 방식은 <strong>정확한 rpm이 아니라 시각적으로 서로 다른 속도</strong>가 목표일 때 먼저 시험할 가치가 있는 안입니다.</div>
+<div class="warning-box"><strong>실물에서 확인할 핵심</strong><br>마찰면을 더 세게 누른다고 속도가 비례해서 바뀌지는 않습니다. 함께 붙어 돌거나, 하중·온도·마모에 따라 slip(미끄러짐)이 달라질 수 있습니다. <strong>같은 방향의 서로 다른 속도가 유지되는지</strong> 3층 시제품에서 먼저 확인합니다.</div>
 </section>
 
 <section class="section" id="methods" aria-labelledby="methods-title">
-<div class="section-head"><div><div class="section-index">03 / 현재 제작안</div><h2 id="methods-title">정숙성 우선 BLDC 1개 + 공통축 + 층별 마찰 coupling.</h2><p class="lead">이 페이지에서는 지금 정한 구조만 설명합니다.<br>베이스 안의 BLDC를 FOC로 부드럽게 돌리고, 필요하면 타이밍 벨트로 감속한 뒤 공통축에서 각 층이 직접 토크를 받습니다.</p></div><p class="aside-note">외부에는 중앙 Z축과 8자 레이어만 노출<br>전부 같은 방향 · 층별 속도는 제각각</p></div>
+<div class="section-head"><div><div class="section-index">03 / 힘이 전달되는 경로</div><h2 id="methods-title">베이스의 회전력이 레이어까지.</h2><p class="lead">BLDC → 필요 시 벨트 감속 → 공통 Z축 → 각 층의 마찰 링 → 회전 허브 → 8자 레이어.<br><strong>FOC</strong>는 모터의 전류를 조절해 회전을 매끄럽게 하는 제어입니다.</p></div><p class="aside-note">외부에는 중앙 Z축과 8자 레이어만 노출<br>전부 같은 방향 · 층별 속도는 제각각</p></div>
 
 <div class="motor-selector">
 <article class="motor-choice" style="cursor:default"><span class="eyebrow">DRIVE</span><strong>BLDC × 1</strong><small>베이스 내부 · 정숙성 우선</small></article>
-<article class="motor-choice" style="cursor:default"><span class="eyebrow">CONTROL</span><strong>FOC</strong><small>저속에서 부드럽게 구동</small></article>
+<article class="motor-choice" style="cursor:default"><span class="eyebrow">CONTROL</span><strong>FOC</strong><small>전류를 조절해 회전을 매끄럽게</small></article>
 <article class="motor-choice" style="cursor:default"><span class="eyebrow">LAYER</span><strong>마찰 coupling × 층수</strong><small>높이와 무관한 속도 차이</small></article>
 </div>
 
 <div class="motor-detail"><div class="placement"><div class="diagram-toolbar"><span class="eyebrow">겉모습 / 내부</span><div class="pillset" role="group"><button data-cover="outside" aria-pressed="false">겉에서 보기</button><button data-cover="inside" aria-pressed="true">내부 보기</button></div></div><div class="diagram-wrap" id="placementDrawing"></div><div class="legend"><span><i class="swatch fixed"></i>공통축·고정부</span><span><i class="swatch"></i>독립 레이어</span><span><i class="swatch contact"></i>층별 마찰 coupling</span></div><p class="diagram-caption" id="placementCaption"></p></div><div class="motor-text" id="motorText"></div></div>
 
-<details class="wide-details" open><summary>한 층의 중앙 허브는 어떻게 구성하나요?</summary><div class="details-grid"><div><h4>현재 후보 스택</h4><p><strong>공통축 → 축 칼라 → 디스크 스프링 → 마찰 링 → 베어링 → 회전 허브 → 조정 칼라</strong> 순서로 검토합니다. 디스크 스프링의 예압으로 마찰면의 접촉력을 조절하고, 베어링이 허브의 독립 회전을 지지합니다. <a class="source-ref" href="#source7">[3]</a></p></div><div><h4>치수는 아직 확정하지 않습니다.</h4><p>예압은 베어링의 축방향 하중에도 영향을 주므로, 실제 레이어 무게와 필요한 마찰 토크가 정해진 뒤 베어링·스프링 규격을 선정해야 합니다. <a class="source-ref" href="#source8">[4]</a></p></div></div></details>
+<details class="wide-details" open><summary>한 층의 중앙 허브는 어떻게 구성하나요?</summary><div class="details-grid"><div><h4>현재 후보 스택</h4><p><strong>공통축 → 축 칼라 → 디스크 스프링 → 마찰 링 → 베어링 → 회전 허브 → 조정 칼라</strong> 순서로 검토합니다. 디스크 스프링(Belleville, 접시형 스프링)의 예압(preload, 미리 눌러두는 힘)으로 마찰면을 누르고, 베어링이 허브의 독립 회전을 지지합니다. <a class="source-ref" href="#source7">[3]</a></p></div><div><h4>치수는 아직 확정하지 않습니다.</h4><p>예압은 베어링의 축방향 하중에도 영향을 주므로, 실제 레이어 무게와 필요한 마찰 토크가 정해진 뒤 베어링·스프링 규격을 선정해야 합니다. <a class="source-ref" href="#source8">[4]</a></p></div></div></details>
 
 <details class="wide-details"><summary>왜 위로 갈수록 단조롭게 느려지지 않나요?</summary><div class="details-grid"><div><h4>모든 층이 공통축에서 병렬로 힘을 받기 때문입니다.</h4><p>아래층이 윗층을 차례로 돌리는 구조가 아닙니다. 각 층의 마찰 coupling 조건을 따로 조절하므로 느림 → 빠름 → 중간 → 빠름처럼 높이 순서와 무관한 속도 분포를 만들 수 있습니다.</p></div><div><h4>정확한 rpm 제어가 목적은 아닙니다.</h4><p>마찰식 coupling은 부하·예압·마찰재 상태에 따라 slip이 달라질 수 있습니다. 목표는 각 층의 정확한 회전수를 지정하는 것이 아니라, 같은 방향으로 서로 다른 속도가 시각적으로 유지되는 것입니다.</p></div></div></details>
 
@@ -229,12 +241,15 @@ coupling coupling coupling</div></article>
 <div class="section-head"><div><div class="section-index">04 / 제작 순서</div><h2 id="making-title">3층에서 구조를 검증하고 20층으로 확대합니다.</h2><p class="lead">현재 안의 제작 가능성은 마찰 coupling의 실제 동작과 긴 공통축의 정렬에서 결정됩니다.</p></div><p class="aside-note">처음부터 20층을 만들지 않습니다.</p></div>
 
 <div class="steps">
-<article class="step"><div class="step-num">1</div><div class="eyebrow">FREE ROTATION</div><h3>3개 허브를 베어링에 조립</h3><p>각 레이어가 동일한 Z축을 중심으로 서로 간섭 없이 자유롭게 회전하는지 확인합니다.</p><div class="checkpoint"><b>확인</b><br>축 동심도 · 허브 흔들림 · 층 간 간섭<br>손으로 돌렸을 때의 베어링 저항</div></article>
-<article class="step"><div class="step-num">2</div><div class="eyebrow">FRICTION COUPLING</div><h3>마찰 coupling 3개 추가</h3><p>각 층의 디스크 스프링 예압을 다르게 설정하고 하나의 공통축으로 구동합니다.</p><div class="checkpoint"><b>성공 조건</b><br>세 층 모두 같은 방향으로 회전<br>속도 차이가 높이 순서와 무관하게 나타남</div></article>
-<article class="step"><div class="step-num">3</div><div class="eyebrow">QUIET DRIVE</div><h3>BLDC + FOC로 장시간 운전</h3><p>필요하면 베이스 내부 타이밍 벨트 감속을 넣고 5층까지 확대해 소음·발열·마모를 확인합니다.</p><div class="checkpoint"><b>20층 전 확인</b><br>마찰면 마모 · 예압 변화 · 베어링 온도<br>공통축 흔들림 · 전시 거리 소음</div></article>
+<article class="step"><div class="step-num">3층</div><div class="eyebrow">FIRST PROTOTYPE</div><h3>회전과 속도 차이 확인</h3><p>베어링·마찰 링·디스크 스프링을 세 층에 조립합니다. BLDC + FOC로 공통축을 돌리고 층마다 예압을 조절합니다.</p><div class="checkpoint"><b>확인</b><br>같은 방향 · 빠름과 느림이 섞이는지<br>허브 흔들림 · 층 간 간섭</div></article>
+<article class="step"><div class="step-num">5층</div><div class="eyebrow">LONG RUN</div><h3>전시처럼 오래 돌려보기</h3><p>필요하면 베이스 안에 벨트 감속을 넣습니다. 관객이 서는 거리에서 소음을 듣고 장시간 운전합니다.</p><div class="checkpoint"><b>확인</b><br>속도 차이 유지 · 마찰면 마모<br>예압 변화 · 베어링 온도 · 축 흔들림</div></article>
+<article class="step"><div class="step-num">20층</div><div class="eyebrow">FULL ASSEMBLY</div><h3>최종 형상으로 확대</h3><p>실제 레이어의 크기와 무게를 적용합니다. 긴 공통축을 정렬하고 모터·베어링·스프링 규격을 최종 선정합니다.</p><div class="checkpoint"><b>확인</b><br>전체 하중 · 긴 축의 정렬과 처짐<br>구동부 숨김 · 장시간 소음과 속도 차이</div></article>
 </div>
-
-<div class="safety"><h4>아직 확정하지 않은 것</h4><p>축 지름, 베어링 규격, 디스크 스프링 규격, 마찰재, 예압량, 모터 크기와 감속비는 실제 레이어 크기·무게·층 간격을 기준으로 선정합니다. 현재 CAD는 이 부품들의 <strong>관계와 회전축 정렬</strong>을 설명하기 위한 모델입니다.</p></div>
+</section>
+<section class="section" id="dimensions" aria-labelledby="dimensions-title">
+<div class="section-head"><div><div class="section-index">05 / 실제 치수가 필요한 항목</div><h2 id="dimensions-title">작품의 크기와 무게부터 정하기.</h2><p class="lead">아래 네 가지를 정하면 부품 규격을 고를 수 있습니다.</p></div></div>
+<div class="dimension-grid"><article><b>레이어 크기</b><p>가장 큰 층의 폭 · 위아래 크기 변화</p></article><article><b>무게와 재질</b><p>한 층의 무게 · 선재 두께 · 재질</p></article><article><b>층 간격</b><p>회전할 때 서로 닿지 않는 간격</p></article><article><b>베이스 공간</b><p>모터와 드라이버를 숨길 내부 여유</p></article></div>
+<div class="safety"><h4>아직 확정하지 않은 것</h4><p><strong>축 지름 · 베어링 규격 · 디스크 스프링 규격 · 마찰재 · 예압량 · BLDC 크기 · 벨트 감속비.</strong><br>이 항목은 아직 확정하지 않았습니다. 실제 레이어의 크기·무게·재질·층 간격을 바탕으로 시제품에서 선정합니다.</p></div>
 </section>
 
 <details class="sources" id="sources"><summary>기술 설명의 근거·제작 범위</summary><p>현재 설명은 <strong>정숙성 우선 BLDC + FOC + 공통 Z축 + 층별 마찰 coupling</strong> 구조에 한정합니다. 마찰 coupling의 실제 속도 안정성은 아직 실물 검증 전입니다.</p>
@@ -243,8 +258,8 @@ coupling coupling coupling</div></article>
 <div class="source-item" id="source7"><a href="https://kr.spirol.com/product/disc-springs/" target="_blank" rel="noopener noreferrer">[3] SPIROL — Disc Springs</a><small>디스크 스프링의 축방향 하중과 예압 설계 참고.</small></div>
 <div class="source-item" id="source8"><a href="https://cdn.skfmediahub.skf.com/api/public/0901d196802809de/pdf_preview_medium/0901d196802809de_pdf_preview_medium.pdf" target="_blank" rel="noopener noreferrer">[4] SKF — Deep groove ball bearings</a><small>볼 베어링의 하중 조건과 규격 선정 참고.</small></div>
 </div><p>페이지의 속도비·부품 크기·간격은 모두 개념 시각화입니다. 실제 rpm, 토크, 공차, 수명을 뜻하지 않습니다.</p></details>
-<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.05 / V2.6</p></footer>
-<div class="print-summary" id="printSummary"></div>
+<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.06 / V3.0</p></footer>
+
 </main><div class="toast" role="status" id="toast"></div>
 <script>
 'use strict';
@@ -265,11 +280,11 @@ function rebuild(preserveAngle=true){
   const prev=layers,rng=rngFactory(state.seed);
   layers=Array.from({length:state.count},(_,i)=>{
     // Deliberately non-monotonic with height. This is a visualization, not a friction model.
-    const raw=.34+rng()*.62;
+    const raw=state.seed===20261005&&i<5?[.55,.90,.63,.81,.47][i]:.34+rng()*.62;
     const centered=.65+(raw-.65)*(state.variation/.48);
     const factor=Math.max(.18,Math.min(.98,centered));
     return {
-      angle:preserveAngle&&prev[i]?prev[i].angle:(i*2.399963229728653)%TAU,
+      angle:preserveAngle&&prev[i]?prev[i].angle:(i*.28)%TAU,
       factor,
       coupling:factor,
       mountOffset:(i*1.61803398875)%TAU
@@ -278,12 +293,12 @@ function rebuild(preserveAngle=true){
   state.selected=Math.min(state.selected,state.count-1);
   $('selectedLayer').innerHTML=layers.map((_,i)=>'<option value="'+i+'">'+(i+1)+'층</option>').join('');
   $('selectedLayer').value=String(state.selected);
-  renderSpeedStrip();updateLive();drawScene();updateBrief();
+  renderSpeedStrip();updateLive();drawScene();
 }
 function renderSpeedStrip(){
   const pick=[];
   const slots=Math.min(5,state.count);
-  for(let j=0;j<slots;j++)pick.push(Math.round(j*(state.count-1)/Math.max(1,slots-1)));
+  for(let j=0;j<slots;j++)pick.push(j);
   $('speedStrip').innerHTML=pick.map(i=>'<div class="speed-chip"><b>'+(i+1)+'층 · '+layers[i].factor.toFixed(2)+'×</b><span>'+couplingLabel(layers[i].coupling)+'</span></div>').join('');
 }
 function syncLabels(){
@@ -326,18 +341,17 @@ function drawScene(){
 
   const pieces=[],N=108;
   for(let i=0;i<n;i++){
-    const k=n===1?0:i/(n-1),z=62+(1-k)*layerHeight,radius=24+98*Math.pow(Math.sin(Math.PI*k),.92);
-    const l=layers[i],a=l.angle+l.mountOffset,ca=Math.cos(a),sa=Math.sin(a);
+    const k=n===1?0:i/(n-1),z=62+k*layerHeight,radius=24+98*Math.pow(Math.sin(Math.PI*k),.92);
+    const l=layers[i],a=l.angle,ca=Math.cos(a),sa=Math.sin(a);
     const pnt=t=>{
       let xx,yy;
-      if(state.shape==='figure8'){xx=radius*Math.sin(t);yy=radius*.54*Math.sin(2*t);}
-      else{const asp=state.shape==='ellipse'?.64:1;xx=radius*Math.cos(t);yy=radius*asp*Math.sin(t);}
-      return pr(xx*ca+yy*sa,-xx*sa+yy*ca,z);
+      xx=radius*Math.sin(t);yy=radius*.54*Math.sin(2*t);
+      return pr(xx*ca-yy*sa,xx*sa+yy*ca,z);
     };
     const pts=[];for(let j=0;j<=N;j++)pts.push(pnt(j/N*TAU));
     for(let j=0;j<N;j++){const p=pts[j],q=pts[j+1];pieces.push({type:'line',p,q,d:(p[2]+q[2])/2,selected:i===state.selected});}
     const hub=pr(0,0,z);pieces.push({type:'hub',p:hub,d:hub[2]+.1,selected:i===state.selected});
-    if(state.markers){const pp=pnt(0);pieces.push({type:'dot',p:pp,d:pp[2]+1,selected:i===state.selected});}
+    if(state.markers){const pp=pnt(Math.PI/4);pieces.push({type:'dot',p:pp,d:pp[2]+1,selected:i===state.selected});}
   }
   pieces.sort((a,b)=>b.d-a.d);
   for(const o of pieces){
@@ -353,22 +367,21 @@ window.addEventListener('pointerup',()=>drag=null);canvas.addEventListener('poin
 
 $('playButton').addEventListener('click',()=>{state.playing=!state.playing;syncPlay();});
 $('resetView').addEventListener('click',()=>{state.yaw=.18;state.elevation=.22;drawScene();});
-$('shaftSpeed').addEventListener('input',e=>{state.shaftSpeed=Number(e.target.value)/100;syncLabels();updateBrief();});
+$('shaftSpeed').addEventListener('input',e=>{state.shaftSpeed=Number(e.target.value)/100;syncLabels();});
 $('variation').addEventListener('input',e=>{state.variation=Number(e.target.value)/100;syncLabels();rebuild(true);});
 $('reseed').addEventListener('click',()=>{state.seed=(state.seed+7919)>>>0;rebuild(true);toast('높이와 무관한 다른 속도 분포 예시를 만들었습니다.');});
 $('count').addEventListener('change',e=>{state.count=Number(e.target.value);state.selected=Math.floor(state.count/2);rebuild(false);});
-$('shape').addEventListener('change',e=>{state.shape=e.target.value;$('shapeHint').textContent=state.shape==='figure8'?'8자형 레이어 모두가 같은 중앙 Z축을 회전 중심으로 공유하고, 가운데가 가장 크며 위·아래로 갈수록 작아집니다.':'모든 레이어의 회전 중심은 그대로 같은 중앙 Z축에 있습니다.';drawScene();updateBrief();});
-$('spacing').addEventListener('input',e=>{state.spacing=Number(e.target.value)/100;syncLabels();drawScene();updateBrief();});
+$('spacing').addEventListener('input',e=>{state.spacing=Number(e.target.value)/100;syncLabels();drawScene();});
 $('markers').addEventListener('change',e=>{state.markers=e.target.checked;drawScene();});
 $('selectedLayer').addEventListener('change',e=>{state.selected=Number(e.target.value);updateLive();drawScene();});
-$('resetAll').addEventListener('click',()=>{Object.assign(state,{shaftSpeed:.78,variation:.48,count:20,shape:'figure8',spacing:1,markers:false,selected:9,yaw:.18,elevation:.22,seed:20261005,time:0});$('shaftSpeed').value='78';$('variation').value='48';$('count').value='20';$('shape').value='figure8';$('spacing').value='100';$('markers').checked=false;syncLabels();rebuild(false);toast('기본 설정으로 되돌렸습니다.');});
+$('resetAll').addEventListener('click',()=>{Object.assign(state,{shaftSpeed:.78,variation:.48,count:20,shape:'figure8',spacing:1,markers:false,selected:9,yaw:.18,elevation:.22,seed:20261005,time:0});$('shaftSpeed').value='78';$('variation').value='48';$('count').value='20';$('spacing').value='100';$('markers').checked=false;syncLabels();rebuild(false);toast('기본 설정으로 되돌렸습니다.');});
 
 // Structure diagrams
 const partText={
  shaft:{state:'계속 같은 속도로 도는 부분',body:'베이스 안의 정숙성 우선 BLDC가 공통 구동축 하나를 돌립니다. 저속이 필요하면 FOC와 벨트 감속을 함께 검토하고, 각 레이어는 이 축에서 직접 토크를 받습니다.'},
  bearing:{state:'레이어를 자유롭게 하는 부분',body:'레이어 허브가 공통 Z축과 다른 속도로 회전할 수 있도록 볼 베어링으로 지지합니다.'},
- coupling:{state:'속도 차이를 만드는 핵심',body:'공통 Z축과 레이어 허브 사이에 조절 가능한 마찰 coupling을 둡니다. 디스크 스프링 예압을 층마다 다르게 하여 slip 차이를 만드는 현재 구조입니다.'},
- ring:{state:'실제로 보이는 회전부',body:'8자형 레이어는 자기 허브와 함께 회전합니다. 같은 축을 중심으로 돌지만, 다른 층과 기계적으로 직렬 연결되지는 않습니다.'},
+ coupling:{state:'속도 차이를 만드는 핵심',body:'접시형 디스크 스프링을 미리 눌러두는 힘(preload, 예압)으로 마찰 링을 허브에 댑니다. 층마다 누르는 힘과 마찰 조건을 달리해 slip(축보다 느리게 도는 미끄러짐)을 유도합니다.'},
+ ring:{state:'실제로 보이는 회전부',body:'8자 레이어는 자기 허브와 함께 같은 중앙 Z축을 중심으로 회전합니다. 허브 중심 자체의 위치는 움직이지 않습니다.'},
  all:{state:'전체 개념',body:'공통 축 하나가 계속 돌고, 각 레이어는 자신의 베어링과 passive coupling을 통해 그 축에서 직접 힘을 받습니다.'}
 };
 function hs(x,y,n,key){return '<g class="hotspot" data-hotspot="'+key+'" role="button" tabindex="0"><circle cx="'+x+'" cy="'+y+'" r="18" fill="#c34a2a" stroke="#fffefa" stroke-width="3"/><text x="'+x+'" y="'+(y+6)+'" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">'+n+'</text></g>';}
@@ -383,15 +396,27 @@ function assemblyTop(){
   '<text x="315" y="395" text-anchor="middle" font-size="14" fill="#676b62">레이어 하나를 위에서 본 개념 · 결합부는 중앙 허브 안에 숨김</text></svg>';
 }
 function assemblySide(exploded=false){
-  const gap=exploded?55:0;
-  return '<svg viewBox="0 0 700 430" role="img" aria-label="옆에서 본 한 레이어의 passive coupling 개념 단면" xmlns="http://www.w3.org/2000/svg">'+
-  '<g data-component="shaft"><rect x="325" y="35" width="20" height="330" rx="5" fill="#58737c"/></g>'+
-  '<g data-component="bearing" transform="translate(0,'+(-gap)+')"><rect x="285" y="190" width="100" height="54" rx="8" fill="#e3eceb" stroke="#91a8a4" stroke-width="5"/><circle cx="335" cy="217" r="22" fill="#fffefa" stroke="#91a8a4" stroke-width="5"/></g>'+
-  '<g data-component="coupling" transform="translate(0,'+(exploded?0:0)+')"><rect x="297" y="'+(250+gap*.2)+'" width="76" height="18" rx="5" fill="#d69572"/><path d="M304 '+(274+gap*.2)+'h62" stroke="#c34a2a" stroke-width="5" stroke-dasharray="7 4"/></g>'+
-  '<g data-component="ring" transform="translate(0,'+gap+')"><path d="M80 294H285M385 294H590" stroke="#c34a2a" stroke-width="9" stroke-linecap="round"/><rect x="280" y="275" width="110" height="38" rx="8" fill="#f3d1bf" stroke="#c34a2a" stroke-width="3"/></g>'+
-  '<g data-component="drive"><rect x="245" y="365" width="180" height="42" rx="10" fill="#31392e"/><text x="335" y="391" text-anchor="middle" fill="#fff" font-size="13">BLDC + FOC · 베이스 내부</text></g>'+
-  hs(369,60,1,'shaft')+hs(196,180-gap,2,'bearing')+hs(445,257+gap*.2,3,'coupling')+hs(585,294+gap,4,'ring')+
-  '<text x="335" y="425" text-anchor="middle" font-size="12" fill="#676b62">'+(exploded?'관계를 보기 위해 위아래로 벌린 개념도':'실제 마찰재·스프링·고정 방식은 시제품에서 결정')+'</text></svg>';
+  const g=exploded?12:0,items=[
+    {key:'retainer',name:'리테이너 / 조정 칼라',y:105-3*g,color:'#87928b',ri:14,ro:33,h:12},
+    {key:'ring',name:'회전 허브',y:146-2*g,color:'#c58e71',ri:44,ro:67,h:46},
+    {key:'bearing',name:'베어링: 내륜 · 볼 · 외륜',y:149-g,color:'#8fac9f',ri:14,ro:44,h:30},
+    {key:'coupling',name:'마찰 링',y:184+g,color:'#be7545',ri:20,ro:64,h:10},
+    {key:'coupling',name:'디스크 스프링',y:208+2*g,color:'#b39a61',ri:17,ro:59,h:5},
+    {key:'shaft',name:'축 칼라',y:239+3*g,color:'#63746e',ri:14,ro:47,h:16}
+  ];
+  let drawing='<svg viewBox="0 0 700 390" role="img" aria-label="Z축을 기준으로 본 한 층의 허브 단면. 베어링의 내륜, 볼, 외륜과 마찰 링, 스프링, 칼라가 같은 축을 공유합니다."><g data-component="shaft"><rect x="264" y="35" width="22" height="300" fill="#58737c"/><text x="275" y="24" text-anchor="middle" font-size="16" fill="#58737c">공통 Z축</text></g>';
+  items.forEach(it=>{
+    drawing+='<g data-component="'+it.key+'">';
+    for(const sign of [-1,1]){
+      const x=sign<0?275-it.ro:275+it.ri,w=it.ro-it.ri;
+      if(it.name==='디스크 스프링')drawing+='<path d="M'+(275+sign*it.ri)+' '+(it.y+4)+'L'+(275+sign*it.ro)+' '+(it.y-6)+'" fill="none" stroke="'+it.color+'" stroke-width="5"/>';
+      else if(it.key==='bearing')drawing+='<rect x="'+x+'" y="'+(it.y-it.h/2)+'" width="12" height="'+it.h+'" rx="3" fill="'+it.color+'"/><rect x="'+(x+w-10)+'" y="'+(it.y-it.h/2)+'" width="10" height="'+it.h+'" rx="3" fill="'+it.color+'"/><circle cx="'+(275+sign*30)+'" cy="'+it.y+'" r="6" fill="#d2ded5" stroke="#658d7e"/>';
+      else drawing+='<rect x="'+x+'" y="'+(it.y-it.h/2)+'" width="'+w+'" height="'+it.h+'" rx="2" fill="'+it.color+'"/>';
+    }
+    if(it.key==='ring')drawing+='<path d="M170 '+it.y+'H208M342 '+it.y+'H383" stroke="#c34a2a" stroke-width="7"/>';
+    drawing+='<path d="M'+(275+it.ro)+' '+it.y+'H440" stroke="#a0ada1"/><text x="449" y="'+(it.y+5)+'" font-size="15" fill="#404b42">'+it.name+'</text></g>';
+  });
+  return drawing+'<text x="350" y="367" text-anchor="middle" font-size="14" fill="#676b62">'+(exploded?'선택한 한 층만 축 방향으로 펼친 관계도':'내륜은 공통축 쪽 · 외륜은 허브 쪽 · 마찰 링은 허브 면에 접촉')+'</text></svg>';
 }
 function renderAssembly(){
   all('[data-assembly]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.assembly===state.assembly)));
@@ -415,17 +440,16 @@ function placementSvg(){
   if(state.cover==='outside'){
     return '<svg viewBox="0 0 600 390" role="img" aria-label="외부에서 중앙 Z축과 레이어만 보이는 완성 작품 개념"><rect x="125" y="331" width="350" height="25" rx="7" fill="#31392e"/><path d="M300 48V330" stroke="#65716b" stroke-width="8"/>'+[0,1,2,3,4,5,6,7].map((_,i)=>{const y=78+i*32,r=36+64*Math.sin(Math.PI*i/7);return '<path d="M300 '+y+'c'+(-r)+' '+(-r*.24)+' '+(-r)+' '+(r*.24)+' 0 0c'+r+' '+(-r*.24)+' '+r+' '+(r*.24)+' 0 0" fill="none" stroke="#c34a2a" stroke-width="3"/>';}).join('')+'<text x="300" y="380" text-anchor="middle" font-size="14" fill="#676b62">외관 목표: 중앙 Z축과 8자 레이어만 보임</text></svg>';
   }
-  return '<svg viewBox="0 0 600 390" role="img" aria-label="정숙성 우선 BLDC와 FOC, 공통 축, 층별 passive coupling 내부 개념"><rect x="125" y="320" width="350" height="38" rx="8" fill="#31392e"/><rect x="260" y="326" width="80" height="25" rx="6" fill="#8fa29c"/><text x="300" y="343" text-anchor="middle" font-size="11" fill="#fff">BLDC + FOC</text><path d="M300 48V320" stroke="#58737c" stroke-width="10"/>'+[0,1,2,3,4].map((_,i)=>{const y=82+i*48,r=74+18*Math.sin(i*1.7);return '<circle cx="300" cy="'+y+'" r="18" fill="none" stroke="#91a8a4" stroke-width="5"/><circle cx="300" cy="'+y+'" r="12" fill="none" stroke="#d69572" stroke-width="4" stroke-dasharray="5 3"/><path d="M318 '+y+'H'+(300+r)+'M282 '+y+'H'+(300-r)+'" stroke="#c34a2a" stroke-width="4"/>';}).join('')+'<text x="300" y="382" text-anchor="middle" font-size="13" fill="#676b62">각 층은 같은 축에서 직접 힘을 받음 · 직렬 전달 아님</text></svg>';
+  return '<svg viewBox="0 0 600 390" role="img" aria-label="정숙성 우선 BLDC와 FOC, 공통 축, 층별 passive coupling 내부 개념"><rect x="125" y="320" width="350" height="38" rx="8" fill="#31392e"/><rect x="260" y="326" width="80" height="25" rx="6" fill="#8fa29c"/><text x="300" y="343" text-anchor="middle" font-size="11" fill="#fff">BLDC + FOC</text><path d="M300 48V320" stroke="#58737c" stroke-width="10"/>'+[0,1,2,3,4].map((_,i)=>{const y=82+i*48,r=74+18*Math.sin(i*1.7);return '<circle cx="300" cy="'+y+'" r="18" fill="none" stroke="#91a8a4" stroke-width="5"/><circle cx="300" cy="'+y+'" r="12" fill="none" stroke="#d69572" stroke-width="4" stroke-dasharray="5 3"/><path d="M318 '+y+'H'+(300+r)+'M282 '+y+'H'+(300-r)+'" stroke="#c34a2a" stroke-width="4"/>';}).join('')+'<text x="300" y="382" text-anchor="middle" font-size="13" fill="#676b62">각 층은 자기 마찰 링으로 공통축에서 직접 힘을 받음</text></svg>';
 }
 function renderPlacement(){
   all('[data-cover]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.cover===state.cover)));
   $('placementDrawing').innerHTML=placementSvg();
   $('placementCaption').textContent=state.cover==='inside'?'베이스의 정숙성 우선 BLDC 하나를 FOC로 구동하고, 필요하면 베이스 안에서 벨트 감속한 뒤 공통 축을 돌립니다. 각 레이어는 자기 coupling을 통해 직접 토크를 받습니다.':'외부에서는 중앙 Z축과 레이어만 보입니다. BLDC·드라이버·필요한 벨트 감속은 베이스 안에 숨깁니다.';
-  $('motorText').innerHTML='<div class="eyebrow">QUIET-FIRST CONCEPT</div><h3>BLDC 1개 + FOC + 병렬 coupling</h3><p class="short-desc">모터 선택 기준은 두께가 아니라 정숙성입니다. 기어박스 대신 필요 시 타이밍 벨트 감속을 사용하고, 층별 속도차는 passive slip으로 만듭니다.</p><dl class="fact-list"><div class="fact-row"><dt>모터</dt><dd>정숙성 우선 BLDC 1개</dd></div><div class="fact-row"><dt>제어</dt><dd>FOC · 저속 부드러움과 소음 확인</dd></div><div class="fact-row"><dt>감속</dt><dd>필요 시 베이스 내부 타이밍 벨트</dd></div><div class="fact-row"><dt>층별 부품</dt><dd>베어링 + 조절 가능한 passive coupling</dd></div><div class="fact-row"><dt>방향</dt><dd>전부 같은 방향 ↻</dd></div><div class="fact-row"><dt>속도</dt><dd>높이와 무관하게 다르게 보이도록 조정 · 정확한 rpm은 보장하지 않음</dd></div><div class="fact-row"><dt>외관</dt><dd>중앙 Z축과 레이어만 노출</dd></div></dl>';
+  $('motorText').innerHTML='<div class="eyebrow">QUIET-FIRST CONCEPT</div><h3>BLDC 1개 + FOC + 병렬 coupling</h3><p class="short-desc">모터 선택 기준은 두께가 아니라 정숙성입니다. 필요하면 베이스 안에서 타이밍 벨트로 감속합니다. 마찰 결합부가 각 층에 회전력을 직접 전달합니다.</p><dl class="fact-list"><div class="fact-row"><dt>모터</dt><dd>정숙성 우선 BLDC 1개</dd></div><div class="fact-row"><dt>제어</dt><dd>FOC · 저속 부드러움과 소음 확인</dd></div><div class="fact-row"><dt>감속</dt><dd>필요 시 베이스 내부 타이밍 벨트</dd></div><div class="fact-row"><dt>층별 부품</dt><dd>베어링 + 조절 가능한 passive coupling</dd></div><div class="fact-row"><dt>방향</dt><dd>전부 같은 방향 ↻</dd></div><div class="fact-row"><dt>속도</dt><dd>높이와 무관하게 다르게 보이도록 조정 · 정확한 rpm은 보장하지 않음</dd></div><div class="fact-row"><dt>외관</dt><dd>중앙 Z축과 레이어만 노출</dd></div></dl>';
 }
 all('[data-cover]').forEach(b=>b.addEventListener('click',()=>{state.cover=b.dataset.cover;renderPlacement();}));
 
-function updateBrief(){}
 function tick(ts){
   const dt=Math.min(.05,(ts-lastFrame)/1000||0);lastFrame=ts;
   if(state.playing&&!document.hidden){
@@ -437,512 +461,43 @@ function tick(ts){
 }
 function updateNav(){
   let current='cad';const offset=(document.querySelector('.topbar')?.getBoundingClientRect().height||60)+150;
-  for(const id of ['cad','movement','structure','methods','making'])if($(id)?.getBoundingClientRect().top<=offset)current=id;
+  for(const id of ['cad','movement','structure','methods','making','dimensions'])if($(id)?.getBoundingClientRect().top<=offset)current=id;
   all('.topnav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
 }
 let navQueued=false;window.addEventListener('scroll',()=>{if(!navQueued){navQueued=true;requestAnimationFrame(()=>{updateNav();navQueued=false;});}},{passive:true});
 
-syncLabels();syncPlay();rebuild(false);renderAssembly();renderPlacement();updateBrief();updateNav();
+syncLabels();syncPlay();rebuild(false);renderAssembly();renderPlacement();updateNav();
 if('ResizeObserver' in window)new ResizeObserver(resizeCanvas).observe(canvas);else window.addEventListener('resize',resizeCanvas);
 resizeCanvas();rafId=requestAnimationFrame(tick);
 window.addEventListener('pagehide',()=>cancelAnimationFrame(rafId));
 </script>
 
-<script type="module">
+<script>
 (async()=>{
-const root=document.getElementById('cad');
-if(!root||root.dataset.ready==='1')return;
-root.dataset.ready='1';
-const q=id=>document.getElementById(id);
-const loading=q('cadLoading'),fallback=q('cadNoWebgl');
-
-function importWithTimeout(url,ms=10000){
-  return Promise.race([
-    import(url),
-    new Promise((_,reject)=>setTimeout(()=>reject(new Error('module-timeout: '+url)),ms))
-  ]);
-}
-function showLoadFailure(){
-  loading.innerHTML='<div><strong>3D 모델을 불러오지 못했습니다.</strong><br><small>네트워크 모듈 로딩이 지연되었습니다.</small><br><button type="button" id="cadRetryLoad" class="btn compact" style="margin-top:12px">3D 다시 불러오기</button></div>';
-  loading.classList.remove('ready');
-  fallback.style.display='block';
-  const retry=q('cadRetryLoad');
-  if(retry)retry.addEventListener('click',()=>{
-    const u=new URL(window.location.href);
-    u.searchParams.set('reload3d',String(Date.now()));
-    window.location.href=u.toString();
-  });
-}
-
-let THREE,OrbitControls;
-try{
-  loading.innerHTML='3D 조립 모델을 불러오는 중…<br><small>3D 모듈 1차 로딩</small>';
-  THREE=await importWithTimeout('https://cdn.jsdelivr.net/npm/three@0.180.0/+esm',10000);
-  ({OrbitControls}=await importWithTimeout('https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js/+esm',10000));
-}catch(primaryErr){
+  const root=document.getElementById('cad'),loading=document.getElementById('cadLoading'),fallback=document.getElementById('cadNoWebgl');
+  const controls=Array.from(root.querySelectorAll('button,input,select'));
+  controls.forEach(el=>el.disabled=true);
+  function failure(message){
+    root.dataset.ready='0';
+    loading.innerHTML='<div><strong>3D를 표시하지 못했습니다.</strong><p id="cadErrorText"></p><button type="button" class="btn" id="cadRetryLoad">3D 다시 불러오기</button></div>';
+    document.getElementById('cadErrorText').textContent=message;
+    loading.classList.remove('ready');
+    document.getElementById('cadRetryLoad').addEventListener('click',()=>location.reload());
+    fallback.style.display='block';
+  }
+  window.addEventListener('cadFailure',e=>failure(e.detail));
+  const timer=setTimeout(()=>failure('3D 파일을 불러오는 시간이 초과되었습니다. 연결을 확인하고 다시 시도해 주세요.'),15000);
   try{
-    loading.innerHTML='3D 조립 모델을 불러오는 중…<br><small>대체 모듈로 다시 시도 중</small>';
-    THREE=await importWithTimeout('https://esm.sh/three@0.180.0',10000);
-    ({OrbitControls}=await importWithTimeout('https://esm.sh/three@0.180.0/examples/jsm/controls/OrbitControls.js',10000));
-  }catch(secondaryErr){
-    showLoadFailure();
-    return;
+    const {initCad}=await import('./assets/cad-viewer.js?v=3.0');
+    await initCad();
+    clearTimeout(timer);loading.classList.add('ready');fallback.style.display='none';
+    controls.forEach(el=>el.disabled=false);
+    document.getElementById('cadExplode').disabled=true;
+  }catch(err){
+    clearTimeout(timer);
+    failure(err instanceof TypeError?'3D 파일을 불러오지 못했습니다. 연결을 확인하고 다시 시도해 주세요.':'3D 모델 초기화 중 오류가 발생했습니다. 다시 불러와 주세요.');
+    console.error('CAD initialization failed:',err);
   }
-}
-const canvas=q('cadCanvas'),view=q('cadView');
-let renderer;
-try{
-  renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
-}catch(err){
-  showLoadFailure();
-  return;
-}
-renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
-renderer.outputColorSpace=THREE.SRGBColorSpace;
-renderer.shadowMap.enabled=true;
-renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-renderer.localClippingEnabled=true;
-const sectionPlane=new THREE.Plane(new THREE.Vector3(0,-1,0),.01);
-
-const scene=new THREE.Scene();
-scene.background=new THREE.Color(0xf0f1ec);
-scene.fog=new THREE.Fog(0xf0f1ec,9,15);
-const camera=new THREE.PerspectiveCamera(34,1,.02,40);
-camera.up.set(0,0,1);
-camera.position.set(5.4,7.2,4.7);
-const controls=new OrbitControls(camera,canvas);
-controls.target.set(0,0,2.2);
-controls.enableDamping=true;
-controls.dampingFactor=.07;
-controls.minDistance=3.2;
-controls.maxDistance=12;
-controls.maxPolarAngle=Math.PI*.88;
-controls.update();
-
-scene.add(new THREE.HemisphereLight(0xffffff,0xaeb5a9,2.2));
-const key=new THREE.DirectionalLight(0xffffff,3.3);key.position.set(4,5,7);key.castShadow=true;key.shadow.mapSize.set(1024,1024);scene.add(key);
-const fill=new THREE.DirectionalLight(0xdde6ea,1.1);fill.position.set(-5,-3,3);scene.add(fill);
-
-const floor=new THREE.Mesh(new THREE.CircleGeometry(5.5,80),new THREE.MeshStandardMaterial({color:0xe3e5de,roughness:.92,metalness:0}));
-floor.position.z=-.015;floor.receiveShadow=true;scene.add(floor);
-const grid=new THREE.GridHelper(7,28,0xc7cbc2,0xd9dcd4);grid.rotation.x=Math.PI/2;grid.position.z=.002;grid.material.opacity=.36;grid.material.transparent=true;scene.add(grid);
-
-const mats={
-  structure:new THREE.MeshStandardMaterial({color:0x66706a,roughness:.52,metalness:.45}),
-  dark:new THREE.MeshStandardMaterial({color:0x343b36,roughness:.48,metalness:.38}),
-  cover:new THREE.MeshStandardMaterial({color:0x4a524c,roughness:.55,metalness:.28,transparent:true,opacity:1}),
-  layer:new THREE.MeshStandardMaterial({color:0x5d655e,roughness:.44,metalness:.42}),
-  layerSel:new THREE.MeshStandardMaterial({color:0xa65c45,roughness:.42,metalness:.4}),
-  hub:new THREE.MeshStandardMaterial({color:0x7b827b,roughness:.46,metalness:.48}),
-  bearing:new THREE.MeshStandardMaterial({color:0x78918c,roughness:.35,metalness:.55,transparent:true,opacity:.86}),
-  coupling:new THREE.MeshStandardMaterial({color:0xc18b6e,roughness:.48,metalness:.25,transparent:true,opacity:.9}),
-  spring:new THREE.MeshStandardMaterial({color:0x9b805f,roughness:.34,metalness:.72}),
-  friction:new THREE.MeshStandardMaterial({color:0x8c6b58,roughness:.86,metalness:.06}),
-  race:new THREE.MeshStandardMaterial({color:0x7e918c,roughness:.3,metalness:.72}),
-  ball:new THREE.MeshStandardMaterial({color:0xaab6b0,roughness:.18,metalness:.88}),
-  retainer:new THREE.MeshStandardMaterial({color:0x8a918b,roughness:.34,metalness:.62}),
-  motor:new THREE.MeshStandardMaterial({color:0x7e918b,roughness:.38,metalness:.55}),
-  belt:new THREE.MeshStandardMaterial({color:0x262b28,roughness:.78,metalness:.05}),
-  drive:new THREE.MeshStandardMaterial({color:0xc5a36d,roughness:.38,metalness:.35,emissive:0x4b3518,emissiveIntensity:.25}),
-  ghost:new THREE.MeshStandardMaterial({color:0x7b827b,roughness:.5,metalness:.2,transparent:true,opacity:.16,depthWrite:false})
-};
-
-const root3d=new THREE.Group();scene.add(root3d);
-const baseGroup=new THREE.Group();root3d.add(baseGroup);
-const internals=new THREE.Group();root3d.add(internals);
-const layersGroup=new THREE.Group();root3d.add(layersGroup);
-const selectedInternals=new THREE.Group();root3d.add(selectedInternals);
-
-function zCylinder(rTop,rBottom,h,segments=48){
-  const g=new THREE.CylinderGeometry(rTop,rBottom,h,segments);
-  g.rotateX(Math.PI/2);
-  return g;
-}
-
-const base=new THREE.Mesh(zCylinder(1.35,1.45,.38,72),mats.cover);
-base.position.z=.19;base.castShadow=true;base.receiveShadow=true;baseGroup.add(base);
-const baseTop=new THREE.Mesh(zCylinder(1.17,1.17,.07,72),mats.dark);
-baseTop.position.z=.405;baseTop.castShadow=true;baseGroup.add(baseTop);
-const shaft=new THREE.Mesh(zCylinder(.055,.055,4.35,28),mats.structure);
-shaft.position.z=2.55;shaft.castShadow=true;root3d.add(shaft);
-
-const motorBody=new THREE.Mesh(zCylinder(.23,.23,.3,40),mats.motor);
-motorBody.position.set(.62,0,.2);motorBody.castShadow=true;internals.add(motorBody);
-const motorPulley=new THREE.Mesh(zCylinder(.14,.14,.06,36),mats.drive);
-motorPulley.position.set(.62,0,.405);internals.add(motorPulley);
-const shaftPulley=new THREE.Mesh(zCylinder(.31,.31,.06,48),mats.drive);
-shaftPulley.position.set(0,0,.405);internals.add(shaftPulley);
-const beltA=new THREE.Mesh(new THREE.BoxGeometry(.62,.035,.035),mats.belt);beltA.position.set(.31,.18,.405);internals.add(beltA);
-const beltB=beltA.clone();beltB.position.y=-.18;internals.add(beltB);
-const driverBox=new THREE.Mesh(new THREE.BoxGeometry(.48,.34,.08),mats.structure);driverBox.position.set(-.68,.25,.19);internals.add(driverBox);
-
-const layerCount=20;
-const layerObjs=[];
-function seeded(i){let x=Math.sin((i+1)*12.9898+78.233)*43758.5453;return x-Math.floor(x);}
-function figure8Curve(scale){
-  const pts=[];
-  const N=96;
-  for(let j=0;j<N;j++){
-    const t=j/N*Math.PI*2;
-    pts.push(new THREE.Vector3(scale*Math.sin(t),scale*.54*Math.sin(2*t),0));
-  }
-  return new THREE.CatmullRomCurve3(pts,true,'centripetal');
-}
-for(let i=0;i<layerCount;i++){
-  const k=i/(layerCount-1);
-  const z=.82+(1-k)*3.45;
-  const size=.34+1.28*Math.pow(Math.sin(Math.PI*k),.92);
-  const group=new THREE.Group();
-  group.position.z=z;
-  group.rotation.z=(i*2.3999632297)%(Math.PI*2);
-  layersGroup.add(group);
-  const tube=new THREE.Mesh(new THREE.TubeGeometry(figure8Curve(size),96,.017,6,true),mats.layer.clone());
-  tube.castShadow=true;tube.userData.layerIndex=i;group.add(tube);
-  const hub=new THREE.Mesh(zCylinder(.115,.115,.036,32),mats.hub.clone());
-  hub.userData.layerIndex=i;group.add(hub);
-  const factorBase=.36+seeded(i)*.58;
-  layerObjs.push({group,tube,hub,z,size,baseFactor:factorBase,factor:factorBase});
-}
-
-function latheRing(rIn,rOut,h,material,cone=0){
-  const pts=[
-    new THREE.Vector2(rIn,-h*.5),
-    new THREE.Vector2(rOut,-h*.5+cone),
-    new THREE.Vector2(rOut,h*.5+cone),
-    new THREE.Vector2(rIn,h*.5)
-  ];
-  const g=new THREE.LatheGeometry(pts,48);
-  g.rotateX(Math.PI/2);
-  return new THREE.Mesh(g,material);
-}
-const driveCollar=latheRing(.058,.132,.032,mats.drive);
-selectedInternals.add(driveCollar);
-
-const discSpring=latheRing(.064,.145,.022,mats.spring,.018);
-selectedInternals.add(discSpring);
-
-const frictionRing=latheRing(.07,.15,.018,mats.friction);
-selectedInternals.add(frictionRing);
-
-const bearingGroup=new THREE.Group();selectedInternals.add(bearingGroup);
-const bearingInner=new THREE.Mesh(new THREE.TorusGeometry(.082,.012,10,48),mats.race);
-bearingGroup.add(bearingInner);
-const bearingOuter=new THREE.Mesh(new THREE.TorusGeometry(.137,.014,10,48),mats.race);
-bearingGroup.add(bearingOuter);
-const bearingBalls=new THREE.Group();bearingGroup.add(bearingBalls);
-for(let j=0;j<12;j++){
-  const a=j/12*Math.PI*2;
-  const ball=new THREE.Mesh(new THREE.SphereGeometry(.012,12,8),mats.ball);
-  ball.position.set(Math.cos(a)*.11,Math.sin(a)*.11,0);
-  bearingBalls.add(ball);
-}
-
-const hubCarrier=latheRing(.151,.235,.048,mats.hub.clone());
-selectedInternals.add(hubCarrier);
-
-const retainer=latheRing(.06,.125,.022,mats.retainer);
-selectedInternals.add(retainer);
-
-const explodeGuides=new THREE.Group();selectedInternals.add(explodeGuides);
-for(const xx of [-.28,.28]){
-  const pts=[new THREE.Vector3(xx,0,-.34),new THREE.Vector3(xx,0,.34)];
-  const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineDashedMaterial({color:0x9fa69e,dashSize:.035,gapSize:.025,transparent:true,opacity:.55}));
-  line.computeLineDistances();explodeGuides.add(line);
-}
-const operationViz=new THREE.Group();
-internals.add(operationViz);
-operationViz.visible=false;
-
-const operationPathGroup=new THREE.Group();
-operationViz.add(operationPathGroup);
-
-const pathMaterial=new THREE.MeshBasicMaterial({
-  color:0xffc928,
-  transparent:true,
-  opacity:.58,
-  depthTest:false,
-  depthWrite:false
-});
-
-const pulseMaterial=new THREE.MeshBasicMaterial({
-  color:0xffe36e,
-  transparent:false,
-  depthTest:false,
-  depthWrite:false
-});
-const pulse=new THREE.Mesh(new THREE.SphereGeometry(.075,24,16),pulseMaterial);
-pulse.renderOrder=30;
-operationViz.add(pulse);
-
-const pulseHalo=new THREE.Mesh(
-  new THREE.SphereGeometry(.12,20,14),
-  new THREE.MeshBasicMaterial({
-    color:0xffc928,
-    transparent:true,
-    opacity:.22,
-    depthTest:false,
-    depthWrite:false
-  })
-);
-pulseHalo.renderOrder=29;
-operationViz.add(pulseHalo);
-
-const pulseTrail=[];
-for(let i=0;i<7;i++){
-  const dot=new THREE.Mesh(
-    new THREE.SphereGeometry(.042-i*.0025,16,10),
-    new THREE.MeshBasicMaterial({
-      color:0xffc928,
-      transparent:true,
-      opacity:.52-i*.055,
-      depthTest:false,
-      depthWrite:false
-    })
-  );
-  dot.renderOrder=28;
-  operationViz.add(dot);
-  pulseTrail.push(dot);
-}
-
-function beamBetween(a,b,r=.018){
-  const d=b.clone().sub(a),len=d.length();
-  const mesh=new THREE.Mesh(
-    new THREE.CylinderGeometry(r,r,len,12,1,false),
-    pathMaterial.clone()
-  );
-  mesh.position.copy(a).add(b).multiplyScalar(.5);
-  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.clone().normalize());
-  mesh.renderOrder=25;
-  return mesh;
-}
-
-function operationWaypoints(){
-  const z=layerObjs[state.selected].z;
-  // Slightly offset from the physical shaft so the explanatory overlay stays visible.
-  return [
-    new THREE.Vector3(.62,.18,.47),
-    new THREE.Vector3(.13,.07,.47),
-    new THREE.Vector3(.13,.07,z),
-    new THREE.Vector3(.21,0,z)
-  ];
-}
-
-function updateOperationPath(){
-  while(operationPathGroup.children.length){
-    const m=operationPathGroup.children.pop();
-    if(m.geometry)m.geometry.dispose();
-    if(m.material&&m.material!==pathMaterial)m.material.dispose();
-  }
-  const pts=operationWaypoints();
-  for(let i=0;i<pts.length-1;i++)operationPathGroup.add(beamBetween(pts[i],pts[i+1]));
-  for(const p of pts){
-    const joint=new THREE.Mesh(
-      new THREE.SphereGeometry(.032,14,10),
-      new THREE.MeshBasicMaterial({color:0xffc928,transparent:true,opacity:.72,depthTest:false,depthWrite:false})
-    );
-    joint.position.copy(p);joint.renderOrder=26;operationPathGroup.add(joint);
-  }
-}
-
-function operationPathPoint(u){
-  const pts=operationWaypoints();
-  const lens=[],cum=[0];let total=0;
-  for(let i=0;i<pts.length-1;i++){const len=pts[i].distanceTo(pts[i+1]);lens.push(len);total+=len;cum.push(total);}
-  const d=((u%1)+1)%1*total;
-  let seg=0;while(seg<lens.length-1&&d>cum[seg+1])seg++;
-  const local=(d-cum[seg])/Math.max(lens[seg],1e-6);
-  return pts[seg].clone().lerp(pts[seg+1],local);
-}
-updateOperationPath();
-
-let state={mode:'exterior',playing:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,selected:9,speed:.75,variation:.48,explode:.7,time:0};
-function applyFactors(){
-  layerObjs.forEach((l,i)=>{
-    const centered=.66+(l.baseFactor-.66)*(state.variation/.48);
-    l.factor=Math.max(.2,Math.min(.97,centered));
-  });
-  updateReadout();
-}
-function couplingLabel(v){return v<.48?'약한 결합':v<.72?'중간 결합':'강한 결합';}
-function speedLabel(v){return v<.5?'아주 느리게':v<.72?'느리게':v<1?'보통':'빠르게';}
-function variationLabel(v){return v<.3?'작게':v<.6?'중간':'크게';}
-function updateReadout(){
-  const l=layerObjs[state.selected];
-  q('cadLayerReadout').textContent=(state.selected+1)+'층';
-  q('cadLayerSpeed').textContent=l.factor.toFixed(2)+'×';
-  q('cadLayerCoupling').textContent=couplingLabel(l.factor);
-  q('cadSpeedReadout').textContent=speedLabel(state.speed);
-  q('cadVariationReadout').textContent=variationLabel(state.variation);
-  q('cadExplodeReadout').textContent=Math.round(state.explode*100)+'%';
-  q('cadStatus').innerHTML='<b>'+(state.selected+1)+'층 · '+({exterior:'외관',internal:'내부',section:'단면',exploded:'분해',operation:'작동'}[state.mode])+' 보기</b><br>'+(state.mode==='operation'?'노란 선·점 = 모터 → 공통 Z축 → 선택 레이어로 전달되는 토크의 설명용 표시':'레이어 속도 '+l.factor.toFixed(2)+'× 예시 · '+couplingLabel(l.factor)+' · 전부 같은 방향 ↻');
-}
-function selectLayer(i){
-  state.selected=Math.max(0,Math.min(layerCount-1,i));
-  q('cadLayer').value=String(state.selected);
-  layerObjs.forEach((l,idx)=>{l.tube.material.color.setHex(idx===state.selected?0xa65c45:0x5d655e);l.hub.material.color.setHex(idx===state.selected?0xa65c45:0x7b827b);});
-  positionSelectedInternals(true);
-  updateOperationPath();
-  updateReadout();
-}
-function positionSelectedInternals(immediate=false){
-  const l=layerObjs[state.selected];
-  selectedInternals.position.set(0,0,l.z);
-  const a=state.mode==='exploded'?state.explode:0;
-
-  // All parts remain coaxial with global Z. Exploded view only opens a local hub stack.
-  const e=.22*a;
-  driveCollar.position.z=-.072-e*1.15;
-  discSpring.position.z=-.044-e*.72;
-  frictionRing.position.z=-.020-e*.35;
-  bearingGroup.position.z=.004;
-  hubCarrier.position.z=.010+e*.42;
-  retainer.position.z=.044+e*.82;
-
-  explodeGuides.visible=state.mode==='exploded'&&a>.05;
-  const lift=.16*a;
-  l.group.position.z=l.z+lift;
-  layerObjs.forEach((o,idx)=>{if(idx!==state.selected)o.group.position.z=o.z;});
-}
-function setMode(mode){
-  state.mode=mode;
-  allCadModes();
-  const inside=mode!=='exterior';
-  internals.visible=inside;
-  selectedInternals.visible=inside;
-  operationViz.visible=mode==='operation';
-
-  renderer.clippingPlanes=mode==='section'?[sectionPlane]:[];
-
-  base.material.opacity=mode==='exterior'?1:(mode==='section'?.09:.15);
-  base.material.depthWrite=mode==='exterior';
-  baseTop.material.opacity=mode==='exterior'?1:(mode==='section'?.12:.22);
-  baseTop.material.transparent=inside;baseTop.material.depthWrite=!inside;
-
-  layerObjs.forEach((o,idx)=>{
-    const isolate=(mode==='exploded'||mode==='section'||mode==='operation')&&idx!==state.selected;
-    o.tube.material.transparent=isolate;
-    o.tube.material.opacity=isolate?(mode==='section'?.10:mode==='operation'?.14:.24):1;
-    o.hub.material.transparent=mode!=='exterior'||isolate;
-    o.hub.material.opacity=isolate?.06:(mode==='exterior'?1:.18);
-    if(idx===state.selected && inside)o.hub.material.opacity=.04;
-  });
-
-  const showStack=mode==='internal'||mode==='section'||mode==='exploded'||mode==='operation';
-  selectedInternals.visible=showStack;
-  q('cadExplodeField').style.opacity=mode==='exploded'?'1':'.45';
-  q('cadExplode').disabled=mode!=='exploded';
-  q('cadModeBadge').textContent={exterior:'외관 보기',internal:'내부 보기',section:'중앙 단면',exploded:'부품 분해',operation:'힘 전달'}[mode];
-
-  if(mode==='exploded'){
-    camera.position.set(1.7,2.25,layerObjs[state.selected].z+.9);
-    controls.target.set(0,0,layerObjs[state.selected].z);
-    controls.update();
-  }
-
-  if(mode==='operation'){
-    const midZ=(.47+layerObjs[state.selected].z)*.5;
-    camera.position.set(3.7,5.3,midZ+1.35);
-    controls.target.set(0,0,midZ);
-    controls.update();
-    updateOperationPath();
-  }
-
-  if(mode==='section'){
-    camera.position.set(3.3,4.4,layerObjs[state.selected].z+1.1);
-    controls.target.set(0,0,layerObjs[state.selected].z);
-    controls.update();
-  }
-
-  positionSelectedInternals(true);updateReadout();
-}
-function allCadModes(){
-  root.querySelectorAll('[data-cad-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.cadMode===state.mode)));
-}
-root.querySelectorAll('[data-cad-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.cadMode)));
-q('cadPlay').addEventListener('click',()=>{state.playing=!state.playing;q('cadPlay').textContent=state.playing?'일시정지':'재생';});
-q('cadResetCamera').addEventListener('click',()=>{camera.position.set(5.4,7.2,4.7);controls.target.set(0,0,2.2);controls.update();});
-q('cadLayer').innerHTML=Array.from({length:layerCount},(_,i)=>'<option value="'+i+'">'+(i+1)+'층</option>').join('');
-q('cadLayer').addEventListener('change',e=>selectLayer(Number(e.target.value)));
-q('cadSpeed').addEventListener('input',e=>{state.speed=Number(e.target.value)/100;updateReadout();});
-q('cadVariation').addEventListener('input',e=>{state.variation=Number(e.target.value)/100;applyFactors();});
-q('cadExplode').addEventListener('input',e=>{state.explode=Number(e.target.value)/100;positionSelectedInternals();updateReadout();});
-
-const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
-let pointerDown=null;
-canvas.addEventListener('pointerdown',e=>{pointerDown={x:e.clientX,y:e.clientY};});
-canvas.addEventListener('pointerup',e=>{
-  if(!pointerDown||Math.hypot(e.clientX-pointerDown.x,e.clientY-pointerDown.y)>6){pointerDown=null;return;}
-  const r=canvas.getBoundingClientRect();
-  pointer.x=((e.clientX-r.left)/r.width)*2-1;pointer.y=-((e.clientY-r.top)/r.height)*2+1;
-  raycaster.setFromCamera(pointer,camera);
-  const hits=raycaster.intersectObjects(layerObjs.flatMap(o=>[o.tube,o.hub]),false);
-  if(hits.length&&Number.isInteger(hits[0].object.userData.layerIndex))selectLayer(hits[0].object.userData.layerIndex);
-  pointerDown=null;
-});
-
-function resize(){
-  const r=view.getBoundingClientRect();
-  if(!r.width||!r.height)return;
-  renderer.setSize(r.width,r.height,false);
-  camera.aspect=r.width/r.height;camera.updateProjectionMatrix();
-}
-new ResizeObserver(resize).observe(view);
-resize();
-
-function updatePulse(t){
-  if(state.mode!=='operation')return;
-  const u=(t*.34)%1;
-  const p=operationPathPoint(u);
-  pulse.position.copy(p);
-  pulseHalo.position.copy(p);
-
-  const breathe=1+.18*Math.sin(t*10);
-  pulse.scale.setScalar(breathe);
-  pulseHalo.scale.setScalar(1.05+.22*Math.sin(t*8));
-
-  pulseTrail.forEach((dot,i)=>{
-    const lag=(i+1)*.028;
-    dot.position.copy(operationPathPoint(u-lag));
-    dot.scale.setScalar(1-.055*i);
-  });
-
-  frictionRing.material.emissive=new THREE.Color(0x5d3314);
-  frictionRing.material.emissiveIntensity=.24+.28*Math.sin(t*7)*.5+.14;
-  discSpring.material.emissive=new THREE.Color(0x493312);
-  discSpring.material.emissiveIntensity=.13+.14*Math.sin(t*6)*.5+.07;
-}
-let last=performance.now();
-function frame(now){
-  const dt=Math.min(.05,(now-last)/1000);last=now;
-  if(state.playing){
-    const shaftDelta=state.speed*.55*dt;
-    const selectedDelta=state.speed*layerObjs[state.selected].factor*.55*dt;
-    shaft.rotation.z+=shaftDelta;
-    shaftPulley.rotation.z+=shaftDelta;
-    motorPulley.rotation.z+=state.speed*1.2*dt;
-    layerObjs.forEach(o=>o.group.rotation.z+=state.speed*o.factor*.55*dt);
-
-    // Shaft-side parts follow the common shaft; hub-side parts follow the selected layer.
-    driveCollar.rotation.z+=shaftDelta;
-    discSpring.rotation.z+=shaftDelta;
-    frictionRing.rotation.z+=shaftDelta;
-    bearingInner.rotation.z+=shaftDelta;
-    retainer.rotation.z+=shaftDelta;
-    bearingOuter.rotation.z+=selectedDelta;
-    hubCarrier.rotation.z+=selectedDelta;
-    bearingBalls.rotation.z+=(shaftDelta+selectedDelta)*.5;
-
-    state.time+=dt;
-  }
-  if(state.mode==='operation')updatePulse(state.time);
-  controls.update();
-  renderer.render(scene,camera);
-  requestAnimationFrame(frame);
-}
-loading.classList.add('ready');
-selectLayer(state.selected);applyFactors();setMode('exterior');
-q('cadExplode').disabled=true;q('cadPlay').textContent=state.playing?'일시정지':'재생';
-requestAnimationFrame(frame);
 })();
 </script>
 </body></html>
