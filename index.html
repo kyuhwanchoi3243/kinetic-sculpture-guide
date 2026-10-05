@@ -121,7 +121,7 @@
 <div><b id="cadLayerSpeed">0.67×</b>선택 레이어의 개념 속도</div>
 <div><b id="cadLayerCoupling">중간 결합</b>passive coupling 예시</div>
 </div>
-<div class="cad-legend"><span><i class="cad-dot"></i>고정/구조</span><span><i class="cad-dot rot"></i>회전 레이어</span><span><i class="cad-dot contact"></i>베어링·coupling</span><span><i class="cad-dot drive"></i>구동 경로</span></div>
+<div class="cad-legend"><span><i class="cad-dot"></i>고정/구조</span><span><i class="cad-dot rot"></i>회전 레이어</span><span><i class="cad-dot contact"></i>베어링·coupling</span><span><i class="cad-dot drive"></i>노란 선·점 = 힘 전달 표시</span></div>
 <div class="cad-stack">
 <div class="cad-stack-title">선택 레이어 중앙부 — 후보 부품 스택</div>
 <div class="cad-stack-row"><span class="cad-stack-num">1</span><span><b>축 칼라</b>공통축과 함께 회전하며 예압 스택을 받침</span></div>
@@ -243,7 +243,7 @@ coupling coupling coupling</div></article>
 <div class="source-item" id="source7"><a href="https://kr.spirol.com/product/disc-springs/" target="_blank" rel="noopener noreferrer">[3] SPIROL — Disc Springs</a><small>디스크 스프링의 축방향 하중과 예압 설계 참고.</small></div>
 <div class="source-item" id="source8"><a href="https://cdn.skfmediahub.skf.com/api/public/0901d196802809de/pdf_preview_medium/0901d196802809de_pdf_preview_medium.pdf" target="_blank" rel="noopener noreferrer">[4] SKF — Deep groove ball bearings</a><small>볼 베어링의 하중 조건과 규격 선정 참고.</small></div>
 </div><p>페이지의 속도비·부품 크기·간격은 모두 개념 시각화입니다. 실제 rpm, 토크, 공차, 수명을 뜻하지 않습니다.</p></details>
-<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.05 / V2.4</p></footer>
+<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.05 / V2.5</p></footer>
 <div class="print-summary" id="printSummary"></div>
 </main><div class="toast" role="status" id="toast"></div>
 <script>
@@ -621,8 +621,111 @@ for(const xx of [-.28,.28]){
   const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineDashedMaterial({color:0x9fa69e,dashSize:.035,gapSize:.025,transparent:true,opacity:.55}));
   line.computeLineDistances();explodeGuides.add(line);
 }
-const pulse=new THREE.Mesh(new THREE.SphereGeometry(.045,18,12),mats.drive);
-internals.add(pulse);pulse.visible=false;
+const operationViz=new THREE.Group();
+internals.add(operationViz);
+operationViz.visible=false;
+
+const operationPathGroup=new THREE.Group();
+operationViz.add(operationPathGroup);
+
+const pathMaterial=new THREE.MeshBasicMaterial({
+  color:0xffc928,
+  transparent:true,
+  opacity:.58,
+  depthTest:false,
+  depthWrite:false
+});
+
+const pulseMaterial=new THREE.MeshBasicMaterial({
+  color:0xffe36e,
+  transparent:false,
+  depthTest:false,
+  depthWrite:false
+});
+const pulse=new THREE.Mesh(new THREE.SphereGeometry(.075,24,16),pulseMaterial);
+pulse.renderOrder=30;
+operationViz.add(pulse);
+
+const pulseHalo=new THREE.Mesh(
+  new THREE.SphereGeometry(.12,20,14),
+  new THREE.MeshBasicMaterial({
+    color:0xffc928,
+    transparent:true,
+    opacity:.22,
+    depthTest:false,
+    depthWrite:false
+  })
+);
+pulseHalo.renderOrder=29;
+operationViz.add(pulseHalo);
+
+const pulseTrail=[];
+for(let i=0;i<7;i++){
+  const dot=new THREE.Mesh(
+    new THREE.SphereGeometry(.042-i*.0025,16,10),
+    new THREE.MeshBasicMaterial({
+      color:0xffc928,
+      transparent:true,
+      opacity:.52-i*.055,
+      depthTest:false,
+      depthWrite:false
+    })
+  );
+  dot.renderOrder=28;
+  operationViz.add(dot);
+  pulseTrail.push(dot);
+}
+
+function beamBetween(a,b,r=.018){
+  const d=b.clone().sub(a),len=d.length();
+  const mesh=new THREE.Mesh(
+    new THREE.CylinderGeometry(r,r,len,12,1,false),
+    pathMaterial.clone()
+  );
+  mesh.position.copy(a).add(b).multiplyScalar(.5);
+  mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.clone().normalize());
+  mesh.renderOrder=25;
+  return mesh;
+}
+
+function operationWaypoints(){
+  const z=layerObjs[state.selected].z;
+  // Slightly offset from the physical shaft so the explanatory overlay stays visible.
+  return [
+    new THREE.Vector3(.62,.18,.47),
+    new THREE.Vector3(.13,.07,.47),
+    new THREE.Vector3(.13,.07,z),
+    new THREE.Vector3(.21,0,z)
+  ];
+}
+
+function updateOperationPath(){
+  while(operationPathGroup.children.length){
+    const m=operationPathGroup.children.pop();
+    if(m.geometry)m.geometry.dispose();
+    if(m.material&&m.material!==pathMaterial)m.material.dispose();
+  }
+  const pts=operationWaypoints();
+  for(let i=0;i<pts.length-1;i++)operationPathGroup.add(beamBetween(pts[i],pts[i+1]));
+  for(const p of pts){
+    const joint=new THREE.Mesh(
+      new THREE.SphereGeometry(.032,14,10),
+      new THREE.MeshBasicMaterial({color:0xffc928,transparent:true,opacity:.72,depthTest:false,depthWrite:false})
+    );
+    joint.position.copy(p);joint.renderOrder=26;operationPathGroup.add(joint);
+  }
+}
+
+function operationPathPoint(u){
+  const pts=operationWaypoints();
+  const lens=[],cum=[0];let total=0;
+  for(let i=0;i<pts.length-1;i++){const len=pts[i].distanceTo(pts[i+1]);lens.push(len);total+=len;cum.push(total);}
+  const d=((u%1)+1)%1*total;
+  let seg=0;while(seg<lens.length-1&&d>cum[seg+1])seg++;
+  const local=(d-cum[seg])/Math.max(lens[seg],1e-6);
+  return pts[seg].clone().lerp(pts[seg+1],local);
+}
+updateOperationPath();
 
 let state={mode:'exterior',playing:!window.matchMedia('(prefers-reduced-motion: reduce)').matches,selected:9,speed:.75,variation:.48,explode:.7,time:0};
 function applyFactors(){
@@ -643,13 +746,14 @@ function updateReadout(){
   q('cadSpeedReadout').textContent=speedLabel(state.speed);
   q('cadVariationReadout').textContent=variationLabel(state.variation);
   q('cadExplodeReadout').textContent=Math.round(state.explode*100)+'%';
-  q('cadStatus').innerHTML='<b>'+(state.selected+1)+'층 · '+({exterior:'외관',internal:'내부',section:'단면',exploded:'분해',operation:'작동'}[state.mode])+' 보기</b><br>레이어 속도 '+l.factor.toFixed(2)+'× 예시 · '+couplingLabel(l.factor)+' · 전부 같은 방향 ↻';
+  q('cadStatus').innerHTML='<b>'+(state.selected+1)+'층 · '+({exterior:'외관',internal:'내부',section:'단면',exploded:'분해',operation:'작동'}[state.mode])+' 보기</b><br>'+(state.mode==='operation'?'노란 선·점 = 모터 → 공통 Z축 → 선택 레이어로 전달되는 토크의 설명용 표시':'레이어 속도 '+l.factor.toFixed(2)+'× 예시 · '+couplingLabel(l.factor)+' · 전부 같은 방향 ↻');
 }
 function selectLayer(i){
   state.selected=Math.max(0,Math.min(layerCount-1,i));
   q('cadLayer').value=String(state.selected);
   layerObjs.forEach((l,idx)=>{l.tube.material.color.setHex(idx===state.selected?0xa65c45:0x5d655e);l.hub.material.color.setHex(idx===state.selected?0xa65c45:0x7b827b);});
   positionSelectedInternals(true);
+  updateOperationPath();
   updateReadout();
 }
 function positionSelectedInternals(immediate=false){
@@ -677,7 +781,7 @@ function setMode(mode){
   const inside=mode!=='exterior';
   internals.visible=inside;
   selectedInternals.visible=inside;
-  pulse.visible=mode==='operation';
+  operationViz.visible=mode==='operation';
 
   renderer.clippingPlanes=mode==='section'?[sectionPlane]:[];
 
@@ -687,11 +791,11 @@ function setMode(mode){
   baseTop.material.transparent=inside;baseTop.material.depthWrite=!inside;
 
   layerObjs.forEach((o,idx)=>{
-    const isolate=(mode==='exploded'||mode==='section')&&idx!==state.selected;
+    const isolate=(mode==='exploded'||mode==='section'||mode==='operation')&&idx!==state.selected;
     o.tube.material.transparent=isolate;
-    o.tube.material.opacity=isolate?(mode==='section'?.10:.24):1;
+    o.tube.material.opacity=isolate?(mode==='section'?.10:mode==='operation'?.14:.24):1;
     o.hub.material.transparent=mode!=='exterior'||isolate;
-    o.hub.material.opacity=isolate?.08:(mode==='exterior'?1:.18);
+    o.hub.material.opacity=isolate?.06:(mode==='exterior'?1:.18);
     if(idx===state.selected && inside)o.hub.material.opacity=.04;
   });
 
@@ -705,6 +809,14 @@ function setMode(mode){
     camera.position.set(1.7,2.25,layerObjs[state.selected].z+.9);
     controls.target.set(0,0,layerObjs[state.selected].z);
     controls.update();
+  }
+
+  if(mode==='operation'){
+    const midZ=(.47+layerObjs[state.selected].z)*.5;
+    camera.position.set(3.7,5.3,midZ+1.35);
+    controls.target.set(0,0,midZ);
+    controls.update();
+    updateOperationPath();
   }
 
   if(mode==='section'){
@@ -751,18 +863,25 @@ resize();
 
 function updatePulse(t){
   if(state.mode!=='operation')return;
-  const l=layerObjs[state.selected];
-  const u=(t*.24)%1;
-  let x=0,y=0,z=.43;
-  if(u<.25){const a=u/.25;x=.62*(1-a);y=.18*(1-a);z=.43;}
-  else if(u<.85){const a=(u-.25)/.60;x=0;y=0;z=.43+(l.z-.43)*a;}
-  else{const a=(u-.85)/.15;x=.18*a;y=0;z=l.z;}
-  pulse.position.set(x,y,z);
-  pulse.scale.setScalar(.82+.35*Math.sin(t*8)*.5+.18);
-  frictionRing.material.emissive=new THREE.Color(0x4d2719);
-  frictionRing.material.emissiveIntensity=.18+.18*Math.sin(t*7);
-  discSpring.material.emissive=new THREE.Color(0x3b2b18);
-  discSpring.material.emissiveIntensity=.10+.10*Math.sin(t*6);
+  const u=(t*.34)%1;
+  const p=operationPathPoint(u);
+  pulse.position.copy(p);
+  pulseHalo.position.copy(p);
+
+  const breathe=1+.18*Math.sin(t*10);
+  pulse.scale.setScalar(breathe);
+  pulseHalo.scale.setScalar(1.05+.22*Math.sin(t*8));
+
+  pulseTrail.forEach((dot,i)=>{
+    const lag=(i+1)*.028;
+    dot.position.copy(operationPathPoint(u-lag));
+    dot.scale.setScalar(1-.055*i);
+  });
+
+  frictionRing.material.emissive=new THREE.Color(0x5d3314);
+  frictionRing.material.emissiveIntensity=.24+.28*Math.sin(t*7)*.5+.14;
+  discSpring.material.emissive=new THREE.Color(0x493312);
+  discSpring.material.emissiveIntensity=.13+.14*Math.sin(t*6)*.5+.07;
 }
 let last=performance.now();
 function frame(now){
