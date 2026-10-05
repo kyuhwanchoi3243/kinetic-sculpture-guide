@@ -1,6 +1,6 @@
 import * as THREE from '../vendor/three-r180/three.module.min.js';
 import {OrbitControls} from '../vendor/three-r180/OrbitControls.js';
-import {createAssembly} from './cad-model.js?v=3.2';
+import {createAssembly} from './cad-model.js?v=3.3';
 
 export async function initCad() {
   const q=id=>document.getElementById(id),view=q('cadView'),canvas=q('cadCanvas'),root=q('cad');
@@ -35,6 +35,15 @@ export async function initCad() {
   let width=1,height=1,dirty=true,frameId=0,lastRender=0;
   const project=v=>{const p=v.clone().project(camera);return {x:(p.x+1)*width/2,y:(1-p.y)*height/2,visible:p.z>=-1&&p.z<=1};};
   const world=(object,offset=new THREE.Vector3())=>object.localToWorld(offset.clone());
+  function fitEnvelope(envelope,top=100,bottom=95) {
+    for(let i=0;i<6;i++) {
+      camera.lookAt(controls.target);camera.updateMatrixWorld();
+      let ratio=1;
+      for(const v of envelope){const p=project(v);ratio=Math.max(ratio,Math.abs(p.x-width/2)/(width*.40),(height/2-p.y)/(height/2-top),(p.y-height/2)/(height/2-bottom));}
+      if(ratio<=1.01)break;
+      camera.position.sub(controls.target).multiplyScalar(ratio*1.025).add(controls.target);
+    }
+  }
   function fitCamera() {
     const z=model.layerObjs[state.selected].z,aspect=width/height;
     if(state.mode==='section'||state.mode==='exploded') {
@@ -45,20 +54,22 @@ export async function initCad() {
       const mid=(.18+z)/2,span=Math.max(1.1,z-.18);
       const distance=Math.max(3.2,span*2.35,2.0/aspect);
       controls.target.set(.13,0,mid);camera.position.copy(controls.target).add(new THREE.Vector3(1.5,-4,1.4).normalize().multiplyScalar(distance));
+      // A layer turns through every azimuth. Fit its full swept circle, including the route endpoint.
+      const envelope=[];
+      for(let i=0;i<24;i++) {
+        const a=i/24*Math.PI*2;
+        envelope.push(new THREE.Vector3(model.layerObjs[state.selected].size*Math.cos(a),model.layerObjs[state.selected].size*Math.sin(a),z));
+        for(const baseZ of [0,.42])envelope.push(new THREE.Vector3(.95*Math.cos(a),.95*Math.sin(a),baseZ));
+      }
+      fitEnvelope(envelope,aspect<.85?170:115,95);
     } else {
       const distance=Math.max(8.4,6.0/aspect);
       controls.target.set(0,0,2.32);camera.position.copy(controls.target).add(new THREE.Vector3(4,-7,3).normalize().multiplyScalar(distance));
       const envelope=[new THREE.Vector3(0,0,4.655),new THREE.Vector3(0,0,0)];
-      for(const l of model.layerObjs) for(const [x,y] of [[l.size,0],[-l.size,0],[0,l.size*.54],[0,-l.size*.54]])envelope.push(new THREE.Vector3(x,y,l.z));
+      for(const l of model.layerObjs) for(let i=0;i<16;i++){const a=i/16*Math.PI*2;envelope.push(new THREE.Vector3(l.size*Math.cos(a),l.size*Math.sin(a),l.z));}
       for(const [x,y] of [[.91,0],[-.91,0],[0,.91],[0,-.91]])envelope.push(new THREE.Vector3(x,y,.17));
       // Fit real geometry inside the space left by the viewer toolbar and caption.
-      for(let i=0;i<5;i++) {
-        camera.lookAt(controls.target);camera.updateMatrixWorld();
-        let ratio=1;
-        for(const v of envelope){const p=project(v);ratio=Math.max(ratio,(width/2-p.x)/(width*.42),(p.x-width/2)/(width*.42),(height/2-p.y)/(height/2-100),(p.y-height/2)/(height/2-95));}
-        if(ratio<=1.01)break;
-        camera.position.sub(controls.target).multiplyScalar(ratio*1.025).add(controls.target);
-      }
+      fitEnvelope(envelope);
     }
     controls.update();dirty=true;
   }

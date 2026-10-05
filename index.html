@@ -273,7 +273,7 @@
 <div class="source-item" id="source7"><a href="https://kr.spirol.com/product/disc-springs/" target="_blank" rel="noopener noreferrer">[3] SPIROL — Disc Springs</a><small>디스크 스프링의 축방향 하중과 예압 설계 참고.</small></div>
 <div class="source-item" id="source8"><a href="https://cdn.skfmediahub.skf.com/api/public/0901d196802809de/pdf_preview_medium/0901d196802809de_pdf_preview_medium.pdf" target="_blank" rel="noopener noreferrer">[4] SKF — Deep groove ball bearings</a><small>볼 베어링의 하중 조건과 규격 선정 참고.</small></div>
 </div><p>페이지의 속도비·부품 크기·간격은 모두 개념 시각화입니다. 실제 rpm, 토크, 공차, 수명을 뜻하지 않습니다.</p></details>
-<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.06 / V3.2</p></footer>
+<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.06 / V3.3</p></footer>
 
 </main><div class="toast" role="status" id="toast"></div>
 <script>
@@ -504,7 +504,7 @@ window.addEventListener('pagehide',()=>cancelAnimationFrame(rafId));
   window.addEventListener('cadFailure',e=>failure(e.detail));
   const timer=setTimeout(()=>failure('3D 파일을 불러오는 시간이 초과되었습니다. 연결을 확인하고 다시 시도해 주세요.'),15000);
   try{
-    const {initCad}=await import('./assets/cad-viewer.js?v=3.2');
+    const {initCad}=await import('./assets/cad-viewer.js?v=3.3');
     await initCad();
     clearTimeout(timer);loading.classList.add('ready');fallback.style.display='none';
     controls.forEach(el=>el.disabled=false);
