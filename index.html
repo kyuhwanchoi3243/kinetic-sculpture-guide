@@ -135,7 +135,7 @@
 </div>
 </div>
 <div class="cad-note"><strong>CONCEPT MODEL — NOT FOR FABRICATION.</strong> 중앙 허브는 실제 기구에 가까운 부품 순서로 세분화했지만, 여전히 치수·공차·예압·마찰계수·베어링 수명·모터 토크를 검증한 제작도면은 아닙니다. 레이어 크기·무게·재질·층 간격과 베이스 치수가 확정되면 이 스택을 실제 규격으로 다시 설계해야 합니다.</div>
-<div class="cad-no-webgl" id="cadNoWebgl">이 브라우저에서 3D 렌더러를 시작하지 못했습니다. 아래의 2D 움직임 모형과 구조 설명은 정상적으로 사용할 수 있습니다.</div>
+<div class="cad-no-webgl" id="cadNoWebgl">3D 모듈 또는 WebGL 초기화가 완료되지 않았습니다. 위의 ‘3D 다시 불러오기’를 눌러 새 세션으로 다시 시도할 수 있습니다.</div>
 </div>
 </section>
 <section class="hero" id="movement" aria-labelledby="hero-title">
@@ -243,7 +243,7 @@ coupling coupling coupling</div></article>
 <div class="source-item" id="source7"><a href="https://kr.spirol.com/product/disc-springs/" target="_blank" rel="noopener noreferrer">[3] SPIROL — Disc Springs</a><small>디스크 스프링의 축방향 하중과 예압 설계 참고.</small></div>
 <div class="source-item" id="source8"><a href="https://cdn.skfmediahub.skf.com/api/public/0901d196802809de/pdf_preview_medium/0901d196802809de_pdf_preview_medium.pdf" target="_blank" rel="noopener noreferrer">[4] SKF — Deep groove ball bearings</a><small>볼 베어링의 하중 조건과 규격 선정 참고.</small></div>
 </div><p>페이지의 속도비·부품 크기·간격은 모두 개념 시각화입니다. 실제 rpm, 토크, 공차, 수명을 뜻하지 않습니다.</p></details>
-<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.05 / V2.5</p></footer>
+<footer class="footer"><p>현재 구조: 중앙 Z축만 노출 · 정숙성 우선 BLDC + FOC · 공통축 · 층별 마찰 coupling.</p><p class="mono">KINETIC STUDY / 2026.10.05 / V2.6</p></footer>
 <div class="print-summary" id="printSummary"></div>
 </main><div class="toast" role="status" id="toast"></div>
 <script>
@@ -455,19 +455,47 @@ if(!root||root.dataset.ready==='1')return;
 root.dataset.ready='1';
 const q=id=>document.getElementById(id);
 const loading=q('cadLoading'),fallback=q('cadNoWebgl');
+
+function importWithTimeout(url,ms=10000){
+  return Promise.race([
+    import(url),
+    new Promise((_,reject)=>setTimeout(()=>reject(new Error('module-timeout: '+url)),ms))
+  ]);
+}
+function showLoadFailure(){
+  loading.innerHTML='<div><strong>3D 모델을 불러오지 못했습니다.</strong><br><small>네트워크 모듈 로딩이 지연되었습니다.</small><br><button type="button" id="cadRetryLoad" class="btn compact" style="margin-top:12px">3D 다시 불러오기</button></div>';
+  loading.classList.remove('ready');
+  fallback.style.display='block';
+  const retry=q('cadRetryLoad');
+  if(retry)retry.addEventListener('click',()=>{
+    const u=new URL(window.location.href);
+    u.searchParams.set('reload3d',String(Date.now()));
+    window.location.href=u.toString();
+  });
+}
+
 let THREE,OrbitControls;
 try{
-  THREE=await import('https://cdn.jsdelivr.net/npm/three@0.180.0/+esm');
-  ({OrbitControls}=await import('https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js/+esm'));
-}catch(err){
-  loading.style.display='none';fallback.style.display='block';return;
+  loading.innerHTML='3D 조립 모델을 불러오는 중…<br><small>3D 모듈 1차 로딩</small>';
+  THREE=await importWithTimeout('https://cdn.jsdelivr.net/npm/three@0.180.0/+esm',10000);
+  ({OrbitControls}=await importWithTimeout('https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/controls/OrbitControls.js/+esm',10000));
+}catch(primaryErr){
+  try{
+    loading.innerHTML='3D 조립 모델을 불러오는 중…<br><small>대체 모듈로 다시 시도 중</small>';
+    THREE=await importWithTimeout('https://esm.sh/three@0.180.0',10000);
+    ({OrbitControls}=await importWithTimeout('https://esm.sh/three@0.180.0/examples/jsm/controls/OrbitControls.js',10000));
+  }catch(secondaryErr){
+    showLoadFailure();
+    return;
+  }
 }
 const canvas=q('cadCanvas'),view=q('cadView');
 let renderer;
 try{
   renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
 }catch(err){
-  loading.style.display='none';fallback.style.display='block';return;
+  showLoadFailure();
+  return;
 }
 renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
 renderer.outputColorSpace=THREE.SRGBColorSpace;
